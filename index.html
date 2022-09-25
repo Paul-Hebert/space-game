@@ -6,6 +6,22 @@
     <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
-    <canvas id="main-canvas"></canvas>
+    <div class="game">
+      <canvas id="main-canvas" width="500" height="500"></canvas>
+      <svg
+        class="ship"
+        viewBox="0 0 71 147"
+        style="enable-background: new 0 0 71 147"
+      >
+        <path
+          fill="#898989"
+          d="M58,128.2H13c-6.6,0-12-5.4-12-12v-91c0-6.6,5.4-12,12-12h45c6.6,0,12,5.4,12,12v91
+		C70,122.8,64.6,128.2,58,128.2z"
+        />
+        <path fill="#898989" d="M1,101.2v45.5c0,0,0.9-19.9,19.3-19.9" />
+        <path fill="#898989" d="M70,101.2v45.5c0,0-0.9-19.9-19.3-19.9" />
+        <circle fill="#a3a3a3" cx="35" cy="13.2" r="13" />
+      </svg>
+    </div>
   </body>
 </html>

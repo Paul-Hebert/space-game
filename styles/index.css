@@ -1,5 +1,26 @@
 canvas {
   background: black;
-  width: 500px;
-  height: 500px;
+}
+
+html,
+body {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.game {
+  display: grid;
+  place-items: center;
+  grid-template-areas: "content";
+}
+
+canvas,
+.ship {
+  grid-area: content;
+}
+
+.ship {
+  width: 20px;
+  height: auto;
 }
