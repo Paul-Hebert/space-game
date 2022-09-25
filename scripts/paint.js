@@ -3,11 +3,17 @@ const context = canvas.getContext("2d");
 
 drawCircle(13, 38, 10, "white");
 
-export function paint({ asteroids }) {
+export function paint({ asteroids }, playerPos) {
   clearCanvas();
 
   asteroids.forEach((asteroid) => {
-    drawCircle(asteroid.x, asteroid.y, asteroid.size, "white");
+    // This logic for adjusting for player position is probably wrong
+    drawCircle(
+      asteroid.x - playerPos.x,
+      asteroid.y - playerPos.y,
+      asteroid.size,
+      "white"
+    );
   });
 }
 

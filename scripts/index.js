@@ -7,12 +7,29 @@ let count = 0;
 
 const mapData = createMap();
 
-paint(mapData);
+// This assumes our map is 500/500
+const playerPos = {
+  x: 250,
+  y: 250,
+};
 
 const gameLoop = loop(() => {
   count++;
 
-  // paint(mapData);
+  if (pressedKeys["ArrowRight"]) {
+    playerPos.x++;
+  }
+  if (pressedKeys["ArrowUp"]) {
+    playerPos.y--;
+  }
+  if (pressedKeys["ArrowLeft"]) {
+    playerPos.x--;
+  }
+  if (pressedKeys["ArrowDown"]) {
+    playerPos.y++;
+  }
+
+  paint(mapData, playerPos);
 });
 
 window.addEventListener("keydown", (e) => {
