@@ -11,8 +11,8 @@ export function paint({ asteroids }, playerPos) {
     drawCircle(
       asteroid.x - playerPos.x,
       asteroid.y - playerPos.y,
-      asteroid.size,
-      "white"
+      asteroid.radius,
+      asteroid.fill
     );
   });
 }

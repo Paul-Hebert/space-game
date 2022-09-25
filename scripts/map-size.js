@@ -1,1 +1,1 @@
-export const mapSize = 1000;
+export const mapSize = 3000;
