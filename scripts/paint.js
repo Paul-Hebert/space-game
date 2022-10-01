@@ -4,22 +4,15 @@ const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 const ship = document.querySelector(".ship");
 
-export function paint({ resources, asteroids, bullets }, playerState) {
+export function paint({ resources, asteroids, bullets, stars }, playerState) {
   clearCanvas();
 
   drawPlayer(playerState);
 
-  asteroids.forEach((asteroid) =>
+  [...stars, ...asteroids, ...resources].forEach((star) =>
     drawCircle({
-      ...asteroid,
-      ...relativePosition(asteroid, playerState, canvas),
-    })
-  );
-
-  resources.forEach((resource) =>
-    drawCircle({
-      ...resource,
-      ...relativePosition(resource, playerState, canvas),
+      ...star,
+      ...relativePosition(star, playerState, canvas),
     })
   );
 

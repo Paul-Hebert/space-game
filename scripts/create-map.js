@@ -4,6 +4,7 @@ import { hsl } from "./hsl.js";
 
 export function createMap() {
   const asteroids = [];
+
   for (let i = 0; i < 100; i++) {
     const color = {
       h: 0,
@@ -24,9 +25,24 @@ export function createMap() {
     });
   }
 
+  const stars = [];
+  for (let i = 0; i < 2000; i++) {
+    stars.push({
+      x: random(mapSize * -1, mapSize),
+      y: random(mapSize * -1, mapSize),
+      radius: Math.round(random(0.5, 2)),
+      fill: hsl({
+        h: random(0, 360),
+        s: random(20, 40),
+        l: random(70, 100),
+      }),
+    });
+  }
+
   return {
     bullets: [],
     resources: [],
     asteroids,
+    stars,
   };
 }
