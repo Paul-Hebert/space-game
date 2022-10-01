@@ -4,31 +4,37 @@ import { createMap } from "./create-map.js";
 import { paint } from "./paint.js";
 import "./size-canvas.js";
 
-let count = 0;
+const rotationSpeed = 2;
 
 const mapData = createMap();
 
 // This assumes our map is 500/500
 const playerPos = {
-  x: 250,
-  y: 250,
+  x: 0,
+  y: 0,
+  rotation: 0,
+  speed: {
+    x: 0,
+    y: 0,
+  },
 };
 
 const gameLoop = loop(() => {
-  count++;
-
   if (pressedKeys["ArrowRight"]) {
-    playerPos.x++;
+    playerPos.rotation += rotationSpeed;
   }
   if (pressedKeys["ArrowUp"]) {
-    playerPos.y--;
+    const acceleration = 0.1;
+    const rot = (playerPos.rotation * 3.141592653589793) / 180;
+    playerPos.speed.x += Math.sin(rot) * acceleration;
+    playerPos.speed.y += Math.cos(rot) * acceleration;
   }
   if (pressedKeys["ArrowLeft"]) {
-    playerPos.x--;
+    playerPos.rotation -= rotationSpeed;
   }
-  if (pressedKeys["ArrowDown"]) {
-    playerPos.y++;
-  }
+
+  playerPos.y -= playerPos.speed.y;
+  playerPos.x += playerPos.speed.x;
 
   paint(mapData, playerPos);
 });

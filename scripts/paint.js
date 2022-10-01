@@ -1,24 +1,35 @@
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
-
-drawCircle(13, 38, 10, "white");
+const ship = document.querySelector(".ship");
+const debug = false;
 
 export function paint({ asteroids }, playerPos) {
   clearCanvas();
 
+  drawPlayer(playerPos);
+
   asteroids.forEach((asteroid) => {
+    const relativePosX = asteroid.x - playerPos.x + canvas.width / 2;
+    const relativePosY = asteroid.y - playerPos.y + canvas.height / 2;
     // This logic for adjusting for player position is probably wrong
-    drawCircle(
-      asteroid.x - playerPos.x,
-      asteroid.y - playerPos.y,
-      asteroid.radius,
-      asteroid.fill
-    );
+    drawCircle(relativePosX, relativePosY, asteroid.radius, asteroid.fill);
+    if (debug) {
+      context.fillStyle = "red";
+      context.fillText(
+        `${Math.round(asteroid.x)}, ${Math.round(asteroid.y)}`,
+        relativePosX,
+        relativePosY
+      );
+    }
   });
 }
 
 function clearCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawPlayer({ rotation }) {
+  ship.style.setProperty("--rotation", `${rotation}deg`);
 }
 
 function drawCircle(x, y, radius, fill) {
