@@ -18,7 +18,13 @@ export function paint({ asteroids, bullets }, playerState) {
     const relativePosX = bullet.x - playerState.x + canvas.width / 2;
     const relativePosY = bullet.y - playerState.y + canvas.height / 2;
     // This logic for adjusting for player position is probably wrong
-    drawCircle(relativePosX, relativePosY, 2, "red");
+    drawCircle(
+      relativePosX,
+      relativePosY,
+      bullet.radius,
+      "red",
+      bullet.age / 100
+    );
   });
 }
 
@@ -30,11 +36,12 @@ function drawPlayer({ rotation }) {
   ship.style.setProperty("--rotation", `${rotation}deg`);
 }
 
-function drawCircle(x, y, radius, fill) {
+function drawCircle(x, y, radius, fill, opacity = 1) {
   context.beginPath();
   context.arc(x, y, radius, 0, 2 * Math.PI, false);
   if (fill) {
     context.fillStyle = fill;
+    context.globalAlpha = opacity;
     context.fill();
   }
 }

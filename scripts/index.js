@@ -5,11 +5,13 @@ import { moveObject } from "./move-object.js";
 import "./size-canvas.js";
 import { degreesToRadians } from "./degrees-to-radians.js";
 import { pressedKeys } from "./pressed-keys.js";
+import { handleCollisions } from "./handle-collisions.js";
 
+let frameCount = 0;
 const rotationSpeed = 2;
 const acceleration = 0.1;
 
-const mapData = createMap();
+let mapData = createMap();
 
 let playerState = {
   x: 0,
@@ -22,10 +24,20 @@ let playerState = {
 };
 
 const gameLoop = loop(() => {
+  frameCount++;
+
   handlePlayerActions(playerState);
 
   mapData.asteroids = mapData.asteroids.map((asteroid) => moveObject(asteroid));
-  mapData.bullets = mapData.bullets.map((bullet) => moveObject(bullet));
+  mapData.bullets = mapData.bullets
+    .filter((bullet) => bullet.age > 0)
+    .map((bullet) => {
+      bullet.age--;
+      return moveObject(bullet);
+    });
+  console.log(mapData.bullets.length);
+
+  mapData = handleCollisions(mapData);
 
   paint(mapData, playerState);
 });
@@ -54,14 +66,19 @@ export function handlePlayerActions() {
   playerState.x += playerState.speed.x;
 
   if (pressedKeys[" "]) {
+    // I don't understand why -90 is necessary here...
     const rotationInRadians = degreesToRadians(playerState.rotation - 90);
+    const shipSize = 15;
     mapData.bullets.push({
-      x: playerState.x,
-      y: playerState.y,
+      // Starting position is adjusted to be at the "nose" of the ship
+      x: Math.cos(rotationInRadians) * shipSize + playerState.x,
+      y: Math.sin(rotationInRadians) * shipSize + playerState.y,
       speed: {
-        x: Math.cos(rotationInRadians) * 30,
-        y: Math.sin(rotationInRadians) * 30,
+        x: playerState.speed.x + Math.cos(rotationInRadians) * 10,
+        y: playerState.speed.y + Math.sin(rotationInRadians) * 10,
       },
+      radius: 2,
+      age: 100,
     });
   }
 }
