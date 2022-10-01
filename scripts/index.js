@@ -6,14 +6,17 @@ import "./size-canvas.js";
 import { degreesToRadians } from "./degrees-to-radians.js";
 import { pressedKeys } from "./pressed-keys.js";
 import { handleCollisions } from "./handle-collisions.js";
+import { isColliding } from "./is-colliding.js";
 
-let frameCount = 0;
+const resourceCountEl = document.querySelector(".resource-count");
+
 const rotationSpeed = 2;
 const acceleration = 0.1;
 
 let mapData = createMap();
 
 let playerState = {
+  resourceCount: 0,
   x: 0,
   y: 0,
   rotation: 0,
@@ -24,18 +27,30 @@ let playerState = {
 };
 
 const gameLoop = loop(() => {
-  frameCount++;
-
   handlePlayerActions(playerState);
 
   mapData.asteroids = mapData.asteroids.map((asteroid) => moveObject(asteroid));
+  mapData.resources = mapData.resources
+    .filter((resource) => {
+      if (
+        isColliding(resource, {
+          ...playerState,
+          radius: 30,
+        })
+      ) {
+        playerState.resourceCount++;
+        resourceCountEl.textContent = playerState.resourceCount;
+        return false;
+      }
+      return true;
+    })
+    .map((resource) => moveObject(resource));
   mapData.bullets = mapData.bullets
     .filter((bullet) => bullet.age > 0)
     .map((bullet) => {
       bullet.age--;
       return moveObject(bullet);
     });
-  console.log(mapData.bullets.length);
 
   mapData = handleCollisions(mapData);
 
@@ -78,6 +93,7 @@ export function handlePlayerActions() {
         y: playerState.speed.y + Math.sin(rotationInRadians) * 10,
       },
       radius: 2,
+      fill: "red",
       age: 100,
     });
   }

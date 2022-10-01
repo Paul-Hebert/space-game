@@ -26,6 +26,7 @@ export function createMap() {
 
   return {
     bullets: [],
+    resources: [],
     asteroids,
   };
 }

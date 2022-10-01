@@ -5,15 +5,22 @@ export function handleCollisions(mapData) {
   if (!mapData.bullets.length) return mapData;
 
   let newAsteroids = [];
+  let newResources = [];
 
   mapData.bullets = mapData.bullets.filter((bullet) => {
     let collided = false;
     mapData.asteroids = mapData.asteroids.filter((asteroid) => {
       if (isColliding(bullet, asteroid)) {
         collided = true;
-        newAsteroids = newAsteroids.concat(
-          explodeAsteroid(asteroid, bullet.speed)
+
+        const { asteroids, resources } = explodeAsteroid(
+          asteroid,
+          bullet.speed
         );
+
+        if (asteroids.length) newAsteroids = newAsteroids.concat(asteroids);
+        if (resources.length) newResources = newResources.concat(resources);
+
         return false;
       }
       return true;
@@ -23,6 +30,7 @@ export function handleCollisions(mapData) {
   });
 
   mapData.asteroids = mapData.asteroids.concat(newAsteroids);
+  mapData.resources = mapData.resources.concat(newResources);
 
   return mapData;
 }

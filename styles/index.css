@@ -2,6 +2,10 @@ canvas {
   background: black;
 }
 
+html {
+  font-family: sans-serif;
+}
+
 html,
 body {
   display: grid;
@@ -14,6 +18,7 @@ body {
   display: grid;
   place-items: center;
   grid-template-areas: "content";
+  position: relative;
 }
 
 canvas,
@@ -26,4 +31,13 @@ canvas,
   transform: rotate(var(--rotation, 0));
   width: 50px;
   height: auto;
+}
+
+.resource-count {
+  color: gold;
+  font-weight: bold;
+  font-size: 3rem;
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
 }
