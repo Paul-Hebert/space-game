@@ -2,6 +2,7 @@ import { loop } from "./loop.js";
 import { pressedKeys } from "./pressed-keys.js";
 import { createMap } from "./create-map.js";
 import { paint } from "./paint.js";
+import { degreesToRadians } from "./degrees-to-radians.js";
 import "./size-canvas.js";
 
 const rotationSpeed = 2;
@@ -25,9 +26,9 @@ const gameLoop = loop(() => {
   }
   if (pressedKeys["ArrowUp"]) {
     const acceleration = 0.1;
-    const rot = (playerPos.rotation * 3.141592653589793) / 180;
-    playerPos.speed.x += Math.sin(rot) * acceleration;
-    playerPos.speed.y += Math.cos(rot) * acceleration;
+    const rotationInRadians = degreesToRadians(playerPos.rotation);
+    playerPos.speed.x += Math.sin(rotationInRadians) * acceleration;
+    playerPos.speed.y += Math.cos(rotationInRadians) * acceleration;
   }
   if (pressedKeys["ArrowLeft"]) {
     playerPos.rotation -= rotationSpeed;
