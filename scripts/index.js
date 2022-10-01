@@ -1,16 +1,13 @@
 import { loop } from "./loop.js";
-import { pressedKeys } from "./pressed-keys.js";
 import { createMap } from "./create-map.js";
 import { paint } from "./paint.js";
-import { degreesToRadians } from "./degrees-to-radians.js";
+import { handlePlayerActions } from "./handle-player-actions.js";
+import { moveAsteroids } from "./move-asteroids.js";
 import "./size-canvas.js";
-
-const rotationSpeed = 2;
 
 const mapData = createMap();
 
-// This assumes our map is 500/500
-const playerPos = {
+let playerState = {
   x: 0,
   y: 0,
   rotation: 0,
@@ -21,23 +18,11 @@ const playerPos = {
 };
 
 const gameLoop = loop(() => {
-  if (pressedKeys["ArrowRight"]) {
-    playerPos.rotation += rotationSpeed;
-  }
-  if (pressedKeys["ArrowUp"]) {
-    const acceleration = 0.1;
-    const rotationInRadians = degreesToRadians(playerPos.rotation);
-    playerPos.speed.x += Math.sin(rotationInRadians) * acceleration;
-    playerPos.speed.y += Math.cos(rotationInRadians) * acceleration;
-  }
-  if (pressedKeys["ArrowLeft"]) {
-    playerPos.rotation -= rotationSpeed;
-  }
+  playerState = handlePlayerActions(playerState);
 
-  playerPos.y -= playerPos.speed.y;
-  playerPos.x += playerPos.speed.x;
+  mapData.asteroids = moveAsteroids(mapData.asteroids);
 
-  paint(mapData, playerPos);
+  paint(mapData, playerState);
 });
 
 window.addEventListener("keydown", (e) => {

@@ -3,14 +3,14 @@ const context = canvas.getContext("2d");
 const ship = document.querySelector(".ship");
 const debug = false;
 
-export function paint({ asteroids }, playerPos) {
+export function paint({ asteroids }, playerState) {
   clearCanvas();
 
-  drawPlayer(playerPos);
+  drawPlayer(playerState);
 
   asteroids.forEach((asteroid) => {
-    const relativePosX = asteroid.x - playerPos.x + canvas.width / 2;
-    const relativePosY = asteroid.y - playerPos.y + canvas.height / 2;
+    const relativePosX = asteroid.x - playerState.x + canvas.width / 2;
+    const relativePosY = asteroid.y - playerState.y + canvas.height / 2;
     // This logic for adjusting for player position is probably wrong
     drawCircle(relativePosX, relativePosY, asteroid.radius, asteroid.fill);
     if (debug) {
