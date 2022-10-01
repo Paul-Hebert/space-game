@@ -10,13 +10,14 @@ export function createMap() {
       radius: Math.round(random(3, 10)),
       fill: `hsl(0, 0%, ${random(30, 80)}%)`,
       speed: {
-        x: random(-5, 5),
-        y: random(-5, 5),
+        x: random(-3, 3),
+        y: random(-3, 3),
       },
     });
   }
 
   return {
+    bullets: [],
     asteroids,
   };
 }
