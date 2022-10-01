@@ -50,18 +50,18 @@ export function handlePlayerActions() {
     playerState.speed.y += Math.cos(rotationInRadians) * acceleration;
   }
 
+  playerState.y -= playerState.speed.y;
+  playerState.x += playerState.speed.x;
+
   if (pressedKeys[" "]) {
     const rotationInRadians = degreesToRadians(playerState.rotation - 90);
     mapData.bullets.push({
       x: playerState.x,
       y: playerState.y,
       speed: {
-        x: playerState.speed.x + Math.cos(rotationInRadians) * 10,
-        y: playerState.speed.y + Math.sin(rotationInRadians) * 10,
+        x: Math.cos(rotationInRadians) * 30,
+        y: Math.sin(rotationInRadians) * 30,
       },
     });
   }
-
-  playerState.y -= playerState.speed.y;
-  playerState.x += playerState.speed.x;
 }
