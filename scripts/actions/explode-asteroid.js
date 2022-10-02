@@ -43,7 +43,7 @@ export function explodeAsteroid(asteroid, impactSpeed) {
         })
       );
     } else {
-      const newSize = random(asteroid.radius / 3, asteroid.radius);
+      const newSize = random(asteroid.radius / 3, (asteroid.radius * 2) / 3);
 
       combinedSize += newSize;
 

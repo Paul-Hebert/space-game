@@ -4,6 +4,8 @@ import { degreesToRadians } from "../math/degrees-to-radians.js";
 
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
+context.imageSmoothingEnabled = false;
+
 const ship = document.querySelector(".ship");
 const asteroidSprites = document.getElementById("asteroid-sprites");
 
