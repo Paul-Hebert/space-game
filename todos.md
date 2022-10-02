@@ -1,3 +1,4 @@
 - tests
 - Fix/enable frustum culling for bullets
 - Make map "infinite"
+- Fix shooting while flying

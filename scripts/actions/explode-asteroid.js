@@ -47,19 +47,11 @@ export function explodeAsteroid(asteroid, impactSpeed) {
 
       combinedSize += newSize;
 
-      const color = {
-        h: 0,
-        s: 0,
-        l: asteroid.color.l + random(-10, 10),
-      };
-
       asteroids.push(
         createAsteroid({
           ...asteroid,
           radius: newSize,
           durability: newSize,
-          color,
-          fill: hsl(color),
           speed,
         })
       );

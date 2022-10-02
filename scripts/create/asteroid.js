@@ -1,15 +1,7 @@
-import { random } from "../math/random.js";
+import { random, randomInt } from "../math/random.js";
 import { mapSize } from "../map-size.js";
-import { hsl } from "../graphics/hsl.js";
 
 export function createAsteroid(config) {
-  const color = (config && config.color) || {
-    h: 0,
-    s: 0,
-    l: random(30, 80),
-  };
-  const fill = hsl(color);
-
   const radius = (config && config.radius) || Math.round(random(3, 30));
   const durability = radius;
 
@@ -27,7 +19,9 @@ export function createAsteroid(config) {
     radius,
     durability,
     speed,
-    color,
-    fill,
+    spritePos: {
+      x: randomInt(0, 19),
+      y: randomInt(0, 19),
+    },
   };
 }
