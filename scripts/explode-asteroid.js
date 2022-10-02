@@ -30,6 +30,7 @@ export function explodeAsteroid(asteroid, impactSpeed) {
     const newObject = {
       ...asteroid,
       radius: newSize,
+      durability: newSize,
       color,
       fill: hsl(color),
       speed: {

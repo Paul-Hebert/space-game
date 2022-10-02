@@ -13,6 +13,12 @@ export function handleCollisions(mapData) {
       if (isColliding(bullet, asteroid)) {
         collided = true;
 
+        asteroid.durability -= 5;
+
+        if (asteroid.durability > 0) {
+          return true;
+        }
+
         const { asteroids, resources } = explodeAsteroid(
           asteroid,
           bullet.speed

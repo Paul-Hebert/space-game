@@ -12,10 +12,13 @@ export function createMap() {
       l: random(30, 80),
     };
 
+    const radius = Math.round(random(3, 30));
+
     asteroids.push({
       x: random(mapSize * -1, mapSize),
       y: random(mapSize * -1, mapSize),
-      radius: Math.round(random(3, 30)),
+      radius: radius,
+      durability: radius,
       speed: {
         x: random(-3, 3),
         y: random(-3, 3),
@@ -36,6 +39,7 @@ export function createMap() {
         s: random(20, 40),
         l: random(70, 100),
       }),
+      parallaxDepth: random(1, 10),
     });
   }
 
