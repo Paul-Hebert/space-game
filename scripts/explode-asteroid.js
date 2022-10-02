@@ -1,6 +1,8 @@
 import { random, randomBool } from "./random.js";
 import { hsl } from "./hsl.js";
 import { playSound } from "./play-sound.js";
+import { createAsteroid } from "./create/asteroid.js";
+import { createResource } from "./create/resource.js";
 
 const resourceChance = 0.05;
 
@@ -27,34 +29,40 @@ export function explodeAsteroid(asteroid, impactSpeed) {
   while (combinedSize < asteroid.radius) {
     const isResource = randomBool(resourceChance);
 
-    const newSize = isResource
-      ? random(2, 5)
-      : random(asteroid.radius / 3, asteroid.radius);
-
-    combinedSize += newSize;
-
-    const color = {
-      h: isResource ? random(40, 55) : 0,
-      s: isResource ? random(70, 100) : 0,
-      l: isResource ? random(40, 60) : asteroid.color.l + random(-10, 10),
-    };
-
-    const newObject = {
-      ...asteroid,
-      radius: newSize,
-      durability: newSize,
-      color,
-      fill: hsl(color),
-      speed: {
-        x: asteroid.speed.x + random(-1, 1) + impactSpeed.x / 20,
-        y: asteroid.speed.y + random(-1, 1) + impactSpeed.y / 20,
-      },
+    const speed = {
+      x: asteroid.speed.x + random(-1, 1) + impactSpeed.x / 20,
+      y: asteroid.speed.y + random(-1, 1) + impactSpeed.y / 20,
     };
 
     if (isResource) {
-      resources.push(newObject);
+      resources.push(
+        createResource({
+          x: asteroid.x,
+          y: asteroid.y,
+          speed,
+        })
+      );
     } else {
-      asteroids.push(newObject);
+      const newSize = random(asteroid.radius / 3, asteroid.radius);
+
+      combinedSize += newSize;
+
+      const color = {
+        h: 0,
+        s: 0,
+        l: asteroid.color.l + random(-10, 10),
+      };
+
+      asteroids.push(
+        createAsteroid({
+          ...asteroid,
+          radius: newSize,
+          durability: newSize,
+          color,
+          fill: hsl(color),
+          speed,
+        })
+      );
     }
   }
 

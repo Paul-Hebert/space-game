@@ -1,5 +1,5 @@
 import { loop } from "./loop.js";
-import { createMap } from "./create-map.js";
+import { createMap } from "./create/map.js";
 import { paint } from "./paint.js";
 import { moveObject } from "./move-object.js";
 import "./size-canvas.js";
