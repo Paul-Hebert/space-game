@@ -5,10 +5,7 @@ const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 const ship = document.querySelector(".ship");
 
-let circlesDrawn = 0;
-
 export function paint({ resources, asteroids, bullets, stars }, playerState) {
-  circlesDrawn = 0;
   clearCanvas();
 
   drawPlayer(playerState);
@@ -27,16 +24,14 @@ export function paint({ resources, asteroids, bullets, stars }, playerState) {
   bullets.forEach((bullet) => {
     const pos = relativePosition(bullet, playerState, canvas);
 
-    // if (isInBounds(bullet, canvas)) {
-    drawCircle({
-      ...bullet,
-      ...pos,
-      opacity: bullet.age / 100,
-    });
-    // }
+    if (isInBounds(bullet, canvas)) {
+      drawCircle({
+        ...bullet,
+        ...pos,
+        opacity: bullet.age / 100,
+      });
+    }
   });
-
-  console.log("circles", circlesDrawn);
 }
 
 function clearCanvas() {
@@ -48,7 +43,6 @@ function drawPlayer({ rotation }) {
 }
 
 function drawCircle({ x, y, radius, fill, opacity = 1 }) {
-  circlesDrawn++;
   context.beginPath();
   context.arc(x, y, radius, 0, 2 * Math.PI, false);
   if (fill) {
