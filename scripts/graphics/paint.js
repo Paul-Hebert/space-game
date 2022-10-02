@@ -1,28 +1,42 @@
-import { relativePosition } from "./relative-position.js";
+import { isInBounds } from "../math/is-in-bounds.js";
+import { relativePosition } from "../math/relative-position.js";
 
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 const ship = document.querySelector(".ship");
 
+let circlesDrawn = 0;
+
 export function paint({ resources, asteroids, bullets, stars }, playerState) {
+  circlesDrawn = 0;
   clearCanvas();
 
   drawPlayer(playerState);
 
-  [...stars, ...asteroids, ...resources].forEach((star) =>
-    drawCircle({
-      ...star,
-      ...relativePosition(star, playerState, canvas),
-    })
-  );
+  [...stars, ...asteroids, ...resources].forEach((object) => {
+    const pos = relativePosition(object, playerState, canvas);
 
-  bullets.forEach((bullet) =>
+    if (isInBounds(pos, canvas)) {
+      drawCircle({
+        ...object,
+        ...pos,
+      });
+    }
+  });
+
+  bullets.forEach((bullet) => {
+    const pos = relativePosition(bullet, playerState, canvas);
+
+    // if (isInBounds(bullet, canvas)) {
     drawCircle({
       ...bullet,
-      ...relativePosition(bullet, playerState, canvas),
+      ...pos,
       opacity: bullet.age / 100,
-    })
-  );
+    });
+    // }
+  });
+
+  console.log("circles", circlesDrawn);
 }
 
 function clearCanvas() {
@@ -34,6 +48,7 @@ function drawPlayer({ rotation }) {
 }
 
 function drawCircle({ x, y, radius, fill, opacity = 1 }) {
+  circlesDrawn++;
   context.beginPath();
   context.arc(x, y, radius, 0, 2 * Math.PI, false);
   if (fill) {

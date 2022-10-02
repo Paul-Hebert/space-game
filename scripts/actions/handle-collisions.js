@@ -1,4 +1,4 @@
-import { isColliding } from "./is-colliding.js";
+import { isColliding } from "../math/is-colliding.js";
 import { explodeAsteroid } from "./explode-asteroid.js";
 
 export function handleCollisions(mapData) {

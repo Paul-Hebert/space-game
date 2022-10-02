@@ -1,6 +1,6 @@
-import { random } from "../random.js";
+import { random } from "../math/random.js";
 import { mapSize } from "../map-size.js";
-import { hsl } from "../hsl.js";
+import { hsl } from "../graphics/hsl.js";
 
 export function createAsteroid(config) {
   const color = (config && config.color) || {

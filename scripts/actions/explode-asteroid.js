@@ -1,8 +1,8 @@
-import { random, randomBool } from "./random.js";
-import { hsl } from "./hsl.js";
-import { playSound } from "./play-sound.js";
-import { createAsteroid } from "./create/asteroid.js";
-import { createResource } from "./create/resource.js";
+import { random, randomBool } from "../math/random.js";
+import { hsl } from "../graphics/hsl.js";
+import { playSound } from "../play-sound.js";
+import { createAsteroid } from "../create/asteroid.js";
+import { createResource } from "../create/resource.js";
 
 const resourceChance = 0.05;
 

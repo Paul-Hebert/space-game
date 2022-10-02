@@ -1,12 +1,12 @@
 import { loop } from "./loop.js";
 import { createMap } from "./create/map.js";
-import { paint } from "./paint.js";
-import { moveObject } from "./move-object.js";
+import { paint } from "./graphics/paint.js";
+import { moveObject } from "./actions/move-object.js";
 import "./size-canvas.js";
-import { degreesToRadians } from "./degrees-to-radians.js";
+import { degreesToRadians } from "./math/degrees-to-radians.js";
 import { pressedKeys } from "./pressed-keys.js";
-import { handleCollisions } from "./handle-collisions.js";
-import { isColliding } from "./is-colliding.js";
+import { handleCollisions } from "./actions/handle-collisions.js";
+import { isColliding } from "./math/is-colliding.js";
 import { playSound } from "./play-sound.js";
 
 const resourceCountEl = document.querySelector(".resource-count");
@@ -46,6 +46,7 @@ const gameLoop = loop(() => {
       return true;
     })
     .map((resource) => moveObject(resource));
+
   mapData.bullets = mapData.bullets
     .filter((bullet) => bullet.age > 0)
     .map((bullet) => {
