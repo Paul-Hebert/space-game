@@ -1,9 +1,21 @@
 import { random, randomBool } from "./random.js";
 import { hsl } from "./hsl.js";
+import { playSound } from "./play-sound.js";
 
 const resourceChance = 0.05;
 
 export function explodeAsteroid(asteroid, impactSpeed) {
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      playSound({
+        duration: random(50, 500),
+        frequency: random(50, 200),
+        volume: random(1, 3),
+        nodeType: "sine",
+      });
+    }, random(0, 200));
+  }
+
   const asteroids = [];
   const resources = [];
 

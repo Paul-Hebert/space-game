@@ -7,6 +7,7 @@ import { degreesToRadians } from "./degrees-to-radians.js";
 import { pressedKeys } from "./pressed-keys.js";
 import { handleCollisions } from "./handle-collisions.js";
 import { isColliding } from "./is-colliding.js";
+import { playSound } from "./play-sound.js";
 
 const resourceCountEl = document.querySelector(".resource-count");
 
@@ -81,6 +82,7 @@ export function handlePlayerActions() {
   playerState.x += playerState.speed.x;
 
   if (pressedKeys[" "]) {
+    playSound({ duration: 20, frequency: 300, volumne: 1 });
     // I don't understand why -90 is necessary here...
     const rotationInRadians = degreesToRadians(playerState.rotation - 90);
     const shipSize = 15;
