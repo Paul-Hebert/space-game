@@ -24,13 +24,14 @@ export function paint({ resources, asteroids, bullets, stars }, playerState) {
   bullets.forEach((bullet) => {
     const pos = relativePosition(bullet, playerState, canvas);
 
-    if (isInBounds(bullet, canvas)) {
-      drawCircle({
-        ...bullet,
-        ...pos,
-        opacity: bullet.age / 100,
-      });
-    }
+    // TODO: Determine why frustum culling is too aggressive on bullets
+    // if (isInBounds(bullet, canvas)) {
+    drawCircle({
+      ...bullet,
+      ...pos,
+      opacity: bullet.age / 100,
+    });
+    // }
   });
 }
 
