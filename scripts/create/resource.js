@@ -10,7 +10,7 @@ export function createResource(config) {
   };
   const fill = hsl(color);
 
-  const radius = (config && config.radius) || Math.round(random(2, 5));
+  const radius = (config && config.radius) || Math.round(random(4, 8));
 
   const x = (config && config.x) || random(mapSize * -1, mapSize);
   const y = (config && config.y) || random(mapSize * -1, mapSize);

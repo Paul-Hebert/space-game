@@ -11,7 +11,7 @@ import { playSound } from "./play-sound.js";
 
 const resourceCountEl = document.querySelector(".resource-count");
 
-const rotationSpeed = 4;
+const rotationSpeed = 2;
 const acceleration = 0.1;
 
 let mapData = createMap();

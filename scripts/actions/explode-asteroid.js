@@ -21,7 +21,7 @@ export function explodeAsteroid(asteroid, impactSpeed) {
   const asteroids = [];
   const resources = [];
 
-  if (asteroid.radius < 2) {
+  if (asteroid.radius < 5) {
     return { asteroids, resources };
   }
   let combinedSize = 0;
