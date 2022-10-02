@@ -23,5 +23,7 @@ export function createAsteroid(config) {
       x: randomInt(0, 19),
       y: randomInt(0, 19),
     },
+    rotation: random(0, 360),
+    rotationSpeed: random(-3, 3),
   };
 }

@@ -1,5 +1,6 @@
 import { isInBounds } from "../math/is-in-bounds.js";
 import { relativePosition } from "../math/relative-position.js";
+import { degreesToRadians } from "../math/degrees-to-radians.js";
 
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
@@ -30,6 +31,7 @@ export function paint({ resources, asteroids, bullets, stars }, playerState) {
         {
           ...pos,
           radius: asteroid.radius,
+          rotation: asteroid.rotation,
         },
         asteroidSprites,
         asteroid.spritePos
@@ -69,7 +71,11 @@ function drawCircle({ x, y, radius, fill, opacity = 1 }) {
   }
 }
 
-function drawSprite({ x, y, radius }, sprites, spritePos) {
+function drawSprite({ x, y, radius, rotation }, sprites, spritePos) {
+  context.translate(x, y);
+  context.rotate(degreesToRadians(rotation));
+  context.translate(-1 * x, -1 * y);
+
   context.drawImage(
     sprites, // image
     spritePos.x * 100, // source X
@@ -81,4 +87,6 @@ function drawSprite({ x, y, radius }, sprites, spritePos) {
     radius * 2, // destination width
     radius * 2 // destination height
   );
+
+  context.setTransform(1, 0, 0, 1, 0, 0);
 }

@@ -30,7 +30,12 @@ let playerState = {
 const gameLoop = loop(() => {
   handlePlayerActions(playerState);
 
-  mapData.asteroids = mapData.asteroids.map((asteroid) => moveObject(asteroid));
+  mapData.asteroids = mapData.asteroids.map((asteroid) => {
+    asteroid.rotation += asteroid.rotationSpeed;
+    if (asteroid.rotation < 0) asteroid.rotation += 360;
+    if (asteroid.rotation > 360) asteroid.rotation -= 360;
+    return moveObject(asteroid);
+  });
   mapData.resources = mapData.resources
     .filter((resource) => {
       if (
