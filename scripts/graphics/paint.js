@@ -9,7 +9,10 @@ context.imageSmoothingEnabled = false;
 const ship = document.querySelector(".ship");
 const asteroidSprites = document.getElementById("asteroid-sprites");
 
-export function paint({ resources, asteroids, bullets, stars }, playerState) {
+export function paint(
+  { resources, asteroids, bullets, stars, exhaust },
+  playerState
+) {
   clearCanvas();
 
   drawPlayer(playerState);
@@ -23,6 +26,16 @@ export function paint({ resources, asteroids, bullets, stars }, playerState) {
         ...pos,
       });
     }
+  });
+
+  exhaust.forEach((exhaustParticle) => {
+    const pos = relativePosition(exhaustParticle, playerState, canvas);
+
+    drawCircle({
+      ...exhaustParticle,
+      ...pos,
+      opacity: exhaustParticle.age / 10,
+    });
   });
 
   asteroids.forEach((asteroid) => {
@@ -68,8 +81,9 @@ function drawCircle({ x, y, radius, fill, opacity = 1 }) {
   context.arc(x, y, radius, 0, 2 * Math.PI, false);
   if (fill) {
     context.fillStyle = fill;
-    context.globalAlpha = opacity;
+    if (opacity) context.globalAlpha = opacity;
     context.fill();
+    if (opacity) context.globalAlpha = 1;
   }
 }
 

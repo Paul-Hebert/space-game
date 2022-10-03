@@ -8,9 +8,12 @@ import { pressedKeys } from "./pressed-keys.js";
 import { handleCollisions } from "./actions/handle-collisions.js";
 import { isColliding } from "./math/is-colliding.js";
 import { playSound } from "./play-sound.js";
+import { random } from "./math/random.js";
+import { hsl } from "./graphics/hsl.js";
 
 const resourceCountEl = document.querySelector(".resource-count");
 
+const shipSize = 30;
 const rotationSpeed = 2;
 const acceleration = 0.1;
 
@@ -28,14 +31,13 @@ let playerState = {
 };
 
 const gameLoop = loop(() => {
-  handlePlayerActions(playerState);
-
   mapData.asteroids = mapData.asteroids.map((asteroid) => {
     asteroid.rotation += asteroid.rotationSpeed;
     if (asteroid.rotation < 0) asteroid.rotation += 360;
     if (asteroid.rotation > 360) asteroid.rotation -= 360;
     return moveObject(asteroid);
   });
+
   mapData.resources = mapData.resources
     .filter((resource) => {
       if (
@@ -59,9 +61,19 @@ const gameLoop = loop(() => {
       return moveObject(bullet);
     });
 
+  mapData.exhaust = mapData.exhaust
+    .filter((exhaustParticle) => exhaustParticle.age > 0)
+    .map((exhaustParticle) => {
+      exhaustParticle.age = exhaustParticle.age - 1;
+      return exhaustParticle;
+      // return moveObject(exhaustParticle);
+    });
+
   mapData = handleCollisions(mapData);
 
   paint(mapData, playerState);
+
+  handlePlayerActions(playerState);
 });
 
 window.addEventListener("keydown", (e) => {
@@ -82,6 +94,26 @@ export function handlePlayerActions() {
     const rotationInRadians = degreesToRadians(playerState.rotation);
     playerState.speed.x += Math.sin(rotationInRadians) * acceleration;
     playerState.speed.y += Math.cos(rotationInRadians) * acceleration;
+
+    const exhaustColor = hsl({
+      h: random(0, 50),
+      s: random(60, 90),
+      l: random(40, 60),
+    });
+
+    mapData.exhaust.push({
+      // Starting position is adjusted to be at the "tail" of the ship
+      x:
+        playerState.x -
+        Math.cos(degreesToRadians(playerState.rotation - 90)) * shipSize,
+      y:
+        playerState.y -
+        Math.sin(degreesToRadians(playerState.rotation - 90)) * shipSize,
+      // speed: playerState.speed,
+      radius: random(5, 15),
+      fill: exhaustColor,
+      age: 10,
+    });
   }
 
   playerState.y -= playerState.speed.y;
@@ -91,16 +123,15 @@ export function handlePlayerActions() {
     playSound({ duration: 20, frequency: 300, volumne: 1 });
     // I don't understand why -90 is necessary here...
     const rotationInRadians = degreesToRadians(playerState.rotation - 90);
-    const shipSize = 15;
     mapData.bullets.push({
       // Starting position is adjusted to be at the "nose" of the ship
-      x: Math.cos(rotationInRadians) * shipSize + playerState.x,
-      y: Math.sin(rotationInRadians) * shipSize + playerState.y,
+      x: playerState.x + Math.cos(rotationInRadians) * shipSize,
+      y: playerState.y + Math.sin(rotationInRadians) * shipSize,
       speed: {
         x: playerState.speed.x + Math.cos(rotationInRadians) * 10,
         y: playerState.speed.y + Math.sin(rotationInRadians) * 10,
       },
-      radius: 2,
+      radius: 4,
       fill: "red",
       age: 100,
     });
