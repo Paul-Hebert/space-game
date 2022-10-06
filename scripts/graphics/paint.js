@@ -62,7 +62,7 @@ export function paint(
     drawCircle({
       ...bullet,
       ...pos,
-      opacity: bullet.age / 100,
+      opacity: bullet.age / bullet.maxAge,
     });
     // }
   });

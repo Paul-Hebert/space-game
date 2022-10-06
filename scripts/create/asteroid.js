@@ -2,7 +2,7 @@ import { random, randomInt } from "../math/random.js";
 import { mapSize } from "../map-size.js";
 
 export function createAsteroid(config) {
-  const radius = (config && config.radius) || Math.round(random(10, 50));
+  const radius = (config && config.radius) || Math.round(random(20, 100));
   const durability = radius;
 
   const x = (config && config.x) || random(mapSize * -1, mapSize);

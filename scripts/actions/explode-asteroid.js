@@ -30,8 +30,8 @@ export function explodeAsteroid(asteroid, impactSpeed) {
     const isResource = randomBool(resourceChance);
 
     const speed = {
-      x: asteroid.speed.x + random(-1, 1) + impactSpeed.x / 20,
-      y: asteroid.speed.y + random(-1, 1) + impactSpeed.y / 20,
+      x: asteroid.speed.x + random(-1, 1) + impactSpeed.x / 50,
+      y: asteroid.speed.y + random(-1, 1) + impactSpeed.y / 50,
     };
 
     if (isResource) {
