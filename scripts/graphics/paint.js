@@ -17,64 +17,40 @@ export function paint(
 
   drawPlayer(playerState);
 
-  [...stars, ...resources].forEach((object) => {
+  [
+    ...stars,
+    ...resources,
+    ...exhaust,
+    ...explosions,
+    ...asteroids,
+    ...bullets,
+  ].forEach((object) => {
     const pos = relativePosition(object, playerState, canvas);
 
     if (isInBounds(pos, canvas)) {
-      drawCircle({
+      const settings = {
         ...object,
         ...pos,
-      });
+      };
+
+      if (object.age && object.maxAge) {
+        settings.opacity = object.age / object.maxAge;
+      }
+
+      if (object.fill) {
+        drawCircle(settings);
+      } else if (object.spritePos) {
+        drawSprite(
+          {
+            ...pos,
+            radius: object.radius,
+            rotation: object.rotation,
+          },
+          asteroidSprites,
+          object.spritePos
+        );
+      }
     }
-  });
-
-  exhaust.forEach((exhaustParticle) => {
-    const pos = relativePosition(exhaustParticle, playerState, canvas);
-
-    drawCircle({
-      ...exhaustParticle,
-      ...pos,
-      opacity: exhaustParticle.age / exhaustParticle.maxAge,
-    });
-  });
-
-  explosions.forEach((explosion) => {
-    const pos = relativePosition(explosion, playerState, canvas);
-
-    drawCircle({
-      ...explosion,
-      ...pos,
-      opacity: explosion.age / explosion.maxAge,
-    });
-  });
-
-  asteroids.forEach((asteroid) => {
-    const pos = relativePosition(asteroid, playerState, canvas);
-
-    if (isInBounds(pos, canvas)) {
-      drawSprite(
-        {
-          ...pos,
-          radius: asteroid.radius,
-          rotation: asteroid.rotation,
-        },
-        asteroidSprites,
-        asteroid.spritePos
-      );
-    }
-  });
-
-  bullets.forEach((bullet) => {
-    const pos = relativePosition(bullet, playerState, canvas);
-
-    // TODO: Determine why frustum culling is too aggressive on bullets
-    // if (isInBounds(bullet, canvas)) {
-    drawCircle({
-      ...bullet,
-      ...pos,
-      opacity: bullet.age / bullet.maxAge,
-    });
-    // }
   });
 }
 
