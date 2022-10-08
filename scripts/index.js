@@ -1,5 +1,5 @@
 import { loop } from "./loop.js";
-import { createMap } from "./create/map.js";
+import { createMap } from "./create-map.js";
 import { paint } from "./graphics/paint.js";
 import { moveObject } from "./actions/move-object.js";
 import "./size-canvas.js";
@@ -78,9 +78,9 @@ const gameLoop = loop(() => {
     })
     .filter((explosion) => explosion.age > 0);
 
-  console.log(mapData);
-
   mapData = handleCollisions(mapData);
+
+  console.log(mapData.stars);
 
   paint(mapData, playerState);
 

@@ -1,8 +1,7 @@
 import { random, randomBool } from "../math/random.js";
-import { hsl } from "../graphics/hsl.js";
 import { playSound } from "../play-sound.js";
-import { createAsteroid } from "../create/asteroid.js";
-import { createResource } from "../create/resource.js";
+import { Asteroid } from "../objects/asteroid.js";
+import { Resource } from "../objects/resource.js";
 
 const resourceChance = 0.05;
 
@@ -36,7 +35,7 @@ export function explodeAsteroid(asteroid, impactSpeed) {
 
     if (isResource) {
       resources.push(
-        createResource({
+        new Resource({
           x: asteroid.x,
           y: asteroid.y,
           speed,
@@ -48,10 +47,10 @@ export function explodeAsteroid(asteroid, impactSpeed) {
       combinedSize += newSize;
 
       asteroids.push(
-        createAsteroid({
-          ...asteroid,
+        new Asteroid({
+          x: asteroid.x,
+          y: asteroid.y,
           radius: newSize,
-          durability: newSize,
           speed,
         })
       );

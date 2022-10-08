@@ -1,15 +1,15 @@
-import { createAsteroid } from "./asteroid.js";
-import { createStar } from "./star.js";
+import { Star } from "./objects/star.js";
+import { Asteroid } from "./objects/asteroid.js";
 
 export function createMap() {
   const asteroids = [];
   for (let i = 0; i < 100; i++) {
-    asteroids.push(createAsteroid());
+    asteroids.push(new Asteroid({}));
   }
 
   const stars = [];
   for (let i = 0; i < 2000; i++) {
-    stars.push(createStar());
+    stars.push(new Star());
   }
 
   return {
