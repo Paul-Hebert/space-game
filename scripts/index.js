@@ -1,7 +1,6 @@
 import { loop } from "./loop.js";
 import { createMap } from "./create-map.js";
 import { paint } from "./graphics/paint.js";
-import { moveObject } from "./actions/move-object.js";
 import "./size-canvas.js";
 import { degreesToRadians } from "./math/degrees-to-radians.js";
 import { pressedKeys } from "./pressed-keys.js";
@@ -10,6 +9,7 @@ import { isColliding } from "./math/is-colliding.js";
 import { playSound } from "./play-sound.js";
 import { weapons } from "./weapons.js";
 import { Exhaust } from "./objects/exhaust.js";
+import { updateParticles } from "./actions/update-particles.js";
 
 let currentGun = weapons.pew;
 
@@ -33,53 +33,27 @@ let playerState = {
 };
 
 const gameLoop = loop(() => {
-  mapData.asteroids = mapData.asteroids.map((asteroid) => {
-    asteroid.rotation += asteroid.rotationSpeed;
-    if (asteroid.rotation < 0) asteroid.rotation += 360;
-    if (asteroid.rotation > 360) asteroid.rotation -= 360;
-    return moveObject(asteroid);
+  mapData.asteroids = updateParticles(mapData.asteroids);
+  mapData.bullets = updateParticles(mapData.bullets, true);
+  mapData.exhaust = updateParticles(mapData.exhaust, true);
+  mapData.explosions = updateParticles(mapData.explosions, true);
+
+  // TODO: Move collision logic?
+  mapData.resources = updateParticles(mapData.resources).filter((resource) => {
+    if (
+      isColliding(resource, {
+        ...playerState,
+        radius: 60,
+      })
+    ) {
+      playerState.resourceCount++;
+      resourceCountEl.textContent = playerState.resourceCount;
+      return false;
+    }
+    return true;
   });
 
-  mapData.resources = mapData.resources
-    .filter((resource) => {
-      if (
-        isColliding(resource, {
-          ...playerState,
-          radius: 60,
-        })
-      ) {
-        playerState.resourceCount++;
-        resourceCountEl.textContent = playerState.resourceCount;
-        return false;
-      }
-      return true;
-    })
-    .map((resource) => moveObject(resource));
-
-  mapData.bullets = mapData.bullets
-    .map((bullet) => {
-      bullet.age--;
-      return moveObject(bullet);
-    })
-    .filter((bullet) => bullet.age > 0);
-
-  mapData.exhaust = mapData.exhaust
-    .map((exhaustParticle) => {
-      exhaustParticle.age--;
-      return moveObject(exhaustParticle);
-    })
-    .filter((exhaustParticle) => exhaustParticle.age > 0);
-
-  mapData.explosions = mapData.explosions
-    .map((explosion) => {
-      explosion.age--;
-      return moveObject(explosion);
-    })
-    .filter((explosion) => explosion.age > 0);
-
   mapData = handleCollisions(mapData);
-
-  console.log(mapData.stars);
 
   paint(mapData, playerState);
 
