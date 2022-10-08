@@ -66,11 +66,19 @@ const gameLoop = loop(() => {
 
   mapData.exhaust = mapData.exhaust
     .map((exhaustParticle) => {
-      exhaustParticle.age = exhaustParticle.age - 1;
-      // return exhaustParticle;
+      exhaustParticle.age--;
       return moveObject(exhaustParticle);
     })
     .filter((exhaustParticle) => exhaustParticle.age > 0);
+
+  mapData.explosions = mapData.explosions
+    .map((explosion) => {
+      explosion.age--;
+      return moveObject(explosion);
+    })
+    .filter((explosion) => explosion.age > 0);
+
+  console.log(mapData);
 
   mapData = handleCollisions(mapData);
 

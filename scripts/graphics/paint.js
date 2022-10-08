@@ -10,7 +10,7 @@ const ship = document.querySelector(".ship");
 const asteroidSprites = document.getElementById("asteroid-sprites");
 
 export function paint(
-  { resources, asteroids, bullets, stars, exhaust },
+  { resources, asteroids, bullets, stars, exhaust, explosions },
   playerState
 ) {
   clearCanvas();
@@ -35,6 +35,16 @@ export function paint(
       ...exhaustParticle,
       ...pos,
       opacity: exhaustParticle.age / 10,
+    });
+  });
+
+  explosions.forEach((explosion) => {
+    const pos = relativePosition(explosion, playerState, canvas);
+
+    drawCircle({
+      ...explosion,
+      ...pos,
+      opacity: explosion.age / 10,
     });
   });
 
