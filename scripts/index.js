@@ -103,17 +103,17 @@ export function handlePlayerActions() {
     playSound({ duration: 20, frequency: 300, volumne: 1 });
     // I don't understand why -90 is necessary here...
     const rotationInRadians = degreesToRadians(playerState.rotation - 90);
-    mapData.bullets.push({
-      ...currentGun,
-      // Starting position is adjusted to be at the "nose" of the ship
-      x: playerState.x + Math.cos(rotationInRadians) * shipSize,
-      y: playerState.y + Math.sin(rotationInRadians) * shipSize,
-      speed: {
-        x: Math.cos(rotationInRadians) * currentGun.speed,
-        y: Math.sin(rotationInRadians) * currentGun.speed,
-      },
-      maxAge: currentGun.age,
-    });
+    mapData.bullets.push(
+      currentGun.createBullet({
+        // Starting position is adjusted to be at the "nose" of the ship
+        x: playerState.x + Math.cos(rotationInRadians) * shipSize,
+        y: playerState.y + Math.sin(rotationInRadians) * shipSize,
+        speed: {
+          x: Math.cos(rotationInRadians) * currentGun.speed,
+          y: Math.sin(rotationInRadians) * currentGun.speed,
+        },
+      })
+    );
   }
 }
 

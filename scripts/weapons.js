@@ -1,18 +1,27 @@
+import { PewBullet } from "./objects/bullets/pew.js";
+import { RayBullet } from "./objects/bullets/ray.js";
+import { BaseBullet } from "./objects/bullets/base.js";
+
 export const weapons = {
+  base: {
+    name: "base",
+    speed: 10,
+    createBullet: (params) => {
+      return new BaseBullet(params);
+    },
+  },
   ray: {
     name: "ray",
-    age: 40,
-    radius: 10,
     speed: 10,
-    fill: "blue",
-    damage: 10,
+    createBullet: (params) => {
+      return new RayBullet(params);
+    },
   },
   pew: {
     name: "pew",
-    age: 20,
-    radius: 4,
     speed: 30,
-    fill: "red",
-    damage: 5,
+    createBullet: (params) => {
+      return new PewBullet(params);
+    },
   },
 };
