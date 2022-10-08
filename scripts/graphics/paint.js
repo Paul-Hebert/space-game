@@ -34,7 +34,7 @@ export function paint(
     drawCircle({
       ...exhaustParticle,
       ...pos,
-      opacity: exhaustParticle.age / 10,
+      opacity: exhaustParticle.age / exhaustParticle.maxAge,
     });
   });
 
@@ -44,7 +44,7 @@ export function paint(
     drawCircle({
       ...explosion,
       ...pos,
-      opacity: explosion.age / 10,
+      opacity: explosion.age / explosion.maxAge,
     });
   });
 

@@ -8,9 +8,8 @@ import { pressedKeys } from "./pressed-keys.js";
 import { handleCollisions } from "./actions/handle-collisions.js";
 import { isColliding } from "./math/is-colliding.js";
 import { playSound } from "./play-sound.js";
-import { random } from "./math/random.js";
-import { hsl } from "./graphics/hsl.js";
 import { weapons } from "./weapons.js";
+import { Exhaust } from "./objects/exhaust.js";
 
 let currentGun = weapons.pew;
 
@@ -106,29 +105,21 @@ export function handlePlayerActions() {
     playerState.speed.x += Math.sin(rotationInRadians) * acceleration;
     playerState.speed.y += Math.cos(rotationInRadians) * acceleration;
 
-    const exhaustColor = hsl({
-      h: random(0, 50),
-      s: random(60, 90),
-      l: random(40, 60),
-    });
-
-    mapData.exhaust.push({
-      // Starting position is adjusted to be at the "tail" of the ship
-      x:
-        playerState.x -
-        Math.cos(degreesToRadians(playerState.rotation - 90)) * shipSize,
-      y:
-        playerState.y -
-        Math.sin(degreesToRadians(playerState.rotation - 90)) * shipSize,
-      speed: {
-        x: Math.cos(degreesToRadians(playerState.rotation + 90)) * 10,
-        y: Math.sin(degreesToRadians(playerState.rotation + 90)) * 10,
-      },
-      // speed: playerState.speed,
-      radius: random(5, 15),
-      fill: exhaustColor,
-      age: 10,
-    });
+    mapData.exhaust.push(
+      new Exhaust({
+        // Starting position is adjusted to be at the "tail" of the ship
+        x:
+          playerState.x -
+          Math.cos(degreesToRadians(playerState.rotation - 90)) * shipSize,
+        y:
+          playerState.y -
+          Math.sin(degreesToRadians(playerState.rotation - 90)) * shipSize,
+        speed: {
+          x: Math.cos(degreesToRadians(playerState.rotation + 90)) * 10,
+          y: Math.sin(degreesToRadians(playerState.rotation + 90)) * 10,
+        },
+      })
+    );
   }
 
   playerState.y -= playerState.speed.y;
