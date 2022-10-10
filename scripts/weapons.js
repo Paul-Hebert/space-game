@@ -6,6 +6,7 @@ export const weapons = {
   base: {
     name: "base",
     speed: 10,
+    reloadSpeed: 10,
     createBullet: (params) => {
       return new BaseBullet(params);
     },
@@ -13,6 +14,7 @@ export const weapons = {
   ray: {
     name: "ray",
     speed: 10,
+    reloadSpeed: 1,
     createBullet: (params) => {
       return new RayBullet(params);
     },
@@ -20,6 +22,7 @@ export const weapons = {
   pew: {
     name: "pew",
     speed: 30,
+    reloadSpeed: 5,
     createBullet: (params) => {
       return new PewBullet(params);
     },

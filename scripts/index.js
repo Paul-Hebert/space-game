@@ -11,9 +11,12 @@ import { weapons } from "./weapons.js";
 import { Exhaust } from "./objects/exhaust.js";
 import { updateParticles } from "./actions/update-particles.js";
 
-let currentGun = weapons.pew;
-
 const resourceCountEl = document.querySelector(".resource-count");
+
+let frameCount = 0;
+let lastShotFrame = 0;
+
+let currentGun = weapons.pew;
 
 const shipSize = 60;
 const rotationSpeed = 2;
@@ -33,6 +36,8 @@ let playerState = {
 };
 
 const gameLoop = loop(() => {
+  frameCount++;
+
   mapData.asteroids = updateParticles(mapData.asteroids);
   mapData.bullets = updateParticles(mapData.bullets, true);
   mapData.exhaust = updateParticles(mapData.exhaust, true);
@@ -100,20 +105,28 @@ export function handlePlayerActions() {
   playerState.x += playerState.speed.x;
 
   if (pressedKeys[" "]) {
-    playSound({ duration: 20, frequency: 300, volumne: 1 });
-    // I don't understand why -90 is necessary here...
-    const rotationInRadians = degreesToRadians(playerState.rotation - 90);
-    mapData.bullets.push(
-      currentGun.createBullet({
-        // Starting position is adjusted to be at the "nose" of the ship
-        x: playerState.x + Math.cos(rotationInRadians) * shipSize,
-        y: playerState.y + Math.sin(rotationInRadians) * shipSize,
-        speed: {
-          x: Math.cos(rotationInRadians) * currentGun.speed,
-          y: Math.sin(rotationInRadians) * currentGun.speed,
-        },
-      })
-    );
+    if (
+      lastShotFrame === 0 ||
+      frameCount - lastShotFrame > currentGun.reloadSpeed
+    ) {
+      lastShotFrame = frameCount;
+
+      playSound({ duration: 20, frequency: 300, volumne: 1 });
+      // I don't understand why -90 is necessary here...
+      const rotationInRadians = degreesToRadians(playerState.rotation - 90);
+
+      mapData.bullets.push(
+        currentGun.createBullet({
+          // Starting position is adjusted to be at the "nose" of the ship
+          x: playerState.x + Math.cos(rotationInRadians) * shipSize,
+          y: playerState.y + Math.sin(rotationInRadians) * shipSize,
+          speed: {
+            x: Math.cos(rotationInRadians) * currentGun.speed,
+            y: Math.sin(rotationInRadians) * currentGun.speed,
+          },
+        })
+      );
+    }
   }
 }
 
