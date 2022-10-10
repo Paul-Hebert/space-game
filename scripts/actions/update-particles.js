@@ -1,6 +1,16 @@
 import { moveObject } from "./move-object.js";
 
-export function updateParticles(particles, aging) {
+export function updateParticles(mapData) {
+  mapData.asteroids = updateParticleGroup(mapData.asteroids);
+  mapData.bullets = updateParticleGroup(mapData.bullets, true);
+  mapData.exhaust = updateParticleGroup(mapData.exhaust, true);
+  mapData.explosions = updateParticleGroup(mapData.explosions, true);
+  mapData.resources = updateParticleGroup(mapData.resources);
+
+  return mapData;
+}
+
+function updateParticleGroup(particles, aging) {
   particles = particles.map((particle) => {
     if (particle.rotation && particle.rotationSpeed) {
       particle.rotation += particle.rotationSpeed;

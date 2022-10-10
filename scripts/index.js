@@ -32,13 +32,11 @@ let playerState = {
 const gameLoop = loop(() => {
   frameCount++;
 
-  mapData.asteroids = updateParticles(mapData.asteroids);
-  mapData.bullets = updateParticles(mapData.bullets, true);
-  mapData.exhaust = updateParticles(mapData.exhaust, true);
-  mapData.explosions = updateParticles(mapData.explosions, true);
+  mapData = updateParticles(mapData);
+  mapData = handleCollisions(mapData);
 
-  // TODO: Move collision logic?
-  mapData.resources = updateParticles(mapData.resources).filter((resource) => {
+  // TODO: move?
+  mapData.resources = mapData.resources.filter((resource) => {
     if (
       isColliding(resource, {
         ...playerState,
@@ -51,8 +49,6 @@ const gameLoop = loop(() => {
     }
     return true;
   });
-
-  mapData = handleCollisions(mapData);
 
   paint(mapData, playerState);
 
