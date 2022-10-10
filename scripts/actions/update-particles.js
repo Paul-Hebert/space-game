@@ -13,14 +13,14 @@ export function updateParticles(particles, aging) {
     }
 
     if (aging) {
-      particle.age--;
+      particle.age++;
     }
 
     return particle;
   });
 
   if (aging) {
-    particles = particles.filter((particle) => particle.age > 0);
+    particles = particles.filter((particle) => particle.age < particle.maxAge);
   }
 
   return particles;

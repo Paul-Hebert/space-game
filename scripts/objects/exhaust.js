@@ -13,6 +13,6 @@ export class Exhaust extends Particle {
     l: random(40, 60),
   });
 
-  age = 10;
+  age = 0;
   maxAge = 10;
 }

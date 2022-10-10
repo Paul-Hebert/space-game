@@ -6,7 +6,7 @@ export class BaseBullet extends Particle {
   }
 
   fill = "red";
-  age = 40;
+  age = 0;
   maxAge = 40;
   damage = 10;
 }

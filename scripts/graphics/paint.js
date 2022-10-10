@@ -19,10 +19,10 @@ export function paint(
 
   [
     ...stars,
+    ...asteroids,
     ...resources,
     ...exhaust,
     ...explosions,
-    ...asteroids,
     ...bullets,
   ].forEach((object) => {
     const pos = relativePosition(object, playerState, canvas);
@@ -34,7 +34,8 @@ export function paint(
       };
 
       if (object.age && object.maxAge) {
-        settings.opacity = object.age / object.maxAge;
+        settings.opacity = 1 - object.age / object.maxAge;
+        console.log(settings.opacity);
       }
 
       if (object.fill) {
