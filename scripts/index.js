@@ -2,24 +2,15 @@ import { loop } from "./loop.js";
 import { createMap } from "./create-map.js";
 import { paint } from "./graphics/paint.js";
 import "./size-canvas.js";
-import { degreesToRadians } from "./math/degrees-to-radians.js";
-import { pressedKeys } from "./pressed-keys.js";
 import { handleCollisions } from "./actions/handle-collisions.js";
+import { handlePlayerActions } from "./actions/handle-player-actions.js";
 import { isColliding } from "./math/is-colliding.js";
-import { playSound } from "./play-sound.js";
 import { weapons } from "./weapons.js";
-import { Exhaust } from "./objects/exhaust.js";
 import { updateParticles } from "./actions/update-particles.js";
 
 const resourceCountEl = document.querySelector(".resource-count");
 
 let frameCount = 0;
-let lastShotFrame = 0;
-
-let currentGun = weapons.pew;
-
-const rotationSpeed = 2;
-const acceleration = 0.1;
 
 let mapData = createMap();
 
@@ -33,6 +24,9 @@ let playerState = {
     y: 0,
   },
   shipSize: 60,
+  rotationSpeed: 2,
+  accelerationSpeed: 0.1,
+  currentGun: weapons.pew,
 };
 
 const gameLoop = loop(() => {
@@ -62,7 +56,9 @@ const gameLoop = loop(() => {
 
   paint(mapData, playerState);
 
-  handlePlayerActions(playerState);
+  const updatedState = handlePlayerActions(playerState, mapData, frameCount);
+  playerState = updatedState.playerState;
+  mapData = updatedState.mapData;
 });
 
 window.addEventListener("keydown", (e) => {
@@ -71,57 +67,9 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-export function handlePlayerActions() {
-  if (pressedKeys["ArrowRight"]) {
-    playerState.rotation += rotationSpeed;
-  }
-  if (pressedKeys["ArrowLeft"]) {
-    playerState.rotation -= rotationSpeed;
-  }
-
-  if (pressedKeys["ArrowUp"]) {
-    const rotationInRadians = degreesToRadians(playerState.rotation);
-    playerState.speed.x += Math.sin(rotationInRadians) * acceleration;
-    playerState.speed.y += Math.cos(rotationInRadians) * acceleration;
-
-    mapData.exhaust.push(
-      new Exhaust({
-        // Starting position is adjusted to be at the "tail" of the ship
-        x:
-          playerState.x -
-          Math.cos(degreesToRadians(playerState.rotation - 90)) *
-            playerState.shipSize,
-        y:
-          playerState.y -
-          Math.sin(degreesToRadians(playerState.rotation - 90)) *
-            playerState.shipSize,
-        speed: {
-          x: Math.cos(degreesToRadians(playerState.rotation + 90)) * 10,
-          y: Math.sin(degreesToRadians(playerState.rotation + 90)) * 10,
-        },
-      })
-    );
-  }
-
-  playerState.y -= playerState.speed.y;
-  playerState.x += playerState.speed.x;
-
-  if (pressedKeys[" "]) {
-    if (
-      lastShotFrame === 0 ||
-      frameCount - lastShotFrame > currentGun.reloadSpeed
-    ) {
-      lastShotFrame = frameCount;
-
-      playSound({ duration: 20, frequency: 300, volumne: 1 });
-
-      mapData.bullets = mapData.bullets.concat(currentGun.shoot(playerState));
-    }
-  }
-}
-
 window.addEventListener("keydown", ({ key }) => {
   if (key === "Shift") {
-    currentGun = currentGun.name === "pew" ? weapons.ray : weapons.pew;
+    playerState.currentGun =
+      playerState.currentGun.name === "pew" ? weapons.ray : weapons.pew;
   }
 });
