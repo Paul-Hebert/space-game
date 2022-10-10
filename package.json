@@ -7,7 +7,6 @@
     "start": "browser-sync start --server --files *"
   },
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "browser-sync": "^2.27.10"
   }
