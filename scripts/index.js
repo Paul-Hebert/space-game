@@ -18,7 +18,6 @@ let lastShotFrame = 0;
 
 let currentGun = weapons.pew;
 
-const shipSize = 60;
 const rotationSpeed = 2;
 const acceleration = 0.1;
 
@@ -33,6 +32,7 @@ let playerState = {
     x: 0,
     y: 0,
   },
+  shipSize: 60,
 };
 
 const gameLoop = loop(() => {
@@ -89,10 +89,12 @@ export function handlePlayerActions() {
         // Starting position is adjusted to be at the "tail" of the ship
         x:
           playerState.x -
-          Math.cos(degreesToRadians(playerState.rotation - 90)) * shipSize,
+          Math.cos(degreesToRadians(playerState.rotation - 90)) *
+            playerState.shipSize,
         y:
           playerState.y -
-          Math.sin(degreesToRadians(playerState.rotation - 90)) * shipSize,
+          Math.sin(degreesToRadians(playerState.rotation - 90)) *
+            playerState.shipSize,
         speed: {
           x: Math.cos(degreesToRadians(playerState.rotation + 90)) * 10,
           y: Math.sin(degreesToRadians(playerState.rotation + 90)) * 10,
@@ -112,20 +114,8 @@ export function handlePlayerActions() {
       lastShotFrame = frameCount;
 
       playSound({ duration: 20, frequency: 300, volumne: 1 });
-      // I don't understand why -90 is necessary here...
-      const rotationInRadians = degreesToRadians(playerState.rotation - 90);
 
-      mapData.bullets.push(
-        currentGun.createBullet({
-          // Starting position is adjusted to be at the "nose" of the ship
-          x: playerState.x + Math.cos(rotationInRadians) * shipSize,
-          y: playerState.y + Math.sin(rotationInRadians) * shipSize,
-          speed: {
-            x: Math.cos(rotationInRadians) * currentGun.speed,
-            y: Math.sin(rotationInRadians) * currentGun.speed,
-          },
-        })
-      );
+      mapData.bullets = mapData.bullets.concat(currentGun.shoot(playerState));
     }
   }
 }
