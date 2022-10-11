@@ -16,4 +16,6 @@ export class Star extends Particle {
   });
 
   parallaxDepth = random(3, 10);
+
+  looping = true;
 }

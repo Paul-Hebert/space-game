@@ -35,7 +35,6 @@ export function paint(
 
       if (object.age && object.maxAge) {
         settings.opacity = 1 - object.age / object.maxAge;
-        console.log(settings.opacity);
       }
 
       if (object.fill) {

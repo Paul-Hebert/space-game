@@ -43,17 +43,13 @@ export function handlePlayerActions(playerState, mapData, frameCount) {
   playerState.x += playerState.speed.x;
 
   if (pressedKeys[" "]) {
-    if (
-      lastShotFrame === 0 ||
-      frameCount - lastShotFrame > playerState.currentGun.reloadSpeed
-    ) {
+    const gun = playerState.weapons[playerState.currentGun];
+    if (lastShotFrame === 0 || frameCount - lastShotFrame > gun.reloadSpeed) {
       lastShotFrame = frameCount;
 
       playSound({ duration: 20, frequency: 300, volumne: 1 });
 
-      mapData.bullets = mapData.bullets.concat(
-        playerState.currentGun.shoot(playerState)
-      );
+      mapData.bullets = mapData.bullets.concat(gun.shoot(playerState));
     }
   }
 

@@ -11,7 +11,6 @@
 
 ## Core Features
 
-- Make map "infinite"
 - Enemy ship battles
 
 ## Advanced Features
@@ -26,7 +25,15 @@
 - Sprites for resources
 - Fix asteroid sprite clipping bugs
 
+## Map
+
+- When one of the original "looping" asteroids is destroyed, it should be replace by a new asteroid
+
 ## UI
 
 - Show ship health
 - Menus
+
+## Bugs
+
+- Bullets don't work when facing directly to the right

@@ -9,4 +9,6 @@ export class Particle {
     this.radius = radius;
     this.speed = speed;
   }
+
+  looping = false;
 }

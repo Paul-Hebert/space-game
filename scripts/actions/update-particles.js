@@ -1,16 +1,20 @@
 import { moveObject } from "./move-object.js";
 
-export function updateParticles(mapData) {
-  mapData.asteroids = updateParticleGroup(mapData.asteroids);
-  mapData.bullets = updateParticleGroup(mapData.bullets, true);
-  mapData.exhaust = updateParticleGroup(mapData.exhaust, true);
-  mapData.explosions = updateParticleGroup(mapData.explosions, true);
-  mapData.resources = updateParticleGroup(mapData.resources);
+export function updateParticles(mapData, playerState) {
+  mapData.asteroids = updateParticleGroup(mapData.asteroids, playerState);
+  mapData.bullets = updateParticleGroup(mapData.bullets, playerState, true);
+  mapData.exhaust = updateParticleGroup(mapData.exhaust, playerState, true);
+  mapData.explosions = updateParticleGroup(
+    mapData.explosions,
+    playerState,
+    true
+  );
+  mapData.resources = updateParticleGroup(mapData.resources, playerState);
 
   return mapData;
 }
 
-function updateParticleGroup(particles, aging) {
+function updateParticleGroup(particles, playerState, aging) {
   particles = particles.map((particle) => {
     if (particle.rotation && particle.rotationSpeed) {
       particle.rotation += particle.rotationSpeed;
@@ -19,7 +23,7 @@ function updateParticleGroup(particles, aging) {
     }
 
     if (particle.speed) {
-      particle = moveObject(particle);
+      particle = moveObject(particle, playerState);
     }
 
     if (aging) {

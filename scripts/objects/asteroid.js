@@ -2,7 +2,13 @@ import { random, randomInt } from "../math/random.js";
 import { Particle } from "./particle.js";
 
 export class Asteroid extends Particle {
-  constructor({ x = null, y = null, speed = null, radius = null }) {
+  constructor({
+    x = null,
+    y = null,
+    speed = null,
+    radius = null,
+    looping = false,
+  }) {
     if (radius === null) {
       radius = Math.round(random(20, 100));
     }
@@ -17,6 +23,7 @@ export class Asteroid extends Particle {
     super({ x, y, speed, radius });
 
     this.durability = radius;
+    this.looping = looping;
   }
 
   spritePos = {
