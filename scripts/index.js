@@ -58,7 +58,7 @@ const gameLoop = loop(() => {
   playerState = updatedState.playerState;
   mapData = updatedState.mapData;
 
-  mapData = handleCollisions(mapData);
+  mapData = handleCollisions(mapData, playerState);
 
   paint(mapData, playerState);
 });

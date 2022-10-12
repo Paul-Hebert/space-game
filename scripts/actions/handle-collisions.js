@@ -1,10 +1,9 @@
 import { isColliding } from "../math/is-colliding.js";
 import { explodeAsteroid } from "./explode-asteroid.js";
 import { random, randomInt } from "../math/random.js";
-import { hsl } from "../graphics/hsl.js";
 import { Explosion } from "../objects/explosion.js";
 
-export function handleCollisions(mapData) {
+export function handleCollisions(mapData, playerState) {
   if (!mapData.bullets.length) return mapData;
 
   let newAsteroids = [];
@@ -38,7 +37,8 @@ export function handleCollisions(mapData) {
 
         const { asteroids, resources } = explodeAsteroid(
           asteroid,
-          bullet.speed
+          bullet.speed,
+          playerState
         );
 
         if (asteroids.length) newAsteroids = newAsteroids.concat(asteroids);

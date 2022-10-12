@@ -27,8 +27,6 @@
 
 ## Map
 
-- When one of the original "looping" asteroids is destroyed, it should be replace by a new asteroid
-
 ## UI
 
 - Show ship health
