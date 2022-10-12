@@ -1,6 +1,8 @@
 import { moveObject } from "./move-object.js";
+import { mapData } from "../state/map-data.js";
+import { playerState } from "../state/player-state.js";
 
-export function updateParticles(mapData, playerState) {
+export function updateParticles() {
   mapData.asteroids = updateParticleGroup(mapData.asteroids, playerState);
   mapData.bullets = updateParticleGroup(mapData.bullets, playerState, true);
   mapData.exhaust = updateParticleGroup(mapData.exhaust, playerState, true);

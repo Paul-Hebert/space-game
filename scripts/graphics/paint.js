@@ -1,6 +1,8 @@
 import { isInBounds } from "../math/is-in-bounds.js";
 import { relativePosition } from "../math/relative-position.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
+import { mapData } from "../state/map-data.js";
+import { playerState } from "../state/player-state.js";
 
 const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
@@ -9,13 +11,12 @@ context.imageSmoothingEnabled = false;
 const ship = document.querySelector(".ship");
 const asteroidSprites = document.getElementById("asteroid-sprites");
 
-export function paint(
-  { resources, asteroids, bullets, stars, exhaust, explosions },
-  playerState
-) {
+export function paint() {
   clearCanvas();
 
   drawPlayer(playerState);
+
+  const { resources, asteroids, bullets, stars, exhaust, explosions } = mapData;
 
   [
     ...stars,

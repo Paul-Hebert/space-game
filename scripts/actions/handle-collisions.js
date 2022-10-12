@@ -2,8 +2,10 @@ import { isColliding } from "../math/is-colliding.js";
 import { explodeAsteroid } from "./explode-asteroid.js";
 import { random, randomInt } from "../math/random.js";
 import { Explosion } from "../objects/explosion.js";
+import { mapData } from "../state/map-data.js";
+import { playerState } from "../state/player-state.js";
 
-export function handleCollisions(mapData, playerState) {
+export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
 
   let newAsteroids = [];

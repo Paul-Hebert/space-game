@@ -2,10 +2,13 @@ import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { Exhaust } from "../objects/exhaust.js";
 import { pressedKeys } from "../pressed-keys.js";
 import { playSound } from "../play-sound.js";
+import { mapData } from "../state/map-data.js";
+import { playerState } from "../state/player-state.js";
+import { frameCount } from "../loop.js";
 
 let lastShotFrame = 0;
 
-export function handlePlayerActions(playerState, mapData, frameCount) {
+export function handlePlayerActions() {
   if (pressedKeys["ArrowRight"]) {
     playerState.rotation += playerState.rotationSpeed;
   }
@@ -53,5 +56,5 @@ export function handlePlayerActions(playerState, mapData, frameCount) {
     }
   }
 
-  return { playerState, mapData };
+  return playerState;
 }

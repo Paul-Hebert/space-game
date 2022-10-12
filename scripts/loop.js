@@ -1,5 +1,7 @@
 let animationFrame = null;
 
+export let frameCount = 0;
+
 export function loop(cb) {
   doLoopCallback(cb);
   let isPlaying = true;
@@ -22,6 +24,7 @@ export function loop(cb) {
 }
 
 function doLoopCallback(cb) {
+  frameCount++;
   cb();
 
   animationFrame = requestAnimationFrame(() => {
