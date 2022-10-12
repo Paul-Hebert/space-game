@@ -7,5 +7,6 @@ export class Resource extends Particle {
     super({ x, y, speed, radius: Math.round(random(4, 8)) });
   }
 
+  maxSpeed = 5;
   fill = hsl({ h: random(40, 55), s: random(70, 100), l: random(40, 60) });
 }

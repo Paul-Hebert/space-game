@@ -18,4 +18,5 @@ export const playerState = {
   accelerationSpeed: 0.1,
   weapons: [new Pew(), new Ray(), new Laser(), new BaseWeapon(), new GodMode()],
   currentGun: 0,
+  maxSpeed: 15,
 };

@@ -5,6 +5,7 @@ import { playSound } from "../play-sound.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
 import { frameCount } from "../loop.js";
+import { constrainSpeed } from "../math/constrain-speed.js";
 
 let lastShotFrame = 0;
 
@@ -22,6 +23,8 @@ export function handlePlayerActions() {
       Math.sin(rotationInRadians) * playerState.accelerationSpeed;
     playerState.speed.y +=
       Math.cos(rotationInRadians) * playerState.accelerationSpeed;
+
+    playerState.speed = constrainSpeed(playerState);
 
     mapData.exhaust.push(
       new Exhaust({
