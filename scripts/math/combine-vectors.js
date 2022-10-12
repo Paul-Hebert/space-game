@@ -1,3 +1,4 @@
+// TODO: This file is currentl unused. Do we need it?
 export function combineVectors(vector1, vector2) {
   return {
     x: vector1.x + vector2.x,
