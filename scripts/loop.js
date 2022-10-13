@@ -1,33 +1,31 @@
-let animationFrame = null;
-
-export let frameCount = 0;
-
-export function loop(cb) {
-  doLoopCallback(cb);
-  let isPlaying = true;
-
-  function play() {
-    isPlaying = true;
-    doLoopCallback(cb);
+export class Loop {
+  play() {
+    this.isPlaying = true;
+    this.doLoopCallback();
   }
 
-  function pause() {
-    isPlaying = false;
-    cancelAnimationFrame(animationFrame);
+  pause() {
+    this.isPlaying = false;
+    cancelAnimationFrame(this.animationFrame);
   }
 
-  function toggle() {
-    isPlaying ? pause() : play();
+  toggle() {
+    this.isPlaying ? pause() : play();
   }
 
-  return { isPlaying, toggle, play, pause };
-}
+  doLoopCallback() {
+    if (this.isPlaying) {
+      this.frameCount++;
 
-function doLoopCallback(cb) {
-  frameCount++;
-  cb();
+      if (this.cb) this.cb();
 
-  animationFrame = requestAnimationFrame(() => {
-    doLoopCallback(cb);
-  });
+      this.animationFrame = requestAnimationFrame(() => {
+        this.doLoopCallback();
+      });
+    }
+  }
+
+  frameCount = 0;
+  animationFrame = null;
+  isPlaying = false;
 }

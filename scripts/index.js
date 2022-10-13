@@ -1,4 +1,4 @@
-import { loop } from "./loop.js";
+import { Loop } from "./loop.js";
 import { paint } from "./graphics/paint.js";
 import "./size-canvas.js";
 import { handleCollisions } from "./actions/handle-collisions.js";
@@ -10,8 +10,9 @@ import { updateShips } from "./actions/update-ships.js";
 import { BaseShip } from "./ships/base.js";
 import { mapData } from "./state/map-data.js";
 import { random } from "./math/random.js";
+import { gameLoop } from "./game-loop.js";
 
-const gameLoop = loop(() => {
+gameLoop.cb = () => {
   updateParticles();
 
   updateResources();
@@ -23,7 +24,8 @@ const gameLoop = loop(() => {
   handleCollisions();
 
   paint();
-});
+};
+gameLoop.play();
 
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
