@@ -9,6 +9,7 @@ import { updateResources } from "./actions/update-resources.js";
 import { updateShips } from "./actions/update-ships.js";
 import { BaseShip } from "./ships/base.js";
 import { mapData } from "./state/map-data.js";
+import { random } from "./math/random.js";
 
 const gameLoop = loop(() => {
   updateParticles();
@@ -43,8 +44,8 @@ window.addEventListener("keydown", ({ key }) => {
   if (key === "s") {
     mapData.ships.push(
       new BaseShip({
-        x: 500,
-        y: 500,
+        x: playerState.x + random(-1000, 1000),
+        y: playerState.y + random(-1000, 1000),
       })
     );
   }

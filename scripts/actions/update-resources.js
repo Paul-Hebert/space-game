@@ -5,6 +5,7 @@ import { distanceBetweenPoints } from "../math/distance-between-points.js";
 import { angleBetweenPoints } from "../math/angle-between-points.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
+import { updateHealth } from "./update-health.js";
 
 const resourceCountEl = document.querySelector(".resource-count");
 
@@ -31,6 +32,8 @@ export function updateResources() {
           radius: 60,
         })
       ) {
+        playerState.health += 5;
+        updateHealth();
         playerState.resourceCount++;
         resourceCountEl.textContent = playerState.resourceCount;
         return false;
