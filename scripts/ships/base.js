@@ -13,6 +13,7 @@ export class BaseShip {
   }
 
   health = 100;
+  maxHealth = 100;
 
   shipSize = 80;
 

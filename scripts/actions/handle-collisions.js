@@ -87,7 +87,8 @@ export function handleCollisions() {
       collided = true;
       newExplosions = newExplosions.concat(explodeBullet(bullet));
       playerState.health -= bullet.damage;
-      healthEl.value = playerState.health;
+      console.log(playerState.health, playerState.maxHealth);
+      healthEl.value = (playerState.health / playerState.maxHealth) * 100;
 
       if (playerState.health < 0) {
         alert("You Lose");
