@@ -9,12 +9,19 @@
     <div class="game">
       <canvas id="main-canvas" width="500" height="500"></canvas>
 
-      <img class="ship" src="/graphics/ship.svg" alt="" />
+      <meter class="health" value="100" min="0" max="100">
 
       <div class="resource-count">0</div>
     </div>
 
-    <!-- https://codepen.io/phebert/pen/ZEooMbY?editors=0010 -->
-    <img id="asteroid-sprites" src="/graphics/asteroids-wonky-2.png" hidden />
+    <!-- https://codepen.io/phebert/pen/QWrzMBM?editors=1010 -->
+    <!-- <img id="asteroid-sprites" src="/graphics/asteroids-purple.png" hidden /> -->
+    <img
+      id="asteroid-sprites"
+      src="/graphics/asteroids-gradient-under.png"
+      hidden
+    />
+
+    <img id="ship" src="/graphics/ship.png" alt="" hidden />
   </body>
 </html>

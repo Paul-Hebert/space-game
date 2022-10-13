@@ -9,5 +9,6 @@
   "author": "",
   "dependencies": {
     "browser-sync": "^2.27.10"
-  }
+  },
+  "type": "module"
 }

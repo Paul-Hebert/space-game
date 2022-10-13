@@ -8,13 +8,11 @@ const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 context.imageSmoothingEnabled = false;
 
-const ship = document.querySelector(".ship");
+const shipImage = document.getElementById("ship");
 const asteroidSprites = document.getElementById("asteroid-sprites");
 
 export function paint() {
   clearCanvas();
-
-  drawPlayer(playerState);
 
   const { resources, asteroids, bullets, stars, exhaust, explosions } = mapData;
 
@@ -53,14 +51,33 @@ export function paint() {
       }
     }
   });
+
+  mapData.ships.forEach((ship) => drawShip(ship));
+
+  drawShip(playerState);
 }
 
 function clearCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawPlayer({ rotation }) {
-  ship.style.setProperty("--rotation", `${rotation}deg`);
+function drawShip(ship) {
+  const { x, y } = relativePosition(ship, playerState, canvas);
+  const { rotation, shipSize } = ship;
+
+  context.translate(x, y);
+  context.rotate(degreesToRadians(rotation));
+  context.translate(-1 * x, -1 * y);
+
+  context.drawImage(
+    shipImage, // image
+    x - shipSize / 2,
+    y - shipSize / 2,
+    shipSize,
+    shipSize
+  );
+
+  context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 function drawCircle({ x, y, radius, fill, opacity = 1 }) {

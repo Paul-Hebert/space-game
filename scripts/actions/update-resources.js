@@ -15,10 +15,10 @@ export function updateResources() {
         const angle = degreesToRadians(
           angleBetweenPoints(resource, playerState)
         );
-        const speed = 0.001;
+        const speed = 1;
 
-        resource.speed.x += Math.cos(angle, speed);
-        resource.speed.y += Math.sin(angle, speed);
+        resource.speed.x += Math.cos(angle) * speed;
+        resource.speed.y += Math.sin(angle) * speed;
 
         resource.speed = constrainSpeed(resource);
       }

@@ -6,11 +6,16 @@ import { handlePlayerActions } from "./actions/handle-player-actions.js";
 import { updateParticles } from "./actions/update-particles.js";
 import { playerState } from "./state/player-state.js";
 import { updateResources } from "./actions/update-resources.js";
+import { updateShips } from "./actions/update-ships.js";
+import { BaseShip } from "./ships/base.js";
+import { mapData } from "./state/map-data.js";
 
 const gameLoop = loop(() => {
   updateParticles();
 
   updateResources();
+
+  updateShips();
 
   handlePlayerActions();
 
@@ -31,5 +36,16 @@ window.addEventListener("keydown", ({ key }) => {
     if (playerState.currentGun >= playerState.weapons.length) {
       playerState.currentGun = 0;
     }
+  }
+});
+
+window.addEventListener("keydown", ({ key }) => {
+  if (key === "s") {
+    mapData.ships.push(
+      new BaseShip({
+        x: 500,
+        y: 500,
+      })
+    );
   }
 });

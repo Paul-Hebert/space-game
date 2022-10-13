@@ -34,4 +34,4 @@
 ## Bugs
 
 - Bullets don't work when facing directly to the right
-- Resources can shoot way past you
+- Looping doesn't work for stars (because they have parallax)

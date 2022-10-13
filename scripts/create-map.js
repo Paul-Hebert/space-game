@@ -3,7 +3,7 @@ import { Asteroid } from "./objects/asteroid.js";
 
 export function createMap() {
   const asteroids = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 40; i++) {
     asteroids.push(new Asteroid({ looping: true }));
   }
 
@@ -17,6 +17,7 @@ export function createMap() {
     resources: [],
     exhaust: [],
     explosions: [],
+    ships: [],
     asteroids,
     stars,
   };

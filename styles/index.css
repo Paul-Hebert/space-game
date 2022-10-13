@@ -33,11 +33,17 @@ canvas,
   height: auto;
 }
 
-.resource-count {
+.resource-count,
+.health {
   color: gold;
   font-weight: bold;
   font-size: 3rem;
   position: absolute;
   right: 1em;
   bottom: 1em;
+}
+
+.health {
+  left: 1em;
+  right: auto;
 }
