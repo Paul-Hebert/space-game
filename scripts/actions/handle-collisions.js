@@ -4,8 +4,8 @@ import { random, randomInt } from "../math/random.js";
 import { Explosion } from "../objects/explosion.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
-
-const healthEl = document.querySelector(".health");
+import { updateHealth } from "./update-health.js";
+import { relativePosition } from "../math/relative-position.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -60,18 +60,7 @@ export function handleCollisions() {
           return true;
         }
 
-        for (let i = 0; i < randomInt(50, 100); i++) {
-          newExplosions.push(
-            new Explosion({
-              x: ship.x,
-              y: ship.y,
-              speed: {
-                x: random(-10, 10),
-                y: random(-10, 10),
-              },
-            })
-          );
-        }
+        newExplosions = newExplosions.concat(explodeShip(ship));
 
         return false;
       }
@@ -85,14 +74,24 @@ export function handleCollisions() {
       })
     ) {
       collided = true;
-      newExplosions = newExplosions.concat(explodeBullet(bullet));
-      playerState.health -= bullet.damage;
-      console.log(playerState.health, playerState.maxHealth);
-      healthEl.value = (playerState.health / playerState.maxHealth) * 100;
 
-      if (playerState.health < 0) {
-        alert("You Lose");
+      newExplosions = newExplosions.concat(explodeBullet(bullet));
+
+      playerState.health -= bullet.damage;
+
+      if (playerState.health <= 0) {
+        newExplosions = newExplosions.concat(
+          explodeShip(
+            relativePosition(
+              playerState,
+              playerState,
+              document.querySelector("canvas")
+            )
+          )
+        );
       }
+
+      updateHealth();
     }
 
     return !collided;
@@ -119,6 +118,22 @@ function explodeBullet(bullet) {
       })
     );
   }
+  return newExplosions;
+}
 
+function explodeShip(ship) {
+  const newExplosions = [];
+  for (let i = 0; i < randomInt(500, 1000); i++) {
+    newExplosions.push(
+      new Explosion({
+        x: ship.x,
+        y: ship.y,
+        speed: {
+          x: random(-10, 10),
+          y: random(-10, 10),
+        },
+      })
+    );
+  }
   return newExplosions;
 }

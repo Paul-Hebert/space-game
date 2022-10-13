@@ -8,8 +8,4 @@ export function updateHealth() {
   }
 
   healthEl.value = (playerState.health / playerState.maxHealth) * 100;
-
-  if (playerState.health < 0) {
-    alert("You Lose");
-  }
 }

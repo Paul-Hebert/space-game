@@ -19,7 +19,7 @@ gameLoop.cb = () => {
 
   updateShips();
 
-  handlePlayerActions();
+  if (playerState.health > 0) handlePlayerActions();
 
   handleCollisions();
 

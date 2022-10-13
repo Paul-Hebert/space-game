@@ -41,7 +41,9 @@ export function updateShips() {
         distanceBetweenPoints(ship, playerState) <
         ship.weapons[ship.currentGun].range()
       ) {
-        shoot(ship);
+        if (playerState.health > 0) {
+          shoot(ship);
+        }
       } else {
         const rotationInRadians = degreesToRadians(ship.rotation - 90);
         ship.speed.x += Math.cos(rotationInRadians) * ship.accelerationSpeed;

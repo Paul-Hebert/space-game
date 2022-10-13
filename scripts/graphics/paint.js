@@ -54,7 +54,9 @@ export function paint() {
 
   mapData.ships.forEach((ship) => drawShip(ship));
 
-  drawShip(playerState);
+  if (playerState.health > 0) {
+    drawShip(playerState);
+  }
 }
 
 function clearCanvas() {
