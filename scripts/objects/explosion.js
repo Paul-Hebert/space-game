@@ -3,8 +3,9 @@ import { hsl } from "../graphics/hsl.js";
 import { Particle } from "./particle.js";
 
 export class Explosion extends Particle {
-  constructor({ x, y, speed }) {
+  constructor({ x, y, speed, age = 0 }) {
     super({ x, y, speed, radius: random(1, 10) });
+    this.age = age;
   }
 
   fill = hsl({
@@ -13,6 +14,5 @@ export class Explosion extends Particle {
     l: random(50, 100),
   });
 
-  age = 0;
   maxAge = 10;
 }

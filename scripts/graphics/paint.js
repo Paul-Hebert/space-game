@@ -24,30 +24,33 @@ export function paint() {
     ...explosions,
     ...bullets,
   ].forEach((object) => {
-    const pos = relativePosition(object, playerState, canvas);
+    const premature = object.maxAge && object.age < 0;
+    if (!premature) {
+      const pos = relativePosition(object, playerState, canvas);
 
-    if (isInBounds(pos, canvas)) {
-      const settings = {
-        ...object,
-        ...pos,
-      };
+      if (isInBounds(pos, canvas)) {
+        const settings = {
+          ...object,
+          ...pos,
+        };
 
-      if (object.age && object.maxAge) {
-        settings.opacity = 1 - object.age / object.maxAge;
-      }
+        if (object.age && object.maxAge) {
+          settings.opacity = 1 - object.age / object.maxAge;
+        }
 
-      if (object.fill) {
-        drawCircle(settings);
-      } else if (object.spritePos) {
-        drawSprite(
-          {
-            ...pos,
-            radius: object.radius,
-            rotation: object.rotation,
-          },
-          asteroidSprites,
-          object.spritePos
-        );
+        if (object.fill) {
+          drawCircle(settings);
+        } else if (object.spritePos) {
+          drawSprite(
+            {
+              ...pos,
+              radius: object.radius,
+              rotation: object.rotation,
+            },
+            asteroidSprites,
+            object.spritePos
+          );
+        }
       }
     }
   });

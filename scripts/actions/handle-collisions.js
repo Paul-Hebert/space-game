@@ -126,11 +126,12 @@ function explodeShip(ship) {
   for (let i = 0; i < randomInt(500, 1000); i++) {
     newExplosions.push(
       new Explosion({
+        age: randomInt(-10, 0),
         x: ship.x,
         y: ship.y,
         speed: {
-          x: random(-10, 10),
-          y: random(-10, 10),
+          x: random(-3, 3),
+          y: random(-3, 3),
         },
       })
     );
