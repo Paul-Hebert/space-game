@@ -58,6 +58,5 @@ function addShip() {
     y: playerState.y + mapSize * (randomBool(0.5) ? 1 : -1),
   };
 
-  console.log(pos);
   mapData.ships.push(new BaseShip(pos));
 }
