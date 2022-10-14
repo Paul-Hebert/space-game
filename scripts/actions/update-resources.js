@@ -32,7 +32,7 @@ export function updateResources() {
           radius: 60,
         })
       ) {
-        playerState.health += 5;
+        playerState.health += 50;
         updateHealth();
         playerState.resourceCount++;
         resourceCountEl.textContent = playerState.resourceCount;
