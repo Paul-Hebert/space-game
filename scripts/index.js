@@ -17,7 +17,7 @@ gameLoop.cb = () => {
 
   updateResources();
 
-  if (gameLoop.frameCount % 100 === 0) {
+  if (gameLoop.frameCount % 300 === 0) {
     addShip();
   }
 
