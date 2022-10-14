@@ -10,7 +10,7 @@ export class Loop {
   }
 
   toggle() {
-    this.isPlaying ? pause() : play();
+    this.isPlaying ? this.pause() : this.play();
   }
 
   doLoopCallback() {
