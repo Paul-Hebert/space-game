@@ -7,7 +7,7 @@ export class Pew extends BaseWeapon {
   bulletRadius = 4;
   bulletColor = "red";
   damage = 5;
-  maxAge = 100;
+  maxAge = 40;
 
   shoot(playerState) {
     return this.bulletStream(playerState, 5, 2);
