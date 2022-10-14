@@ -1,4 +1,3 @@
-import { Loop } from "./loop.js";
 import { paint } from "./graphics/paint.js";
 import "./size-canvas.js";
 import { handleCollisions } from "./actions/handle-collisions.js";
@@ -9,13 +8,18 @@ import { updateResources } from "./actions/update-resources.js";
 import { updateShips } from "./actions/update-ships.js";
 import { BaseShip } from "./ships/base.js";
 import { mapData } from "./state/map-data.js";
-import { random } from "./math/random.js";
+import { randomBool } from "./math/random.js";
 import { gameLoop } from "./game-loop.js";
+import { mapSize } from "./map-size.js";
 
 gameLoop.cb = () => {
   updateParticles();
 
   updateResources();
+
+  if (gameLoop.frameCount % 100 === 0) {
+    addShip();
+  }
 
   updateShips();
 
@@ -44,11 +48,16 @@ window.addEventListener("keydown", ({ key }) => {
 
 window.addEventListener("keydown", ({ key }) => {
   if (key === "s") {
-    mapData.ships.push(
-      new BaseShip({
-        x: playerState.x + random(-1000, 1000),
-        y: playerState.y + random(-1000, 1000),
-      })
-    );
+    addShip();
   }
 });
+
+function addShip() {
+  const pos = {
+    x: playerState.x + mapSize * (randomBool(0.5) ? 1 : -1),
+    y: playerState.y + mapSize * (randomBool(0.5) ? 1 : -1),
+  };
+
+  console.log(pos);
+  mapData.ships.push(new BaseShip(pos));
+}
