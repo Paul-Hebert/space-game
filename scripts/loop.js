@@ -25,6 +25,11 @@ export class Loop {
     }
   }
 
+  reset() {
+    this.pause();
+    this.frameCount = 0;
+  }
+
   frameCount = 0;
   animationFrame = null;
   isPlaying = false;

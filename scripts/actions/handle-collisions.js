@@ -7,6 +7,7 @@ import { playerState } from "../state/player-state.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
 import { relativePosition } from "../math/relative-position.js";
 import { Resource } from "../objects/resource.js";
+import { showMenu } from "../hud/menus.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -85,6 +86,7 @@ export function handleCollisions() {
       playerState.health -= bullet.damage;
 
       if (playerState.health <= 0) {
+        showMenu("restart");
         // This isn't working
         // newExplosions = newExplosions.concat(
         //   explodeShip(

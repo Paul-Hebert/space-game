@@ -1,42 +1,29 @@
-import { paint } from "./graphics/paint.js";
 import "./size-canvas.js";
-import { handleCollisions } from "./actions/handle-collisions.js";
-import { handlePlayerActions } from "./actions/handle-player-actions.js";
-import { updateParticles } from "./actions/update-particles.js";
 import { playerState } from "./state/player-state.js";
-import { updateResources } from "./actions/update-resources.js";
-import { updateShips } from "./actions/update-ships.js";
-import { BaseShip } from "./ships/base.js";
-import { mapData } from "./state/map-data.js";
-import { randomBool, randomItemInArray } from "./math/random.js";
 import { gameLoop } from "./game-loop.js";
-import { mapSize } from "./map-size.js";
-import { BigShip } from "./ships/big.js";
-import { FastShip } from "./ships/fast.js";
+import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
+import { newGame } from "./new-game.js";
+import { addShip } from "./actions/add-ship.js";
 
-gameLoop.cb = () => {
-  updateParticles();
-
-  updateResources();
-
-  if (gameLoop.frameCount % 300 === 0) {
-    addShip();
-  }
-
-  updateShips();
-
-  if (playerState.health > 0) handlePlayerActions();
-
-  handleCollisions();
-
-  paint();
-};
-gameLoop.play();
+newGame();
 
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
+    toggleMenu("pause");
     gameLoop.toggle();
   }
+});
+
+document.querySelector(".resume-button").addEventListener("click", () => {
+  hideMenu("pause");
+  gameLoop.play();
+});
+
+document.querySelectorAll(".restart-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    hideAllMenus();
+    newGame();
+  });
 });
 
 window.addEventListener("keydown", ({ key }) => {
@@ -53,14 +40,3 @@ window.addEventListener("keydown", ({ key }) => {
     addShip();
   }
 });
-
-function addShip() {
-  const pos = {
-    x: playerState.x + mapSize * (randomBool(0.5) ? 1 : -1),
-    y: playerState.y + mapSize * (randomBool(0.5) ? 1 : -1),
-  };
-
-  const shipOptions = [new BaseShip(pos), new BigShip(pos), new FastShip(pos)];
-
-  mapData.ships.push(randomItemInArray(shipOptions));
-}

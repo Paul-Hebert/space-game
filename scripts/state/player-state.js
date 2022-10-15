@@ -1,3 +1,7 @@
 import { PlayerShip } from "../ships/player.js";
 
-export const playerState = new PlayerShip({});
+export let playerState = new PlayerShip({});
+
+export function resetPlayerState() {
+  playerState = new PlayerShip({});
+}

@@ -1,9 +1,10 @@
 export const pressedKeys = {};
 
 window.addEventListener("keydown", (e) => {
+  if (e.key === " ") e.preventDefault();
   pressedKeys[e.key] = true;
 });
 
-window.addEventListener("keyup", (e) => {
-  pressedKeys[e.key] = false;
+window.addEventListener("keyup", ({ key }) => {
+  pressedKeys[key] = false;
 });

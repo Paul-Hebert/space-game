@@ -11,7 +11,7 @@ export class FastShip extends BaseShip {
 
   rotationSpeed = 5;
   accelerationSpeed = 1;
-  maxSpeed = 25;
+  maxSpeed = 18;
 
   shipSize = 40;
 

@@ -49,3 +49,28 @@ canvas {
   left: 1em;
   right: auto;
 }
+
+.menu {
+  background-color: hsla(192, 72%, 17%, 0.5);
+  transition: opacity 0.2s ease-out;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(1px);
+}
+
+.menu:not(.is-shown) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.menu-inner {
+  background: hsla(190, 10%, 95%, 0.8);
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  gap: 1em;
+  align-items: center;
+}
