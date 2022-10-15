@@ -18,12 +18,11 @@ export class BaseShip {
   graphic = document.getElementById("enemy-ship");
 
   health = 200;
-  maxHealth = 100;
+  maxHealth = 200;
 
   shipSize = 80;
 
   rotationSpeed = 3;
-
   accelerationSpeed = 0.5;
 
   weapons = [new BaseWeapon(), new Pew(), new Ray(), new Laser(), new Boom()];

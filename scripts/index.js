@@ -8,9 +8,11 @@ import { updateResources } from "./actions/update-resources.js";
 import { updateShips } from "./actions/update-ships.js";
 import { BaseShip } from "./ships/base.js";
 import { mapData } from "./state/map-data.js";
-import { randomBool } from "./math/random.js";
+import { randomBool, randomItemInArray } from "./math/random.js";
 import { gameLoop } from "./game-loop.js";
 import { mapSize } from "./map-size.js";
+import { BigShip } from "./ships/big.js";
+import { FastShip } from "./ships/fast.js";
 
 gameLoop.cb = () => {
   updateParticles();
@@ -58,5 +60,7 @@ function addShip() {
     y: playerState.y + mapSize * (randomBool(0.5) ? 1 : -1),
   };
 
-  mapData.ships.push(new BaseShip(pos));
+  const shipOptions = [new BaseShip(pos), new BigShip(pos), new FastShip(pos)];
+
+  mapData.ships.push(randomItemInArray(shipOptions));
 }
