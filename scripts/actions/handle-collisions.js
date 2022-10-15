@@ -6,6 +6,7 @@ import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
 import { updateHealth } from "./update-health.js";
 import { relativePosition } from "../math/relative-position.js";
+import { Resource } from "../objects/resource.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -62,6 +63,10 @@ export function handleCollisions() {
 
         newExplosions = newExplosions.concat(explodeShip(ship));
 
+        const { explosions, resources } = explodeShip(ship);
+        if (explosions.length) newExplosions = newExplosions.concat(explosions);
+        if (resources.length) newResources = newResources.concat(resources);
+
         return false;
       }
       return true;
@@ -80,15 +85,16 @@ export function handleCollisions() {
       playerState.health -= bullet.damage;
 
       if (playerState.health <= 0) {
-        newExplosions = newExplosions.concat(
-          explodeShip(
-            relativePosition(
-              playerState,
-              playerState,
-              document.querySelector("canvas")
-            )
-          )
-        );
+        // This isn't working
+        // newExplosions = newExplosions.concat(
+        //   explodeShip(
+        //     relativePosition(
+        //       playerState,
+        //       playerState,
+        //       document.querySelector("canvas")
+        //     )
+        //   )
+        // );
       }
 
       updateHealth();
@@ -122,9 +128,11 @@ function explodeBullet(bullet) {
 }
 
 function explodeShip(ship) {
-  const newExplosions = [];
+  const explosions = [];
+  const resources = [];
+
   for (let i = 0; i < randomInt(500, 1000); i++) {
-    newExplosions.push(
+    explosions.push(
       new Explosion({
         age: randomInt(-10, 0),
         x: ship.x,
@@ -136,5 +144,19 @@ function explodeShip(ship) {
       })
     );
   }
-  return newExplosions;
+
+  for (let i = 0; i < randomInt(2, 5); i++) {
+    resources.push(
+      new Resource({
+        x: ship.x,
+        y: ship.y,
+        speed: {
+          x: random(-3, 3),
+          y: random(-3, 3),
+        },
+      })
+    );
+  }
+
+  return { explosions, resources };
 }

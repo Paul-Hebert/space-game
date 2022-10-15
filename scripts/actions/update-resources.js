@@ -32,10 +32,13 @@ export function updateResources() {
           radius: 60,
         })
       ) {
-        playerState.health += 50;
-        updateHealth();
-        playerState.resourceCount++;
-        resourceCountEl.textContent = playerState.resourceCount;
+        if (resource.type === "health") {
+          playerState.health += 75;
+          updateHealth();
+        } else if (resource.type === "money") {
+          playerState.resourceCount++;
+          resourceCountEl.textContent = playerState.resourceCount;
+        }
         return false;
       }
       return true;

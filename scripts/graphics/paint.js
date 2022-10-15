@@ -8,7 +8,6 @@ const canvas = document.querySelector("#main-canvas");
 const context = canvas.getContext("2d");
 context.imageSmoothingEnabled = false;
 
-const shipImage = document.getElementById("ship");
 const asteroidSprites = document.getElementById("asteroid-sprites");
 
 export function paint() {
@@ -75,7 +74,7 @@ function drawShip(ship) {
   context.translate(-1 * x, -1 * y);
 
   context.drawImage(
-    shipImage, // image
+    ship.graphic, // image
     x - shipSize / 2,
     y - shipSize / 2,
     shipSize,
