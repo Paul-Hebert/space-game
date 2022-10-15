@@ -23,11 +23,11 @@ export class BaseShip {
   shipSize = 80;
 
   rotationSpeed = 3;
-  accelerationSpeed = 0.5;
+  accelerationSpeed = 0.35;
 
   weapons = [new BaseWeapon(), new Pew(), new Ray(), new Laser(), new Boom()];
 
-  maxSpeed = 14;
+  maxSpeed = 10;
 
   currentGun = 0;
 }

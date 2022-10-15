@@ -7,5 +7,7 @@ export function updateHealthBar() {
     playerState.health = playerState.maxHealth;
   }
 
+  console.log(playerState.health);
+
   healthEl.value = (playerState.health / playerState.maxHealth) * 100;
 }

@@ -8,8 +8,9 @@ import { updateResources } from "./actions/update-resources.js";
 import { updateShips } from "./actions/update-ships.js";
 import { resetMap } from "./state/map-data.js";
 import { playerState, resetPlayerState } from "./state/player-state.js";
-import { addShip } from "./actions/add-ship.js";
 import { resetUi } from "./hud/reset-ui.js";
+import { updateMessages } from "./hud/messaging.js";
+import { level1 } from "./levels/level-1.js";
 
 export function newGame() {
   resetMap();
@@ -21,10 +22,6 @@ export function newGame() {
 
     updateResources();
 
-    if (gameLoop.frameCount % 200 === 0) {
-      addShip();
-    }
-
     updateShips();
 
     if (playerState.health > 0) handlePlayerActions();
@@ -32,7 +29,11 @@ export function newGame() {
     handleCollisions();
 
     paint();
+
+    updateMessages();
   };
   gameLoop.reset();
   gameLoop.play();
+
+  level1();
 }

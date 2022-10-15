@@ -1,6 +1,7 @@
 const menus = {
   pause: document.querySelector(".pause-menu"),
   restart: document.querySelector(".restart-menu"),
+  success: document.querySelector(".success-menu"),
 };
 
 export function showMenu(name) {

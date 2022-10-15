@@ -18,6 +18,7 @@ export class PlayerShip extends BaseShip {
   resourceCount = 0;
   maxHealth = 1000;
   health = 1000;
+  maxSpeed = 11;
 
   weapons = [
     new Pew(),

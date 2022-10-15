@@ -11,7 +11,7 @@ export class BigShip extends BaseShip {
     this.currentGun = randomInt(0, this.weapons.length - 1);
   }
 
-  accelerationSpeed = 0.25;
+  accelerationSpeed = 0.125;
   rotationSpeed = 1;
 
   shipSize = 160;
