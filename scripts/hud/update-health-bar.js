@@ -2,7 +2,7 @@ import { playerState } from "../state/player-state.js";
 
 const healthEl = document.querySelector(".health");
 
-export function updateHealth() {
+export function updateHealthBar() {
   if (playerState.health > playerState.maxHealth) {
     playerState.health = playerState.maxHealth;
   }

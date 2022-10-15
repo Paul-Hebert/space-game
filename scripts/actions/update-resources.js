@@ -5,9 +5,8 @@ import { distanceBetweenPoints } from "../math/distance-between-points.js";
 import { angleBetweenPoints } from "../math/angle-between-points.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
-import { updateHealth } from "./update-health.js";
-
-const resourceCountEl = document.querySelector(".resource-count");
+import { updateHealthBar } from "../hud/update-health-bar.js";
+import { updateResourceCount } from "../hud/update-resource-count.js";
 
 export function updateResources() {
   mapData.resources = mapData.resources
@@ -34,10 +33,10 @@ export function updateResources() {
       ) {
         if (resource.type === "health") {
           playerState.health += 75;
-          updateHealth();
+          updateHealthBar();
         } else if (resource.type === "money") {
           playerState.resourceCount++;
-          resourceCountEl.textContent = playerState.resourceCount;
+          updateResourceCount();
         }
         return false;
       }

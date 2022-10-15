@@ -4,7 +4,7 @@ import { random, randomInt } from "../math/random.js";
 import { Explosion } from "../objects/explosion.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
-import { updateHealth } from "./update-health.js";
+import { updateHealthBar } from "../hud/update-health-bar.js";
 import { relativePosition } from "../math/relative-position.js";
 import { Resource } from "../objects/resource.js";
 
@@ -97,7 +97,7 @@ export function handleCollisions() {
         // );
       }
 
-      updateHealth();
+      updateHealthBar();
     }
 
     return !collided;
