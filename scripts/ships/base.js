@@ -3,6 +3,7 @@ import { Ray } from "../weapons/ray.js";
 import { Laser } from "../weapons/laser.js";
 import { BaseWeapon } from "../weapons/base-weapon.js";
 import { randomInt } from "../math/random.js";
+import { Boom } from "../weapons/boom.js";
 
 export class BaseShip {
   constructor({ x = 0, y = 0, speed = { x: 0, y: 0 }, rotation = 0 }) {
@@ -14,18 +15,20 @@ export class BaseShip {
     this.currentGun = randomInt(0, this.weapons.length - 1);
   }
 
-  health = 100;
+  graphic = document.getElementById("enemy-ship");
+
+  health = 200;
   maxHealth = 100;
 
   shipSize = 80;
 
-  rotationSpeed = 2;
+  rotationSpeed = 3;
 
-  accelerationSpeed = 0.1;
+  accelerationSpeed = 0.5;
 
-  weapons = [new BaseWeapon(), new Pew(), new Ray(), new Laser()];
+  weapons = [new BaseWeapon(), new Pew(), new Ray(), new Laser(), new Boom()];
 
-  maxSpeed = 15;
+  maxSpeed = 14;
 
   currentGun = 0;
 }

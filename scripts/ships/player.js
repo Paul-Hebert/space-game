@@ -4,6 +4,7 @@ import { Ray } from "../weapons/ray.js";
 import { Laser } from "../weapons/laser.js";
 import { GodMode } from "../weapons/god-mode.js";
 import { BaseWeapon } from "../weapons/base-weapon.js";
+import { Boom } from "../weapons/boom.js";
 
 export class PlayerShip extends BaseShip {
   constructor(params) {
@@ -11,6 +12,8 @@ export class PlayerShip extends BaseShip {
 
     this.currentGun = 0;
   }
+
+  graphic = document.getElementById("ship");
 
   resourceCount = 0;
   maxHealth = 1000;
@@ -20,6 +23,7 @@ export class PlayerShip extends BaseShip {
     new Pew(),
     new BaseWeapon(),
     new Ray(),
+    new Boom(),
     new Laser(),
     new GodMode(),
   ];

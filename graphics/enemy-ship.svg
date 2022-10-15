@@ -3,11 +3,11 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 36 45" style="enable-background:new 0 0 36 45;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#5A6EFF;stroke:#000000;stroke-width:2.9091;stroke-miterlimit:10;}
-	.st1{fill:#CC7DFF;stroke:#000000;stroke-width:1.8016;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st2{fill:#CC7DFF;stroke:#000000;stroke-miterlimit:10;}
-	.st3{fill:#5A6EFF;}
-	.st4{fill:#E3ACF9;stroke:#000000;stroke-width:1.2121;stroke-miterlimit:10;}
+	.st0{fill:#FF032D;stroke:#000000;stroke-width:2.9091;stroke-miterlimit:10;}
+	.st1{fill:#EF6F8B;stroke:#000000;stroke-width:1.8016;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:#EF6F8B;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:#FF032D;}
+	.st4{fill:#F9A5B8;stroke:#000000;stroke-width:1.2121;stroke-miterlimit:10;}
 	.st5{fill:#EF6F8B;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
 <path class="st0" d="M9.3,26.5c0,12,3.9,13.1,8.7,13.1s8.7-1,8.7-13.1S22.8,4.7,18,4.7S9.3,14.5,9.3,26.5z"/>
