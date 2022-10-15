@@ -12,18 +12,20 @@ body {
   place-items: center;
   height: 100%;
   margin: 0;
+  width: 100%;
 }
 
 .game {
   display: grid;
   place-items: center;
-  grid-template-areas: "content";
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-canvas,
-.ship {
-  grid-area: content;
+canvas {
+  width: 100%;
+  height: 100%;
 }
 
 .ship {
