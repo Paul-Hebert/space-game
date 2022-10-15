@@ -7,7 +7,7 @@ export class Laser extends BaseWeapon {
   bulletRadius = 4;
   bulletColor = "yellow";
   damage = 1;
-  maxAge = 100;
+  maxAge = 50;
 
   shoot(playerState) {
     return this.bulletStream(playerState, 40, 4);
