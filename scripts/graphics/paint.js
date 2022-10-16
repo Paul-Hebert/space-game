@@ -54,34 +54,19 @@ export function paint() {
     }
   });
 
-  mapData.ships.forEach((ship) => drawShip(ship));
+  mapData.ships.forEach((ship) => {
+    const { x, y } = relativePosition(ship, playerState, canvas);
+    ship.draw(context, { x, y });
+  });
 
   if (playerState.health > 0) {
-    drawShip(playerState);
+    const { x, y } = relativePosition(playerState, playerState, canvas);
+    playerState.draw(context, { x, y });
   }
 }
 
 function clearCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-function drawShip(ship) {
-  const { x, y } = relativePosition(ship, playerState, canvas);
-  const { rotation, shipSize } = ship;
-
-  context.translate(x, y);
-  context.rotate(degreesToRadians(rotation));
-  context.translate(-1 * x, -1 * y);
-
-  context.drawImage(
-    ship.graphic, // image
-    x - shipSize / 2,
-    y - shipSize / 2,
-    shipSize,
-    shipSize
-  );
-
-  context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 function drawCircle({ x, y, radius, fill, opacity = 1 }) {
