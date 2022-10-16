@@ -14,7 +14,6 @@ export function updateShips() {
 
     const targetAngle = angleBetweenPoints(ship, playerState) + 90;
 
-    // This doesn't account for wrapping around 360
     if (targetAngle !== ship.rotation) {
       const diffUp = targetAngle + 360 - ship.rotation;
       const diffDown = ship.rotation - targetAngle;
@@ -35,7 +34,8 @@ export function updateShips() {
     const acceptableRange = 30;
     if (
       Math.abs(targetAngle - ship.rotation) < acceptableRange ||
-      Math.abs(targetAngle - ship.rotation + 360) < acceptableRange
+      Math.abs(targetAngle - ship.rotation - 360) < acceptableRange ||
+      Math.abs(targetAngle + ship.rotation - 360) < acceptableRange
     ) {
       if (
         distanceBetweenPoints(ship, playerState) <
