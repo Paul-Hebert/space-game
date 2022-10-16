@@ -2,12 +2,14 @@ import { showMenu } from "../hud/menus.js";
 import { addMessageToQueue } from "../hud/messaging.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
 import { random } from "../math/random.js";
-import { keysThatHaveBeenPressed } from "../pressed-keys.js";
+import { keysThatHaveBeenPressed, resetPressedKeys } from "../pressed-keys.js";
 import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
 import { mapSize } from "../map-size.js";
 import { CrowShip } from "../ships/crow.js";
+import { Laser } from "../weapons/laser.js";
+import { FastShip } from "../ships/fast.js";
 
 export function level1() {
   playerState.health = (playerState.maxHealth * 4) / 5;
@@ -56,7 +58,7 @@ export function level1() {
             nextAction: () => {
               for (let i = 0; i < 4; i++) {
                 const x = playerState.x + mapSize * random(1, 1.5);
-                const y = playerState.x + random(-600, 600);
+                const y = playerState.y + random(-600, 600);
 
                 mapData.ships.push(
                   new SparrowShip({
@@ -69,7 +71,7 @@ export function level1() {
               mapData.ships.push(
                 new CrowShip({
                   x: playerState.x + mapSize * random(1, 1.5) * -1,
-                  y: playerState.x + random(-600, 600),
+                  y: playerState.y + random(-600, 600),
                 })
               );
 
@@ -87,10 +89,78 @@ export function level1() {
                   return mapData.ships.length === 0;
                 },
                 nextAction: () => {
-                  showMenu("success");
-                },
-                updateObjective: () => {
-                  return `${5 - mapData.ships.length}/5 ships destroyed.`;
+                  resetPressedKeys();
+
+                  playerState.weapons.push(new Laser());
+
+                  addMessageToQueue({
+                    content: `
+                  <p>
+                    We recovered a weapon from one of the destroyed ships. Let's give it a try.
+                  </p>
+
+                  <p>Press <kbd>Shift</kbd> to switch between weapons and try shooting it.</p>
+                `,
+                    exitRequirements: () => {
+                      const hasSwitched =
+                        keysThatHaveBeenPressed.includes("Shift");
+
+                      const hasShot =
+                        mapData.bullets.filter((b) => {
+                          console.log(b);
+                          return b.weapon === "laser";
+                        }).length > 1;
+
+                      return hasSwitched && hasShot;
+                    },
+                    nextAction: () => {
+                      for (let i = 0; i < 10; i++) {
+                        const x = playerState.x + mapSize * random(1, 1.5);
+                        const y = playerState.y + random(-600, 600);
+
+                        mapData.ships.push(
+                          new FastShip({
+                            x,
+                            y,
+                          })
+                        );
+                      }
+
+                      for (let i = 0; i < 5; i++) {
+                        const x = playerState.x + mapSize * random(1, 1.5) * -1;
+                        const y = playerState.y + random(-600, 600);
+
+                        mapData.ships.push(
+                          new SparrowShip({
+                            x,
+                            y,
+                          })
+                        );
+                      }
+
+                      mapData.ships.push(
+                        new CrowShip({
+                          x: playerState.x + mapSize * random(1, 1.5) * 1,
+                          y: playerState.x + random(-600, 600),
+                        })
+                      );
+
+                      addMessageToQueue({
+                        content: `
+                          <p>Uh oh, reinforcements are on the way.</p>
+                          <div class="objective">0/5 ships destroyed.</div>
+                        `,
+
+                        exitRequirements: () => {
+                          return mapData.ships.length === 0;
+                        },
+
+                        nextAction: () => {
+                          showMenu("success");
+                        },
+                      });
+                    },
+                  });
                 },
               });
             },

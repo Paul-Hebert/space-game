@@ -34,6 +34,7 @@ export class BaseWeapon {
       radius: this.bulletRadius,
       fill: this.bulletColor,
       damage: this.damage,
+      weapon: this.name,
     });
   }
 

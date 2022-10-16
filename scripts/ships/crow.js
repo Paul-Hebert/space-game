@@ -1,5 +1,5 @@
 import { BaseShip } from "./base.js";
-import { Pew } from "../weapons/pew.js";
+import { Laser } from "../weapons/laser.js";
 
 export class CrowShip extends BaseShip {
   constructor(params) {
@@ -19,5 +19,5 @@ export class CrowShip extends BaseShip {
   rotationSpeed = 1;
   accelerationSpeed = 0.25;
 
-  weapons = [new Pew()];
+  weapons = [new Laser()];
 }
