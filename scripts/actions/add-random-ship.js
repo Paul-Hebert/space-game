@@ -6,7 +6,7 @@ import { randomBool, randomItemInArray } from "../math/random.js";
 import { mapSize } from "../map-size.js";
 import { mapData } from "../state/map-data.js";
 
-export function addShip() {
+export function addRandomShip() {
   const pos = {
     x: playerState.x + mapSize * (randomBool(0.5) ? 1 : -1),
     y: playerState.y + mapSize * (randomBool(0.5) ? 1 : -1),

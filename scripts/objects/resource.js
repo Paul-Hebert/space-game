@@ -4,7 +4,7 @@ import { Particle } from "./particle.js";
 
 export class Resource extends Particle {
   constructor({ x, y, speed }) {
-    super({ x, y, speed, radius: Math.round(random(4, 8)) });
+    super({ x, y, speed, radius: Math.round(random(8, 12)) });
 
     this.type = randomBool() ? "money" : "health";
 

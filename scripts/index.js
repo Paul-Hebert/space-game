@@ -3,7 +3,7 @@ import { playerState } from "./state/player-state.js";
 import { gameLoop } from "./game-loop.js";
 import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
 import { newGame } from "./new-game.js";
-import { addShip } from "./actions/add-ship.js";
+import { addRandomShip } from "./actions/add-random-ship.js";
 
 newGame();
 
@@ -37,6 +37,6 @@ window.addEventListener("keydown", ({ key }) => {
 
 window.addEventListener("keydown", ({ key }) => {
   if (key === "s") {
-    addShip();
+    addRandomShip();
   }
 });

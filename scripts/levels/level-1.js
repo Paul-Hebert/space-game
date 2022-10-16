@@ -1,10 +1,13 @@
-import { addShip } from "../actions/add-ship.js";
 import { showMenu } from "../hud/menus.js";
 import { addMessageToQueue } from "../hud/messaging.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
+import { random } from "../math/random.js";
 import { keysThatHaveBeenPressed } from "../pressed-keys.js";
+import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
+import { mapSize } from "../map-size.js";
+import { CrowShip } from "../ships/crow.js";
 
 export function level1() {
   playerState.health = (playerState.maxHealth * 4) / 5;
@@ -52,9 +55,24 @@ export function level1() {
               return playerState.health === playerState.maxHealth;
             },
             nextAction: () => {
-              for (let i = 0; i < 5; i++) {
-                addShip();
+              for (let i = 0; i < 4; i++) {
+                const x = playerState.x + mapSize * random(1, 1.5);
+                const y = playerState.x + random(-600, 600);
+
+                mapData.ships.push(
+                  new SparrowShip({
+                    x,
+                    y,
+                  })
+                );
               }
+
+              mapData.ships.push(
+                new CrowShip({
+                  x: playerState.x + mapSize * random(1, 1.5) * -1,
+                  y: playerState.x + random(-600, 600),
+                })
+              );
 
               addMessageToQueue({
                 content: `
