@@ -1,7 +1,7 @@
 import { BaseShip } from "./base.js";
-import { Pew } from "../weapons/pew.js";
+import { Laser } from "../weapons/laser.js";
 
-export class CrowShip extends BaseShip {
+export class SniperShip extends BaseShip {
   constructor(params) {
     super(params);
 
@@ -10,14 +10,14 @@ export class CrowShip extends BaseShip {
 
   graphic = document.getElementById("enemy-ship");
 
-  shipSize = 150;
+  shipSize = 200;
 
   resourceCount = 0;
   maxHealth = 600;
   health = 600;
   maxSpeed = 8;
-  rotationSpeed = 1;
-  accelerationSpeed = 0.25;
+  rotationSpeed = 0.5;
+  accelerationSpeed = 0.125;
 
-  weapons = [new Pew()];
+  weapons = [new Laser()];
 }

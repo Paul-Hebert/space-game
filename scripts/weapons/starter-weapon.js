@@ -1,15 +1,15 @@
 import { BaseWeapon } from "./base-weapon.js";
 
 export class StarterWeapon extends BaseWeapon {
-  name = "pew";
+  name = "starter";
   speed = 25;
-  reloadSpeed = 6;
+  reloadSpeed = 10;
   bulletRadius = 3;
-  bulletColor = "red";
+  bulletColor = "yellow";
   damage = 3;
-  maxAge = 30;
+  maxAge = 40;
 
   shoot(playerState) {
-    return this.bulletStream(playerState, 20, 2);
+    return this.bulletStream(playerState, 15, 2);
   }
 }
