@@ -4,7 +4,6 @@ import { randomInt } from "../math/random.js";
 
 export class FastShip extends BaseShip {
   constructor(params) {
-    console.log("fast!");
     super(params);
     this.currentGun = randomInt(0, this.weapons.length - 1);
   }

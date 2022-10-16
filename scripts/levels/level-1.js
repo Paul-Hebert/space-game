@@ -24,7 +24,6 @@ export function level1() {
       </ul>
     `,
     exitRequirements: () => {
-      console.log(keysThatHaveBeenPressed);
       return keysThatHaveBeenPressed.includes(
         "ArrowRight",
         "ArrowLeft",
