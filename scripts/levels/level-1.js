@@ -8,8 +8,9 @@ import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
 import { mapSize } from "../map-size.js";
 import { CrowShip } from "../ships/crow.js";
-import { Laser } from "../weapons/laser.js";
 import { FastShip } from "../ships/fast.js";
+import { Pew } from "../weapons/pew.js";
+import { SniperShip } from "../ships/Sniper.js";
 
 export function level1() {
   playerState.health = (playerState.maxHealth * 4) / 5;
@@ -56,7 +57,7 @@ export function level1() {
               return playerState.health === playerState.maxHealth;
             },
             nextAction: () => {
-              for (let i = 0; i < 4; i++) {
+              for (let i = 0; i < 2; i++) {
                 const x = playerState.x + mapSize * random(1, 1.5);
                 const y = playerState.y + random(-600, 600);
 
@@ -83,15 +84,18 @@ export function level1() {
                     Shoot down those enemy ships!
                   </p>
 
-                  <div class="objective">0/5 ships destroyed.</div>
+                  <div class="objective">0/3 ships destroyed.</div>
                 `,
+                updateObjective: () => {
+                  return `${3 - mapData.ships.length}/3 ships destroyed.`;
+                },
                 exitRequirements: () => {
                   return mapData.ships.length === 0;
                 },
                 nextAction: () => {
                   resetPressedKeys();
 
-                  playerState.weapons.push(new Laser());
+                  playerState.weapons.push(new Pew());
 
                   addMessageToQueue({
                     content: `
@@ -108,13 +112,13 @@ export function level1() {
                       const hasShot =
                         mapData.bullets.filter((b) => {
                           console.log(b);
-                          return b.weapon === "laser";
+                          return b.weapon === "pew";
                         }).length > 1;
 
                       return hasSwitched && hasShot;
                     },
                     nextAction: () => {
-                      for (let i = 0; i < 10; i++) {
+                      for (let i = 0; i < 6; i++) {
                         const x = playerState.x + mapSize * random(1, 1.5);
                         const y = playerState.y + random(-600, 600);
 
@@ -126,7 +130,7 @@ export function level1() {
                         );
                       }
 
-                      for (let i = 0; i < 5; i++) {
+                      for (let i = 0; i < 3; i++) {
                         const x = playerState.x + mapSize * random(1, 1.5) * -1;
                         const y = playerState.y + random(-600, 600);
 
@@ -139,17 +143,23 @@ export function level1() {
                       }
 
                       mapData.ships.push(
-                        new CrowShip({
-                          x: playerState.x + mapSize * random(1, 1.5) * 1,
-                          y: playerState.x + random(-600, 600),
+                        new SniperShip({
+                          x: playerState.x + mapSize * random(1.5, 2.5) * 1,
+                          y: playerState.y + random(-1200, 1200),
                         })
                       );
 
                       addMessageToQueue({
                         content: `
                           <p>Uh oh, reinforcements are on the way.</p>
-                          <div class="objective">0/5 ships destroyed.</div>
+                          <div class="objective">0/10 ships destroyed.</div>
                         `,
+
+                        updateObjective: () => {
+                          return `${
+                            10 - mapData.ships.length
+                          }/10 ships destroyed.`;
+                        },
 
                         exitRequirements: () => {
                           return mapData.ships.length === 0;

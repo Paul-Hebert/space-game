@@ -32,7 +32,7 @@ export function updateResources() {
         })
       ) {
         if (resource.type === "health") {
-          playerState.health += 75;
+          playerState.health += 100;
           updateHealthBar();
         } else if (resource.type === "money") {
           playerState.resourceCount++;
