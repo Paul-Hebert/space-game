@@ -9,6 +9,8 @@ export class Laser extends BaseWeapon {
   damage = 1;
   maxAge = 30;
 
+  graphic = document.getElementById("laser");
+
   shoot(playerState) {
     return this.bulletStream(playerState, 40, 4);
   }

@@ -110,10 +110,8 @@ export function level1() {
                         keysThatHaveBeenPressed.includes("Shift");
 
                       const hasShot =
-                        mapData.bullets.filter((b) => {
-                          console.log(b);
-                          return b.weapon === "pew";
-                        }).length > 1;
+                        mapData.bullets.filter((b) => b.weapon === "pew")
+                          .length > 1;
 
                       return hasSwitched && hasShot;
                     },

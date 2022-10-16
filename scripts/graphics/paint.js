@@ -55,13 +55,12 @@ export function paint() {
   });
 
   mapData.ships.forEach((ship) => {
-    const { x, y } = relativePosition(ship, playerState, canvas);
-    ship.draw(context, { x, y });
+    // TODO: Check if in bounds
+    ship.draw(context);
   });
 
   if (playerState.health > 0) {
-    const { x, y } = relativePosition(playerState, playerState, canvas);
-    playerState.draw(context, { x, y });
+    playerState.draw(context);
   }
 }
 

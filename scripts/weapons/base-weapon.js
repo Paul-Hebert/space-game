@@ -1,5 +1,6 @@
 import { Bullet } from "../objects/bullet.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
+import { positionToNose } from "../math/position-to-nose.js";
 
 export class BaseWeapon {
   name = "base";
@@ -11,6 +12,8 @@ export class BaseWeapon {
   maxAge = 50;
 
   lastShotFrame = null;
+
+  graphic = document.getElementById("gun");
 
   shoot(ship) {
     return [this.createBullet(ship)];
@@ -41,16 +44,6 @@ export class BaseWeapon {
   range() {
     return this.speed * this.maxAge;
   }
-}
-
-// TODO: Abstract to more generic helper
-function positionToNose(ship, offset = 0) {
-  // I don't understand why -90 is necessary here...
-  const rotationInRadians = degreesToRadians(ship.rotation - 90);
-  return {
-    x: ship.x + Math.cos(rotationInRadians) * (ship.shipSize / 2 + offset),
-    y: ship.y + Math.sin(rotationInRadians) * (ship.shipSize / 2 + offset),
-  };
 }
 
 function angledSpeed(ship, speed) {
