@@ -45,8 +45,12 @@ export class BaseShip {
   }
 
   drawGun(context) {
+    const gunSize = {
+      x: this.shipSize / 5,
+      y: this.shipSize / 2,
+    };
     const { x, y } = relativePosition(
-      positionToNose(this),
+      positionToNose(this, (gunSize.y * -1) / 5),
       playerState,
       document.querySelector("canvas")
     );
@@ -54,11 +58,6 @@ export class BaseShip {
     context.translate(x, y);
     context.rotate(degreesToRadians(this.rotation));
     context.translate(-1 * x, -1 * y);
-
-    const gunSize = {
-      x: this.shipSize / 5,
-      y: this.shipSize / 2,
-    };
 
     // Draw the gun
     context.drawImage(
