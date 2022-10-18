@@ -5,9 +5,9 @@ import { BaseWeapon } from "../weapons/base-weapon.js";
 import { randomInt } from "../math/random.js";
 import { Boom } from "../weapons/boom.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
-import { positionToNose } from "../math/position-to-nose.js";
-import { playerState } from "../state/player-state.js";
 import { relativePosition } from "../math/relative-position.js";
+
+let shipId = 0;
 
 export class BaseShip {
   constructor({ x = 0, y = 0, speed = { x: 0, y: 0 }, rotation = 0 }) {
@@ -17,16 +17,16 @@ export class BaseShip {
     this.rotation = rotation;
 
     this.currentGun = randomInt(0, this.weapons.length - 1);
+
+    this.id = shipId;
+    shipId++;
+    console.log(shipId);
   }
 
   draw(context) {
-    this.drawGun(context);
+    this.weapons[this.currentGun].draw(context, this);
 
-    const { x, y } = relativePosition(
-      this,
-      playerState,
-      document.querySelector("canvas")
-    );
+    const { x, y } = relativePosition(this);
 
     context.translate(x, y);
     context.rotate(degreesToRadians(this.rotation));
@@ -39,33 +39,6 @@ export class BaseShip {
       y - this.shipSize / 2,
       this.shipSize,
       this.shipSize
-    );
-
-    context.setTransform(1, 0, 0, 1, 0, 0);
-  }
-
-  drawGun(context) {
-    const gunSize = {
-      x: this.shipSize / 5,
-      y: this.shipSize / 2,
-    };
-    const { x, y } = relativePosition(
-      positionToNose(this, (gunSize.y * -1) / 5),
-      playerState,
-      document.querySelector("canvas")
-    );
-
-    context.translate(x, y);
-    context.rotate(degreesToRadians(this.rotation));
-    context.translate(-1 * x, -1 * y);
-
-    // Draw the gun
-    context.drawImage(
-      this.weapons[this.currentGun].graphic,
-      x - gunSize.x / 2,
-      y - gunSize.y / 2,
-      gunSize.x,
-      gunSize.y
     );
 
     context.setTransform(1, 0, 0, 1, 0, 0);

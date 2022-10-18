@@ -15,5 +15,7 @@ export class PlayerShip extends BaseShip {
   health = 1500;
   maxSpeed = 11;
 
+  id = "player";
+
   weapons = [new StarterWeapon()];
 }

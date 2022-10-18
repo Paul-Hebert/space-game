@@ -9,11 +9,11 @@ import { playerState } from "../state/player-state.js";
 import { mapSize } from "../map-size.js";
 import { CrowShip } from "../ships/crow.js";
 import { FastShip } from "../ships/fast.js";
-import { Pew } from "../weapons/pew.js";
+import { DoubleGun } from "../weapons/double-gun.js";
 import { SniperShip } from "../ships/Sniper.js";
 
 export function level1() {
-  playerState.health = (playerState.maxHealth * 4) / 5;
+  playerState.health = playerState.maxHealth - 100;
   updateHealthBar();
 
   addMessageToQueue({
@@ -95,7 +95,7 @@ export function level1() {
                 nextAction: () => {
                   resetPressedKeys();
 
-                  playerState.weapons.push(new Pew());
+                  playerState.weapons.push(new DoubleGun());
 
                   addMessageToQueue({
                     content: `
@@ -110,7 +110,7 @@ export function level1() {
                         keysThatHaveBeenPressed.includes("Shift");
 
                       const hasShot =
-                        mapData.bullets.filter((b) => b.weapon === "pew")
+                        mapData.bullets.filter((b) => b.weapon === "double-gun")
                           .length > 1;
 
                       return hasSwitched && hasShot;

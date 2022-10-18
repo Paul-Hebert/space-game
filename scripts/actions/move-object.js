@@ -1,5 +1,4 @@
 import { mapSize } from "../map-size.js";
-import { relativePosition } from "../math/relative-position.js";
 
 export function moveObject(object, playerState) {
   object.x += object.speed.x;

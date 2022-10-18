@@ -5,7 +5,6 @@ import { Explosion } from "../objects/explosion.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
-import { relativePosition } from "../math/relative-position.js";
 import { Resource } from "../objects/resource.js";
 import { showMenu } from "../hud/menus.js";
 
@@ -47,6 +46,7 @@ export function handleCollisions() {
 
     mapData.ships = mapData.ships.filter((ship) => {
       if (
+        bullet.shipId !== ship.id &&
         isColliding(bullet, {
           ...ship,
           radius: ship.shipSize / 2,
@@ -74,6 +74,7 @@ export function handleCollisions() {
     });
 
     if (
+      bullet.shipId !== "player" &&
       isColliding(bullet, {
         ...playerState,
         radius: playerState.shipSize / 2,

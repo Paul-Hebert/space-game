@@ -15,7 +15,7 @@ export class Star extends Particle {
     l: random(70, 100),
   });
 
-  parallaxDepth = random(3, 10);
+  parallaxDepth = random(8, 15);
 
   looping = true;
 }

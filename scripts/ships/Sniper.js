@@ -16,7 +16,7 @@ export class SniperShip extends BaseShip {
   maxHealth = 600;
   health = 600;
   maxSpeed = 8;
-  rotationSpeed = 0.5;
+  rotationSpeed = 0.25;
   accelerationSpeed = 0.125;
 
   weapons = [new Laser()];

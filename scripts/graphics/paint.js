@@ -25,7 +25,7 @@ export function paint() {
   ].forEach((object) => {
     const premature = object.maxAge && object.age < 0;
     if (!premature) {
-      const pos = relativePosition(object, playerState, canvas);
+      const pos = relativePosition(object);
 
       if (isInBounds(pos, canvas)) {
         const settings = {
