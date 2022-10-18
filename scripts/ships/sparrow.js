@@ -8,7 +8,7 @@ export class SparrowShip extends BaseShip {
     this.currentGun = 0;
   }
 
-  graphic = document.getElementById("enemy-ship");
+  graphic = document.getElementById("sparrow");
 
   shipSize = 100;
 
