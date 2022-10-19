@@ -8,6 +8,11 @@
 - tests
 - Math.hypot is slow. Roll our own
 
+- Clean things up
+  - Shoot functionality should move to ship class
+  - Position to nose and position to tail should move to ship class
+  - Bullets should maybe be assigned a ship, not a ship id?
+
 ## Core Features
 
 - Enemy ship battles

@@ -4,7 +4,6 @@ import { angleBetweenPoints } from "../math/angle-between-points.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
 import { moveObject } from "./move-object.js";
-import { addExhaust } from "./add-exhaust.js";
 import { distanceBetweenPoints } from "../math/distance-between-points.js";
 import { shoot } from "./shoot.js";
 
@@ -49,7 +48,7 @@ export function updateShips() {
         ship.speed.x += Math.cos(rotationInRadians) * ship.accelerationSpeed;
         ship.speed.y += Math.sin(rotationInRadians) * ship.accelerationSpeed;
 
-        addExhaust(ship);
+        ship.addExhaust();
       }
     }
 

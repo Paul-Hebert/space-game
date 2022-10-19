@@ -2,7 +2,6 @@ import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { pressedKeys } from "../pressed-keys.js";
 import { playerState } from "../state/player-state.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
-import { addExhaust } from "./add-exhaust.js";
 import { shoot } from "./shoot.js";
 
 export function handlePlayerActions() {
@@ -22,7 +21,7 @@ export function handlePlayerActions() {
 
     playerState.speed = constrainSpeed(playerState);
 
-    addExhaust(playerState);
+    playerState.addExhaust();
   }
 
   playerState.y -= playerState.speed.y;

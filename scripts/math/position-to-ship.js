@@ -5,6 +5,11 @@ export function positionToNose(ship, offset = 0) {
   return positionForward(ship, ship.rotation, distance);
 }
 
+export function positionToTail(ship) {
+  const distance = (ship.shipSize / 2) * -1;
+  return positionForward(ship, ship.rotation, distance);
+}
+
 export function positionForward(startPos, rotation, distance) {
   const rotationInRadians = degreesToRadians(rotation - 90);
   return {

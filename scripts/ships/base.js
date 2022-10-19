@@ -6,6 +6,9 @@ import { randomInt } from "../math/random.js";
 import { Boom } from "../weapons/boom.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { relativePosition } from "../math/relative-position.js";
+import { Exhaust } from "../objects/exhaust.js";
+import { positionToTail } from "../math/position-to-ship.js";
+import { mapData } from "../state/map-data.js";
 
 let shipId = 0;
 
@@ -20,7 +23,6 @@ export class BaseShip {
 
     this.id = shipId;
     shipId++;
-    console.log(shipId);
   }
 
   draw(context) {
@@ -42,6 +44,20 @@ export class BaseShip {
     );
 
     context.setTransform(1, 0, 0, 1, 0, 0);
+  }
+
+  addExhaust() {
+    const exhaustDirection = degreesToRadians(this.rotation + 90);
+
+    mapData.exhaust.push(
+      new Exhaust({
+        ...positionToTail(this),
+        speed: {
+          x: Math.cos(exhaustDirection) * 10,
+          y: Math.sin(exhaustDirection) * 10,
+        },
+      })
+    );
   }
 
   graphic = document.getElementById("enemy-ship");
