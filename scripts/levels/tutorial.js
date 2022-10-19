@@ -11,8 +11,9 @@ import { CrowShip } from "../ships/crow.js";
 import { FastShip } from "../ships/fast.js";
 import { DoubleGun } from "../weapons/double-gun.js";
 import { SniperShip } from "../ships/Sniper.js";
+import { completeLevel } from "./levels.js";
 
-export function level1() {
+export function tutorial() {
   playerState.health = playerState.maxHealth - 100;
   updateHealthBar();
 
@@ -164,7 +165,7 @@ export function level1() {
                         },
 
                         nextAction: () => {
-                          showMenu("success");
+                          completeLevel();
                         },
                       });
                     },

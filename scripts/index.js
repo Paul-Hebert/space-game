@@ -4,6 +4,7 @@ import { gameLoop } from "./game-loop.js";
 import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
 import { newGame } from "./new-game.js";
 import { addRandomShip } from "./actions/add-random-ship.js";
+import { nextLevel } from "./levels/levels.js";
 
 newGame();
 
@@ -23,6 +24,13 @@ document.querySelectorAll(".restart-button").forEach((button) => {
   button.addEventListener("click", () => {
     hideAllMenus();
     newGame();
+  });
+});
+
+document.querySelectorAll(".next-level-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    hideAllMenus();
+    nextLevel();
   });
 });
 

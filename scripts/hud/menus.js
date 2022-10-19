@@ -2,6 +2,7 @@ const menus = {
   pause: document.querySelector(".pause-menu"),
   restart: document.querySelector(".restart-menu"),
   success: document.querySelector(".success-menu"),
+  nextLevel: document.querySelector(".next-level-menu"),
 };
 
 export function showMenu(name) {

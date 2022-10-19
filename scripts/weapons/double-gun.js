@@ -6,7 +6,7 @@ export class DoubleGun extends BaseWeapon {
 
   shoot(ship) {
     return this.bulletStream(ship, 5, 2);
-    return this.singleShot(ship);
+    // return this.singleShot(ship);
   }
 
   singleShot(ship) {
