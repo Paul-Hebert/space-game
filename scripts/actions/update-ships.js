@@ -11,7 +11,7 @@ export function updateShips() {
   mapData.ships = mapData.ships.map((ship) => {
     ship = moveObject(ship);
 
-    const targetAngle = angleBetweenPoints(ship, playerState) + 90;
+    const targetAngle = getTargetAngle(ship);
 
     if (targetAngle !== ship.rotation) {
       const diffUp = targetAngle + 360 - ship.rotation;
@@ -30,20 +30,8 @@ export function updateShips() {
       }
     }
 
-    const acceptableRange = 30;
-    if (
-      Math.abs(targetAngle - ship.rotation) < acceptableRange ||
-      Math.abs(targetAngle - ship.rotation - 360) < acceptableRange ||
-      Math.abs(targetAngle + ship.rotation - 360) < acceptableRange
-    ) {
-      if (
-        distanceBetweenPoints(ship, playerState) <
-        ship.weapons[ship.currentGun].range()
-      ) {
-        if (playerState.health > 0) {
-          shoot(ship);
-        }
-      } else {
+    if (shipIsAimingTowardsPlayer(ship)) {
+      if (!playerIsInRange(ship)) {
         const rotationInRadians = degreesToRadians(ship.rotation - 90);
         ship.speed.x += Math.cos(rotationInRadians) * ship.accelerationSpeed;
         ship.speed.y += Math.sin(rotationInRadians) * ship.accelerationSpeed;
@@ -56,4 +44,31 @@ export function updateShips() {
 
     return ship;
   });
+
+  mapData.ships.forEach((ship) => {
+    if (shipIsAimingTowardsPlayer(ship) && playerIsInRange(ship)) {
+      shoot(ship);
+    }
+  });
+}
+
+function shipIsAimingTowardsPlayer(ship) {
+  const targetAngle = getTargetAngle(ship);
+  const acceptableRange = 30;
+  return (
+    Math.abs(targetAngle - ship.rotation) < acceptableRange ||
+    Math.abs(targetAngle - ship.rotation - 360) < acceptableRange ||
+    Math.abs(targetAngle + ship.rotation - 360) < acceptableRange
+  );
+}
+
+function playerIsInRange(ship) {
+  return (
+    distanceBetweenPoints(ship, playerState) <
+    ship.weapons[ship.currentGun].range()
+  );
+}
+
+function getTargetAngle(ship) {
+  return angleBetweenPoints(ship, playerState) + 90;
 }

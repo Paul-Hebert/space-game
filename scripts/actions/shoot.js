@@ -1,6 +1,5 @@
 import { gameLoop } from "../game-loop.js";
 import { playSound } from "../play-sound.js";
-import { mapData } from "../state/map-data.js";
 
 export function shoot(ship) {
   const gun = ship.weapons[ship.currentGun];
@@ -12,6 +11,6 @@ export function shoot(ship) {
 
     playSound({ duration: 20, frequency: 300, volumne: 1 });
 
-    mapData.bullets = mapData.bullets.concat(gun.shoot(ship));
+    gun.shoot(ship);
   }
 }

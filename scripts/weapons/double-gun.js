@@ -1,28 +1,27 @@
 import { BaseWeapon } from "./base-weapon.js";
 import { positionForward, positionToSide } from "../math/position-to-ship.js";
+import { mapData } from "../state/map-data.js";
 
 export class DoubleGun extends BaseWeapon {
   name = "double-gun";
 
   shoot(ship) {
-    return this.bulletStream(ship, 5, 2);
-    // return this.singleShot(ship);
+    this.bulletStream(ship, 5, 2);
+    // this.singleShot(ship);
   }
 
   singleShot(ship) {
-    return [
-      this.createBullet(ship, this.gunPosition(ship)),
-      this.createBullet(ship, this.gunPosition(ship, "left")),
-    ];
+    mapData.bullets.push(this.createBullet(ship, this.gunPosition(ship)));
+    mapData.bullets.push(
+      this.createBullet(ship, this.gunPosition(ship, "left"))
+    );
   }
 
   bulletStream(ship, count, distance) {
-    const bullets = [];
-
     for (let i = 0; i < count; i++) {
       const rightPosition = this.gunPosition(ship);
       const leftPosition = this.gunPosition(ship, "left");
-      bullets.push(
+      mapData.bullets.push(
         this.createBullet(
           ship,
 
@@ -30,7 +29,7 @@ export class DoubleGun extends BaseWeapon {
           positionForward(leftPosition, ship.rotation, distance * i)
         )
       );
-      bullets.push(
+      mapData.bullets.push(
         this.createBullet(
           ship,
 
@@ -39,8 +38,6 @@ export class DoubleGun extends BaseWeapon {
         )
       );
     }
-
-    return bullets;
   }
 
   draw(context, ship) {

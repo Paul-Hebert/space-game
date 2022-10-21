@@ -2,6 +2,7 @@ import { Bullet } from "../objects/bullet.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { positionToNose, positionToSide } from "../math/position-to-ship.js";
 import { relativePosition } from "../math/relative-position.js";
+import { mapData } from "../state/map-data.js";
 
 export class BaseWeapon {
   name = "base";
@@ -17,23 +18,19 @@ export class BaseWeapon {
   graphic = document.getElementById("gun");
 
   shoot(ship) {
-    return this.singleShot(ship);
+    this.singleShot(ship);
   }
 
   singleShot(ship) {
-    return [this.createBullet(ship, this.nosePosition(ship))];
+    mapData.bullets.push(this.createBullet(ship, this.nosePosition(ship)));
   }
 
   bulletStream(ship, count, distance) {
-    const bullets = [];
-
     for (let i = 0; i < count; i++) {
-      bullets.push(
+      mapData.bullets.push(
         this.createBullet(ship, this.nosePosition(ship, distance * i))
       );
     }
-
-    return bullets;
   }
 
   nosePosition(ship, offset = 0) {
@@ -47,7 +44,7 @@ export class BaseWeapon {
   createBullet(ship, position) {
     return new Bullet({
       ...position,
-      speed: angledSpeed(ship, this.speed),
+      speed: this.angledSpeed(ship),
       maxAge: this.maxAge,
       radius: this.bulletRadius,
       fill: this.bulletColor,
@@ -93,13 +90,13 @@ export class BaseWeapon {
 
     context.setTransform(1, 0, 0, 1, 0, 0);
   }
-}
 
-function angledSpeed(ship, speed) {
-  // I don't understand why -90 is necessary here...
-  const rotationInRadians = degreesToRadians(ship.rotation - 90);
-  return {
-    x: Math.cos(rotationInRadians) * speed,
-    y: Math.sin(rotationInRadians) * speed,
-  };
+  angledSpeed(ship, speed) {
+    // I don't understand why -90 is necessary here...
+    const rotationInRadians = degreesToRadians(ship.rotation - 90);
+    return {
+      x: Math.cos(rotationInRadians) * this.speed,
+      y: Math.sin(rotationInRadians) * this.speed,
+    };
+  }
 }
