@@ -2,6 +2,8 @@ import { tutorial } from "./tutorial.js";
 import { level1 } from "./level1.js";
 import { newLevel } from "./new-level.js";
 import { showMenu } from "../hud/menus.js";
+import { level2 } from "./level2.js";
+import { level3 } from "./level3.js";
 
 export let currentLevel = 0;
 
@@ -22,4 +24,4 @@ export function completeLevel() {
   }
 }
 
-export const levels = [tutorial, level1];
+export const levels = [tutorial, level2, level1, level3];

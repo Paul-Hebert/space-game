@@ -1,63 +1,32 @@
-import { showMenu } from "../hud/menus.js";
 import { addMessageToQueue } from "../hud/messaging.js";
-import { updateHealthBar } from "../hud/update-health-bar.js";
-import { random } from "../math/random.js";
-import { keysThatHaveBeenPressed, resetPressedKeys } from "../pressed-keys.js";
 import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
-import { playerState } from "../state/player-state.js";
-import { mapSize } from "../map-size.js";
 import { CrowShip } from "../ships/crow.js";
 import { FastShip } from "../ships/fast.js";
 import { SniperShip } from "../ships/Sniper.js";
 import { BigShip } from "../ships/big.js";
 import { completeLevel } from "./levels.js";
+import {
+  positionToMapBottom,
+  positionToMapLeft,
+  positionToMapRight,
+  positionToMapTop,
+} from "../math/position-to-map-edge.js";
 
 export function level1() {
   for (let i = 0; i < 5; i++) {
-    const x = playerState.x + mapSize * random(1, 1.5);
-    const y = playerState.y + random(-600, 600);
-
-    mapData.ships.push(
-      new SparrowShip({
-        x,
-        y,
-      })
-    );
+    mapData.ships.push(new SparrowShip(positionToMapRight()));
   }
 
   for (let i = 0; i < 12; i++) {
-    const x = playerState.x - mapSize * random(1, 1.5);
-    const y = playerState.y + random(-600, 600);
-
-    mapData.ships.push(
-      new FastShip({
-        x,
-        y,
-      })
-    );
+    mapData.ships.push(new FastShip(positionToMapLeft()));
   }
 
-  mapData.ships.push(
-    new CrowShip({
-      x: playerState.x + mapSize * random(1, 1.5) * -1,
-      y: playerState.y + random(-600, 600),
-    })
-  );
+  mapData.ships.push(new CrowShip(positionToMapLeft()));
 
-  mapData.ships.push(
-    new SniperShip({
-      x: playerState.x + mapSize - random(1, 1.5) * -1,
-      y: playerState.y + random(-600, 600),
-    })
-  );
+  mapData.ships.push(new SniperShip(positionToMapBottom()));
 
-  mapData.ships.push(
-    new BigShip({
-      x: playerState.x + mapSize - random(1, 1.5) * -5,
-      y: playerState.y + random(-600, 600),
-    })
-  );
+  mapData.ships.push(new BigShip(positionToMapTop()));
 
   addMessageToQueue({
     content: `
