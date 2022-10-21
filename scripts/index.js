@@ -9,11 +9,25 @@ import { nextLevel } from "./levels/levels.js";
 newGame();
 
 window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
+  if (e.key === "p") {
     toggleMenu("pause");
     gameLoop.toggle();
   }
 });
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "f") {
+    toggleFullScreen();
+  }
+});
+
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else if (document.exitFullscreen) {
+    document.exitFullscreen();
+  }
+}
 
 document.querySelector(".resume-button").addEventListener("click", () => {
   hideMenu("pause");
