@@ -14,5 +14,8 @@ export class Resource extends Particle {
         : hsl({ h: random(80, 100), s: random(70, 100), l: random(40, 60) });
   }
 
+  age = 0;
+  maxAge = 500;
+
   maxSpeed = 5;
 }

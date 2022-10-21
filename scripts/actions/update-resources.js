@@ -21,6 +21,9 @@ export function updateResources() {
         resource.speed.y += Math.sin(angle) * speed;
 
         resource.speed = constrainSpeed(resource);
+
+        resource.age -= 5;
+        if (resource.age < 0) resource.age = 0;
       }
       return resource;
     })

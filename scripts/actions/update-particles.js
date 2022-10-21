@@ -11,7 +11,7 @@ export function updateParticles() {
     playerState,
     true
   );
-  mapData.resources = updateParticleGroup(mapData.resources, playerState);
+  mapData.resources = updateParticleGroup(mapData.resources, playerState, true);
 
   return mapData;
 }
