@@ -13,11 +13,12 @@ export const gameLoop = new Loop();
 gameLoop.cb = () => {
   updateParticles();
 
-  updateResources();
-
   updateShips();
 
-  if (playerState.health > 0) handlePlayerActions();
+  if (playerState.health > 0) {
+    updateResources();
+    handlePlayerActions();
+  }
 
   handleCollisions();
 
