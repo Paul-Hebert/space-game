@@ -3,15 +3,12 @@ import { relativePosition } from "../math/relative-position.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
-
-const canvas = document.querySelector("#main-canvas");
-const context = canvas.getContext("2d");
-context.imageSmoothingEnabled = false;
+import { mainCanvas, mainCtx, clearCanvas } from "./canvas.js";
 
 const asteroidSprites = document.getElementById("asteroid-sprites");
 
 export function paint() {
-  clearCanvas();
+  clearCanvas(mainCtx, mainCanvas);
 
   const { resources, asteroids, bullets, stars, exhaust, explosions } = mapData;
 
@@ -27,7 +24,7 @@ export function paint() {
     if (!premature) {
       const pos = relativePosition(object);
 
-      if (isInBounds(pos, canvas)) {
+      if (isInBounds(pos, mainCanvas)) {
         const settings = {
           ...object,
           ...pos,
@@ -56,35 +53,31 @@ export function paint() {
 
   mapData.ships.forEach((ship) => {
     // TODO: Check if in bounds
-    ship.draw(context);
+    ship.draw(mainCtx);
   });
 
   if (playerState.health > 0) {
-    playerState.draw(context);
+    playerState.draw(mainCtx);
   }
 }
 
-function clearCanvas() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
 function drawCircle({ x, y, radius, fill, opacity = 1 }) {
-  context.beginPath();
-  context.arc(x, y, radius, 0, 2 * Math.PI, false);
+  mainCtx.beginPath();
+  mainCtx.arc(x, y, radius, 0, 2 * Math.PI, false);
   if (fill) {
-    context.fillStyle = fill;
-    if (opacity) context.globalAlpha = opacity;
-    context.fill();
-    if (opacity) context.globalAlpha = 1;
+    mainCtx.fillStyle = fill;
+    if (opacity) mainCtx.globalAlpha = opacity;
+    mainCtx.fill();
+    if (opacity) mainCtx.globalAlpha = 1;
   }
 }
 
 function drawSprite({ x, y, radius, rotation }, sprites, spritePos) {
-  context.translate(x, y);
-  context.rotate(degreesToRadians(rotation));
-  context.translate(-1 * x, -1 * y);
+  mainCtx.translate(x, y);
+  mainCtx.rotate(degreesToRadians(rotation));
+  mainCtx.translate(-1 * x, -1 * y);
 
-  context.drawImage(
+  mainCtx.drawImage(
     sprites, // image
     spritePos.x * 100, // source X
     spritePos.y * 100, // source Y
@@ -96,5 +89,5 @@ function drawSprite({ x, y, radius, rotation }, sprites, spritePos) {
     radius * 2 // destination height
   );
 
-  context.setTransform(1, 0, 0, 1, 0, 0);
+  mainCtx.setTransform(1, 0, 0, 1, 0, 0);
 }

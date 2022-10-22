@@ -1,4 +1,4 @@
-import "./size-canvas.js";
+import "./graphics/canvas.js";
 import { playerState } from "./state/player-state.js";
 import { gameLoop } from "./game-loop.js";
 import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
