@@ -3,6 +3,7 @@ import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { positionToNose, positionToSide } from "../math/position-to-ship.js";
 import { relativePosition } from "../math/relative-position.js";
 import { mapData } from "../state/map-data.js";
+import { rotatedDraw } from "../graphics/rotated-draw.js";
 
 export class BaseWeapon {
   name = "base";
@@ -75,20 +76,16 @@ export class BaseWeapon {
 
   drawGun(context, ship, position) {
     const { x, y } = relativePosition(position);
-    context.translate(x, y);
-    context.rotate(degreesToRadians(ship.rotation));
-    context.translate(-1 * x, -1 * y);
-
-    // Draw the gun
-    context.drawImage(
-      this.graphic,
-      x - this.gunSize(ship).x / 2,
-      y - this.gunSize(ship).y / 2,
-      this.gunSize(ship).x,
-      this.gunSize(ship).y
-    );
-
-    context.setTransform(1, 0, 0, 1, 0, 0);
+    rotatedDraw(context, { x, y, rotation: ship.rotation }, () => {
+      // Draw the gun
+      context.drawImage(
+        this.graphic,
+        x - this.gunSize(ship).x / 2,
+        y - this.gunSize(ship).y / 2,
+        this.gunSize(ship).x,
+        this.gunSize(ship).y
+      );
+    });
   }
 
   angledSpeed(ship, speed) {

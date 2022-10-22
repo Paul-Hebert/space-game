@@ -9,6 +9,7 @@ import { relativePosition } from "../math/relative-position.js";
 import { Exhaust } from "../objects/exhaust.js";
 import { positionToTail } from "../math/position-to-ship.js";
 import { mapData } from "../state/map-data.js";
+import { rotatedDraw } from "../graphics/rotated-draw.js";
 
 let shipId = 0;
 
@@ -30,20 +31,15 @@ export class BaseShip {
 
     const { x, y } = relativePosition(this);
 
-    context.translate(x, y);
-    context.rotate(degreesToRadians(this.rotation));
-    context.translate(-1 * x, -1 * y);
-
-    // Draw the ship
-    context.drawImage(
-      this.graphic,
-      x - this.shipSize / 2,
-      y - this.shipSize / 2,
-      this.shipSize,
-      this.shipSize
-    );
-
-    context.setTransform(1, 0, 0, 1, 0, 0);
+    rotatedDraw(context, { x, y, rotation: this.rotation }, () => {
+      context.drawImage(
+        this.graphic,
+        x - this.shipSize / 2,
+        y - this.shipSize / 2,
+        this.shipSize,
+        this.shipSize
+      );
+    });
   }
 
   addExhaust() {

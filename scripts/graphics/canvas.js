@@ -2,6 +2,9 @@ export const mainCanvas = document.querySelector("#main-canvas");
 export const mainCtx = mainCanvas.getContext("2d");
 mainCtx.imageSmoothingEnabled = false;
 
+export const miniMapCanvas = document.querySelector("#mini-map-canvas");
+export const miniMapCtx = miniMapCanvas.getContext("2d");
+
 resizeCanvas();
 
 window.addEventListener("resize", resizeCanvas);
@@ -15,6 +18,14 @@ function resizeCanvas() {
   mainCanvas.style.height = `${window.innerHeight}px`;
 }
 
-export function clearCanvas(ctx, canvas) {
+export function clearMainCanvas() {
+  clearCanvas(mainCtx, mainCanvas);
+}
+
+export function clearMiniMap() {
+  clearCanvas(miniMapCtx, miniMapCanvas);
+}
+
+function clearCanvas(ctx, canvas) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }

@@ -6,6 +6,18 @@ canvas {
   background: black;
 }
 
+#main-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+#mini-map-canvas {
+  border: 1px solid #666;
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
+
 * {
   margin: 0;
 }
@@ -32,11 +44,6 @@ body {
   height: 100%;
 }
 
-canvas {
-  width: 100%;
-  height: 100%;
-}
-
 .ship {
   transform-origin: center;
   transform: rotate(var(--rotation, 0));
@@ -49,17 +56,13 @@ canvas {
   font-weight: bold;
   font-size: 3rem;
   position: absolute;
-  right: 1em;
-  bottom: 1em;
+  left: 1rem;
+  bottom: 1rem;
 }
 
 .resource-count {
   color: gold;
-}
-
-.health {
-  left: 1em;
-  right: auto;
+  bottom: 3rem;
 }
 
 .message-queue {
