@@ -1,13 +1,8 @@
 ## Technical Refactors
 
-- Improve how rotation/speed works.
-  - Objects should have a direction and a speed, not an x speed and y speed
-  - Ships should have a max speed
-  - We should be able to improve the direction of explosions
 - Loop should have a target frame rate and handle dropped frames
 - tests
 - Math.hypot is slow. Roll our own
-
 - Clean things up
   - Ship logic and shoot functionality should move to ship class
   - Position to nose and position to tail should move to ship class
@@ -15,10 +10,9 @@
 
 ## Core Features
 
-- Enemy ship battles
-
 ## Advanced Features
 
+- Generative Levels
 - Traveling between stars/planets
 - Ship upgrades
 - Quests
@@ -28,13 +22,15 @@
 
 - Sprites for resources
 - Fix asteroid sprite clipping bugs
-
-## Map
+- Better explosions - player explosion
 
 ## UI
 
-- Show ship health
-- Menus
+- Minimap
+- Full screen controls
+- Audio toggle
+- Show selected weapon
+- Touch screen controls
 
 ## Bugs
 
