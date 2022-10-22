@@ -10,7 +10,7 @@ export class SniperShip extends BaseShip {
 
   graphic = document.getElementById("enemy-ship");
 
-  shipSize = 200;
+  size = 200;
 
   resourceCount = 0;
   maxHealth = 600;

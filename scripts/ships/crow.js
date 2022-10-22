@@ -9,7 +9,7 @@ export class CrowShip extends BaseShip {
 
   graphic = document.getElementById("enemy-ship");
 
-  shipSize = 150;
+  size = 150;
 
   resourceCount = 0;
   maxHealth = 600;

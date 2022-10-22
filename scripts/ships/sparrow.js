@@ -10,7 +10,7 @@ export class SparrowShip extends BaseShip {
 
   graphic = document.getElementById("sparrow");
 
-  shipSize = 100;
+  size = 100;
 
   resourceCount = 0;
   maxHealth = 200;

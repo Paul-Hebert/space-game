@@ -34,10 +34,10 @@ export class BaseShip {
     rotatedDraw(context, { x, y, rotation: this.rotation }, () => {
       context.drawImage(
         this.graphic,
-        x - this.shipSize / 2,
-        y - this.shipSize / 2,
-        this.shipSize,
-        this.shipSize
+        x - this.size / 2,
+        y - this.size / 2,
+        this.size,
+        this.size
       );
     });
   }
@@ -61,7 +61,7 @@ export class BaseShip {
   health = 200;
   maxHealth = 200;
 
-  shipSize = 80;
+  size = 80;
 
   rotationSpeed = 3;
   accelerationSpeed = 0.35;

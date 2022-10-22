@@ -1,12 +1,12 @@
 import { degreesToRadians } from "./degrees-to-radians.js";
 
 export function positionToNose(ship, offset = 0) {
-  const distance = ship.shipSize / 2 + offset;
+  const distance = ship.size / 2 + offset;
   return positionForward(ship, ship.rotation, distance);
 }
 
 export function positionToTail(ship) {
-  const distance = (ship.shipSize / 2) * -1;
+  const distance = (ship.size / 2) * -1;
   return positionForward(ship, ship.rotation, distance);
 }
 

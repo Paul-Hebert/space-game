@@ -12,7 +12,7 @@ export class FastShip extends BaseShip {
   accelerationSpeed = 1;
   maxSpeed = 18;
 
-  shipSize = 40;
+  size = 40;
 
   maxHealth = 50;
   health = 50;

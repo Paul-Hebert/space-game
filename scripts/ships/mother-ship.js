@@ -10,7 +10,7 @@ export class MotherShip extends BaseShip {
   accelerationSpeed = 0.125;
   rotationSpeed = 1;
 
-  shipSize = 300;
+  size = 300;
 
   maxHealth = 1200;
   health = 1200;

@@ -49,7 +49,7 @@ export function handleCollisions() {
         bullet.shipId !== ship.id &&
         isColliding(bullet, {
           ...ship,
-          radius: ship.shipSize / 2,
+          radius: ship.size / 2,
         })
       ) {
         collided = true;
@@ -77,7 +77,7 @@ export function handleCollisions() {
       bullet.shipId !== "player" &&
       isColliding(bullet, {
         ...playerState,
-        radius: playerState.shipSize / 2,
+        radius: playerState.size / 2,
       })
     ) {
       collided = true;

@@ -61,8 +61,8 @@ export class BaseWeapon {
 
   gunSize(ship) {
     return {
-      x: ship.shipSize / 5,
-      y: ship.shipSize / 2,
+      x: ship.size / 5,
+      y: ship.size / 2,
     };
   }
 

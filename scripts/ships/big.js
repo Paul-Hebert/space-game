@@ -14,7 +14,7 @@ export class BigShip extends BaseShip {
   accelerationSpeed = 0.125;
   rotationSpeed = 1;
 
-  shipSize = 160;
+  size = 160;
 
   maxHealth = 400;
   health = 400;

@@ -1,13 +1,54 @@
-// import { mapData } from "../state/map-data.js";
-// import { minimapCtx, clearMiniMap } from "./canvas.js";
+import { mapData } from "../state/map-data.js";
+import { miniMapCtx, clearMiniMap, miniMapCanvas } from "./canvas.js";
+import { playerState } from "../state/player-state.js";
+import { rotatedDraw } from "./rotated-draw.js";
+import { mapSize } from "../map-size.js";
+
+const enemyShipGraphic = document.getElementById("minimap-ship-enemy");
+const playerShipGraphic = document.getElementById("minimap-ship-player");
 
 export function paintMiniMap() {
-  // clearMiniMap();
-  // mapData.ships.forEach((ship) => {
-  //   // TODO: Check if in bounds
-  //   ship.draw(minimapCtx);
-  // });
-  // playerState.draw(minimapCtx);
+  clearMiniMap();
+
+  mapData.ships.forEach((ship) => {
+    // TODO: Check if in bounds
+    drawMiniMapShip({
+      ...ship,
+      ...relativeMiniMapPosition(ship),
+      size: ship.size * relativeMiniMapSize(),
+      graphic: enemyShipGraphic,
+    });
+    console.log({
+      ...ship,
+      ...relativeMiniMapPosition(ship),
+      size: ship.size * relativeMiniMapSize(),
+      graphic: enemyShipGraphic,
+    });
+  });
+
+  drawMiniMapShip({
+    ...playerState,
+    x: 100,
+    y: 100,
+    size: 16,
+    graphic: playerShipGraphic,
+  });
 }
 
-function drawMiniMapShip() {}
+function drawMiniMapShip({ x, y, rotation, graphic, size }) {
+  rotatedDraw(miniMapCtx, { x, y, rotation }, () => {
+    miniMapCtx.drawImage(graphic, x - size / 2, y - size / 2, size, size);
+  });
+}
+
+function relativeMiniMapSize() {
+  return miniMapCanvas.width / mapSize;
+}
+
+function relativeMiniMapPosition(ship) {
+  const relativeSize = relativeMiniMapSize();
+  return {
+    x: ((ship.x - playerState.x) * relativeSize) / 2 + 100,
+    y: ((ship.y - playerState.y) * relativeSize) / 2 + 100,
+  };
+}
