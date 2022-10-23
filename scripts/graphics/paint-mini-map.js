@@ -15,13 +15,7 @@ export function paintMiniMap() {
     drawMiniMapShip({
       ...ship,
       ...relativeMiniMapPosition(ship),
-      size: ship.size * relativeMiniMapSize(),
-      graphic: enemyShipGraphic,
-    });
-    console.log({
-      ...ship,
-      ...relativeMiniMapPosition(ship),
-      size: ship.size * relativeMiniMapSize(),
+      size: Math.max(10, ship.size * relativeMiniMapSize()),
       graphic: enemyShipGraphic,
     });
   });
@@ -48,7 +42,7 @@ function relativeMiniMapSize() {
 function relativeMiniMapPosition(ship) {
   const relativeSize = relativeMiniMapSize();
   return {
-    x: ((ship.x - playerState.x) * relativeSize) / 2 + 100,
-    y: ((ship.y - playerState.y) * relativeSize) / 2 + 100,
+    x: ((ship.x - playerState.x) * relativeSize) / 4 + 100,
+    y: ((ship.y - playerState.y) * relativeSize) / 4 + 100,
   };
 }
