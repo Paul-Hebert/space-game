@@ -134,7 +134,7 @@ function explodeShip(ship) {
   const explosions = [];
   const resources = [];
 
-  for (let i = 0; i < randomInt(500, 1000); i++) {
+  for (let i = 0; i < randomInt(ship.maxHealth, ship.maxHealth * 2); i++) {
     explosions.push(
       new Explosion({
         age: randomInt(-10, 0),
@@ -148,7 +148,7 @@ function explodeShip(ship) {
     );
   }
 
-  for (let i = 0; i < randomInt(2, 5); i++) {
+  for (let i = 0; i < Math.min(randomInt(0, ship.maxHealth / 50), 3); i++) {
     resources.push(
       new Resource({
         x: ship.x,
