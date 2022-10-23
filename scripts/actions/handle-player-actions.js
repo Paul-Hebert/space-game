@@ -22,6 +22,7 @@ export function handlePlayerActions() {
     playerState.speed = constrainSpeed(playerState);
 
     playerState.addExhaust();
+    playerState.engineNoise();
   }
 
   playerState.y -= playerState.speed.y;

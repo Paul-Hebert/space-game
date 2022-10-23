@@ -7,6 +7,7 @@ import { playerState } from "../state/player-state.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
 import { Resource } from "../objects/resource.js";
 import { showMenu } from "../hud/menus.js";
+import { playSound, volumeRelativeToPlayer } from "../play-sound.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -131,6 +132,8 @@ function explodeBullet(bullet) {
 }
 
 function explodeShip(ship) {
+  playSound("explosion", volumeRelativeToPlayer(ship));
+
   const explosions = [];
   const resources = [];
 

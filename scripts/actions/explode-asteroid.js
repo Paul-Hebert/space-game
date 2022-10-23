@@ -3,20 +3,12 @@ import { playSound } from "../play-sound.js";
 import { Asteroid } from "../objects/asteroid.js";
 import { Resource } from "../objects/resource.js";
 import { mapSize } from "../map-size.js";
+import { volumeRelativeToPlayer } from "../play-sound.js";
 
 const resourceChance = 0.05;
 
 export function explodeAsteroid(asteroid, impactSpeed, playerState) {
-  for (let i = 0; i < 50; i++) {
-    setTimeout(() => {
-      playSound({
-        duration: random(50, 500),
-        frequency: random(50, 200),
-        volume: random(1, 3),
-        nodeType: "sine",
-      });
-    }, random(0, 200));
-  }
+  playSound("explosion", volumeRelativeToPlayer(asteroid) * 0.25);
 
   const asteroids = [];
   const resources = [];

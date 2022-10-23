@@ -2,7 +2,7 @@ import { Pew } from "../weapons/pew.js";
 import { Ray } from "../weapons/ray.js";
 import { Laser } from "../weapons/laser.js";
 import { BaseWeapon } from "../weapons/base-weapon.js";
-import { randomInt } from "../math/random.js";
+import { randomInt, random } from "../math/random.js";
 import { Boom } from "../weapons/boom.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { relativePosition } from "../math/relative-position.js";
@@ -10,6 +10,7 @@ import { Exhaust } from "../objects/exhaust.js";
 import { positionToTail } from "../math/position-to-ship.js";
 import { mapData } from "../state/map-data.js";
 import { rotatedDraw } from "../graphics/rotated-draw.js";
+import { playCustomSound, volumeRelativeToPlayer } from "../play-sound.js";
 
 let shipId = 0;
 
@@ -54,6 +55,15 @@ export class BaseShip {
         },
       })
     );
+  }
+
+  engineNoise() {
+    playCustomSound({
+      duration: random(1000 / 60, 1000 / 30),
+      frequency: random(0, 200),
+      volume: random(0.4, 0.8) * volumeRelativeToPlayer(this),
+      nodeType: "triangle",
+    });
   }
 
   graphic = document.getElementById("enemy-ship");

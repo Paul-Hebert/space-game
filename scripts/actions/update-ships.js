@@ -6,6 +6,8 @@ import { constrainSpeed } from "../math/constrain-speed.js";
 import { moveObject } from "./move-object.js";
 import { distanceBetweenPoints } from "../math/distance-between-points.js";
 import { shoot } from "./shoot.js";
+import { volumeRelativeToPlayer } from "../play-sound.js";
+import { playSound } from "../play-sound.js";
 
 export function updateShips() {
   mapData.ships = mapData.ships.map((ship) => {
@@ -37,6 +39,7 @@ export function updateShips() {
         ship.speed.y += Math.sin(rotationInRadians) * ship.accelerationSpeed;
 
         ship.addExhaust();
+        ship.engineNoise();
       }
     }
 

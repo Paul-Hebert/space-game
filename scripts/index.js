@@ -5,6 +5,7 @@ import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
 import { newGame } from "./new-game.js";
 import { addRandomShip } from "./actions/add-random-ship.js";
 import { nextLevel } from "./levels/levels.js";
+import { playSound } from "./play-sound.js";
 
 newGame();
 
@@ -60,5 +61,12 @@ window.addEventListener("keydown", ({ key }) => {
 window.addEventListener("keydown", ({ key }) => {
   if (key === "s") {
     addRandomShip();
+  }
+});
+
+window.addEventListener("keydown", ({ key }) => {
+  if (key === "m") {
+    window.muted = false;
+    playSound("music", 0.2, true);
   }
 });

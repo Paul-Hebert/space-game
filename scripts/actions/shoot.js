@@ -1,5 +1,6 @@
 import { gameLoop } from "../game-loop.js";
 import { playSound } from "../play-sound.js";
+import { volumeRelativeToPlayer } from "../play-sound.js";
 
 export function shoot(ship) {
   const gun = ship.weapons[ship.currentGun];
@@ -9,7 +10,7 @@ export function shoot(ship) {
   ) {
     gun.lastShotFrame = gameLoop.frameCount;
 
-    playSound({ duration: 20, frequency: 300, volumne: 1 });
+    playSound("laser", volumeRelativeToPlayer(ship));
 
     gun.shoot(ship);
   }
