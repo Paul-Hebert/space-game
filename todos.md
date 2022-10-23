@@ -8,8 +8,6 @@
   - Position to nose and position to tail should move to ship class
   - Bullets should maybe be assigned a ship, not a ship id?
 
-## Core Features
-
 ## Advanced Features
 
 - Generative Levels
@@ -20,6 +18,7 @@
 
 ## Graphics
 
+- Move generative image logic into this repo?
 - Sprites for resources
 - Fix asteroid sprite clipping bugs
 - Better explosions - player explosion
@@ -27,10 +26,18 @@
 ## UI
 
 - Minimap
+  - Handle off-screen elements
 - Full screen controls
 - Audio toggle
 - Show selected weapon
 - Touch screen controls
+- Better objective/messaging system
+
+## Gameplay tweaks
+
+- Smaller ships should drop less resources?
+- Should asteroid collisions be a thing?
+- Ships should "drop" upgrades in addition to esources
 
 ## Bugs
 
