@@ -47,6 +47,7 @@ export function explodeAsteroid(asteroid, impactSpeed, playerState) {
           x: asteroid.x,
           y: asteroid.y,
           speed,
+          type: "health",
         })
       );
     } else {

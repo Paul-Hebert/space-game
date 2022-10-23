@@ -26,7 +26,7 @@ export function tutorial() {
       <ul>
         <li>Use the arrow keys to fly your ship</li>
         <li>Hold <kbd>Spacebar</kbd> to shoot</li>
-        <li>Destroy asteroids and gather resources. Green resources repair the ship. Yellow resources can be used for upgrades.</li>
+        <li>Destroy asteroids and gather resources to repair your ship.</li>
       </ul>
     `,
     exitRequirements: () => {
