@@ -7,6 +7,8 @@ import { playerState } from "../state/player-state.js";
 import { CrowShip } from "../ships/crow.js";
 import { FastShip } from "../ships/fast.js";
 import { DoubleGun } from "../weapons/double-gun.js";
+import { Pew } from "../weapons/pew.js";
+import { Ray } from "../weapons/ray.js";
 import { SniperShip } from "../ships/Sniper.js";
 import { completeLevel } from "./levels.js";
 import {
@@ -14,10 +16,17 @@ import {
   positionToMapLeft,
   positionToMapTop,
 } from "../math/position-to-map-edge.js";
+import { randomItemInArray } from "../math/random.js";
 
 export function tutorial() {
   playerState.health = playerState.maxHealth - 100;
   updateHealthBar();
+
+  const firstWeaponUpgrade = randomItemInArray([
+    new DoubleGun(),
+    new Pew(),
+    new Ray(),
+  ]);
 
   addMessageToQueue({
     content: `
@@ -33,24 +42,20 @@ export function tutorial() {
       return playerState.health === playerState.maxHealth;
     },
     nextAction: () => {
-      for (let i = 0; i < 2; i++) {
-        mapData.ships.push(new SparrowShip(positionToMapLeft()));
-      }
-
-      mapData.ships.push(new CrowShip(positionToMapRight()));
+      const enemyShip = new CrowShip(positionToMapRight());
+      enemyShip.weapons = [firstWeaponUpgrade];
+      mapData.ships.push(enemyShip);
 
       addMessageToQueue({
         content: `
           <p>
-            Alright, our ship's been repaired but it sounds like 
-            trouble's on the way. We're under attack! 
-            Shoot down those enemy ships!
+            We're under attack! Shoot down the enemy ship!
           </p>
 
-          <div class="objective">0/3 ships destroyed.</div>
+          <div class="objective">0/1 ship destroyed.</div>
         `,
         updateObjective: () => {
-          return `${3 - mapData.ships.length}/3 ships destroyed.`;
+          return `${1 - mapData.ships.length}/1 ships destroyed.`;
         },
         exitRequirements: () => {
           return mapData.ships.length === 0;
@@ -58,7 +63,7 @@ export function tutorial() {
         nextAction: () => {
           resetPressedKeys();
 
-          playerState.weapons.push(new DoubleGun());
+          playerState.weapons.push(firstWeaponUpgrade);
 
           addMessageToQueue({
             content: `
@@ -72,13 +77,14 @@ export function tutorial() {
               const hasSwitched = keysThatHaveBeenPressed.includes("Shift");
 
               const hasShot =
-                mapData.bullets.filter((b) => b.weapon === "double-gun")
-                  .length > 1;
+                mapData.bullets.filter(
+                  (b) => b.weapon === firstWeaponUpgrade.name
+                ).length > 1;
 
               return hasSwitched && hasShot;
             },
             nextAction: () => {
-              for (let i = 0; i < 6; i++) {
+              for (let i = 0; i < 7; i++) {
                 mapData.ships.push(new FastShip(positionToMapRight()));
               }
 
@@ -86,13 +92,11 @@ export function tutorial() {
                 mapData.ships.push(new SparrowShip(positionToMapLeft()));
               }
 
-              mapData.ships.push(new SniperShip(positionToMapTop()));
-
               addMessageToQueue({
                 content: `
-                          <p>Uh oh, reinforcements are on the way.</p>
-                          <div class="objective">0/10 ships destroyed.</div>
-                        `,
+                  <p>Uh oh, reinforcements are on the way.</p>
+                  <div class="objective">0/10 ships destroyed.</div>
+                `,
 
                 updateObjective: () => {
                   return `${10 - mapData.ships.length}/10 ships destroyed.`;
