@@ -18,4 +18,6 @@ export function playSoundFile(name, volumeModifier = 1, loop = false) {
 
   source.connect(gainNode);
   source.start();
+
+  return source;
 }

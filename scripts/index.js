@@ -5,21 +5,15 @@ import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
 import { newGame } from "./new-game.js";
 import { addRandomShip } from "./actions/add-random-ship.js";
 import { nextLevel } from "./levels/levels.js";
-import { playSoundFile } from "./sound-effects/play-sound-file.js";
-import { toggleMute } from "./sound-effects/muted.js";
+import { muted, toggleMute } from "./sound-effects/muted.js";
+import { initMusic } from "./sound-effects/music.js";
 
-newGame();
+let music = false;
 
 window.addEventListener("keydown", (e) => {
   if (e.key === "p") {
     toggleMenu("pause");
     gameLoop.toggle();
-  }
-});
-
-window.addEventListener("keydown", (e) => {
-  if (e.key === "f") {
-    toggleFullScreen();
   }
 });
 
@@ -50,6 +44,21 @@ document.querySelectorAll(".next-level-button").forEach((button) => {
   });
 });
 
+document.querySelectorAll(".start-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    hideAllMenus();
+    newGame();
+
+    if (document.querySelector('[name="full-screen"]').checked) {
+      toggleFullScreen();
+    }
+    if (document.querySelector('[name="enable-sound"]').checked) {
+      toggleMute(false);
+      music = initMusic();
+    }
+  });
+});
+
 window.addEventListener("keydown", ({ key }) => {
   if (key === "Shift") {
     playerState.currentGun++;
@@ -68,6 +77,15 @@ window.addEventListener("keydown", ({ key }) => {
 window.addEventListener("keydown", ({ key }) => {
   if (key === "m") {
     toggleMute();
-    playSoundFile("music", 0.2, true);
+
+    if (muted && music) {
+      music.pause();
+    } else if (!muted) {
+      if (music) {
+        music.play();
+      } else {
+        initMusic();
+      }
+    }
   }
 });

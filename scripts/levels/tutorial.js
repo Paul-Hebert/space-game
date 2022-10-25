@@ -8,13 +8,11 @@ import { CrowShip } from "../ships/crow.js";
 import { FastShip } from "../ships/fast.js";
 import { DoubleGun } from "../weapons/double-gun.js";
 import { Pew } from "../weapons/pew.js";
-import { Ray } from "../weapons/ray.js";
-import { SniperShip } from "../ships/Sniper.js";
+import { Laser } from "../weapons/laser.js";
 import { completeLevel } from "./levels.js";
 import {
   positionToMapRight,
   positionToMapLeft,
-  positionToMapTop,
 } from "../math/position-to-map-edge.js";
 import { randomItemInArray } from "../math/random.js";
 
@@ -25,7 +23,7 @@ export function tutorial() {
   const firstWeaponUpgrade = randomItemInArray([
     new DoubleGun(),
     new Pew(),
-    new Ray(),
+    new Laser(),
   ]);
 
   addMessageToQueue({

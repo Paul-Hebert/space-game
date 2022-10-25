@@ -3,6 +3,7 @@ const menus = {
   restart: document.querySelector(".restart-menu"),
   success: document.querySelector(".success-menu"),
   nextLevel: document.querySelector(".next-level-menu"),
+  start: document.querySelector(".start-menu"),
 };
 
 export function showMenu(name) {

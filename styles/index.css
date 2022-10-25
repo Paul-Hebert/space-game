@@ -111,6 +111,11 @@ body {
   opacity: 0;
 }
 
+.settings {
+  display: flex;
+  gap: 1em;
+}
+
 .menu-inner {
   background: hsla(190, 10%, 95%, 0.8);
   padding: 3em;
