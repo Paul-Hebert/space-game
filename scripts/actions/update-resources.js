@@ -7,6 +7,7 @@ import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
 import { updateResourceCount } from "../hud/update-resource-count.js";
+import { playSoundFile } from "../sound-effects/play-sound-file.js";
 
 export function updateResources() {
   mapData.resources = mapData.resources
@@ -34,6 +35,7 @@ export function updateResources() {
           radius: 60,
         })
       ) {
+        playSoundFile("resource-pickup");
         if (resource.type === "health") {
           playerState.health += 100;
           updateHealthBar();

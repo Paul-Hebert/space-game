@@ -22,7 +22,6 @@ export function level3() {
     `,
 
     updateObjective: () => {
-      console.log(mapData.ships);
       return `${mapData.ships.length} Ships Remaining`;
     },
 

@@ -5,8 +5,8 @@ import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
 import { newGame } from "./new-game.js";
 import { addRandomShip } from "./actions/add-random-ship.js";
 import { nextLevel } from "./levels/levels.js";
-import { playSoundFile } from "./sound-effects/play-sound-file.js";
-import { toggleMute } from "./sound-effects/muted.js";
+import { playSoundFile } from "../sound-effects/play-sound-file.js";
+import { muted, toggleMute } from "../sound-effects/muted.js";
 
 newGame();
 

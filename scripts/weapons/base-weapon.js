@@ -4,6 +4,8 @@ import { positionToNose, positionToSide } from "../math/position-to-ship.js";
 import { relativePosition } from "../math/relative-position.js";
 import { mapData } from "../state/map-data.js";
 import { rotatedDraw } from "../graphics/rotated-draw.js";
+import { playSoundFile } from "../sound-effects/play-sound-file.js";
+import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 
 export class BaseWeapon {
   name = "base";
@@ -13,6 +15,7 @@ export class BaseWeapon {
   bulletColor = "yellow";
   damage = 2;
   maxAge = 50;
+  sound = "laser";
 
   lastShotFrame = null;
 
@@ -23,10 +26,14 @@ export class BaseWeapon {
   }
 
   singleShot(ship) {
+    playSoundFile(this.sound, volumeRelativeToPlayer(ship));
+
     mapData.bullets.push(this.createBullet(ship, this.nosePosition(ship)));
   }
 
   bulletStream(ship, count, distance) {
+    playSoundFile(this.sound, volumeRelativeToPlayer(ship));
+
     for (let i = 0; i < count; i++) {
       mapData.bullets.push(
         this.createBullet(ship, this.nosePosition(ship, distance * i))

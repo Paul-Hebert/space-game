@@ -10,7 +10,8 @@ import { Exhaust } from "../objects/exhaust.js";
 import { positionToTail } from "../math/position-to-ship.js";
 import { mapData } from "../state/map-data.js";
 import { rotatedDraw } from "../graphics/rotated-draw.js";
-import { playCustomSound, volumeRelativeToPlayer } from "../play-sound.js";
+import { playCustomSound } from "../sound-effects/play-custom-sound.js";
+import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 
 let shipId = 0;
 

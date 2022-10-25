@@ -8,6 +8,7 @@ export class Laser extends BaseWeapon {
   bulletColor = "yellow";
   damage = 1;
   maxAge = 30;
+  sound = "laser-2";
 
   graphic = document.getElementById("laser");
 

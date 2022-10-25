@@ -1,6 +1,8 @@
 import { BaseWeapon } from "./base-weapon.js";
 import { positionForward, positionToSide } from "../math/position-to-ship.js";
 import { mapData } from "../state/map-data.js";
+import { playSoundFile } from "../sound-effects/play-sound-file.js";
+import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 
 export class DoubleGun extends BaseWeapon {
   name = "double-gun";
@@ -11,6 +13,8 @@ export class DoubleGun extends BaseWeapon {
   }
 
   singleShot(ship) {
+    playSoundFile(this.sound, volumeRelativeToPlayer(ship));
+
     mapData.bullets.push(this.createBullet(ship, this.gunPosition(ship)));
     mapData.bullets.push(
       this.createBullet(ship, this.gunPosition(ship, "left"))
@@ -18,6 +22,8 @@ export class DoubleGun extends BaseWeapon {
   }
 
   bulletStream(ship, count, distance) {
+    playSoundFile(this.sound, volumeRelativeToPlayer(ship));
+
     for (let i = 0; i < count; i++) {
       const rightPosition = this.gunPosition(ship);
       const leftPosition = this.gunPosition(ship, "left");

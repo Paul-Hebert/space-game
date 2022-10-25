@@ -1,14 +1,14 @@
 import { random, randomBool, randomInt } from "../math/random.js";
-import { playSound } from "../play-sound.js";
+import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { Asteroid } from "../objects/asteroid.js";
 import { Resource } from "../objects/resource.js";
 import { mapSize } from "../map-size.js";
-import { volumeRelativeToPlayer } from "../play-sound.js";
+import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 
 const resourceChance = 0.05;
 
 export function explodeAsteroid(asteroid, impactSpeed, playerState) {
-  playSound("explosion", volumeRelativeToPlayer(asteroid) * 0.25);
+  playSoundFile("explosion", volumeRelativeToPlayer(asteroid) * 0.25);
 
   const asteroids = [];
   const resources = [];
