@@ -4,6 +4,7 @@ import { newLevel } from "./new-level.js";
 import { showMenu } from "../hud/menus.js";
 import { level2 } from "./level2.js";
 import { level3 } from "./level3.js";
+import { shipsDestroyed } from "../game-stats.js";
 
 export let currentLevel = 0;
 
@@ -20,6 +21,9 @@ export function completeLevel() {
   if (levels[currentLevel]) {
     showMenu("nextLevel");
   } else {
+    document.querySelector(
+      ".success-menu .ships-destroyed"
+    ).textContent = `${shipsDestroyed} ships destroyed`;
     showMenu("success");
   }
 }

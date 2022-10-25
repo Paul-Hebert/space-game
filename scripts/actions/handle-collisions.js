@@ -9,6 +9,8 @@ import { Resource } from "../objects/resource.js";
 import { showMenu } from "../hud/menus.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
+import { increaseShipsDestroyed } from "../game-stats.js";
+import { shipsDestroyed } from "../game-stats.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -70,6 +72,8 @@ export function handleCollisions() {
         if (explosions.length) newExplosions = newExplosions.concat(explosions);
         if (resources.length) newResources = newResources.concat(resources);
 
+        increaseShipsDestroyed();
+
         return false;
       }
       return true;
@@ -89,6 +93,9 @@ export function handleCollisions() {
       playerState.health -= bullet.damage;
 
       if (playerState.health <= 0) {
+        document.querySelector(
+          ".restart-menu .ships-destroyed"
+        ).textContent = `${shipsDestroyed} ships destroyed`;
         showMenu("restart");
         // This isn't working
         // newExplosions = newExplosions.concat(
