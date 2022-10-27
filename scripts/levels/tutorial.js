@@ -1,6 +1,9 @@
 import { addMessageToQueue } from "../hud/messaging.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
-import { keysThatHaveBeenPressed, resetPressedKeys } from "../pressed-keys.js";
+import {
+  keysThatHaveBeenPressed,
+  resetPressedKeys,
+} from "../state/pressed-keys.js";
 import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
@@ -31,7 +34,8 @@ export function tutorial() {
       <p>We took some damage back there captain. Shoot an asteroid so we can gather resources to repair the ship.</p>
 
       <ul>
-        <li>Use the arrow keys to fly your ship</li>
+        <li>Move the mouse to rotate your ship</li>
+        <li>Press the <kbd>a</kbd> button to accelerate</li>
         <li>Hold <kbd>Spacebar</kbd> to shoot</li>
         <li>Destroy asteroids and gather resources to repair your ship.</li>
       </ul>
@@ -69,10 +73,10 @@ export function tutorial() {
                 We recovered a weapon from one of the destroyed ships. Let's give it a try.
               </p>
 
-              <p>Press <kbd>Shift</kbd> to switch between weapons and try shooting it.</p>
+              <p>Press the <kbd>d</kbd> key to switch between weapons and try shooting it.</p>
             `,
             exitRequirements: () => {
-              const hasSwitched = keysThatHaveBeenPressed.includes("Shift");
+              const hasSwitched = keysThatHaveBeenPressed.includes("d");
 
               const hasShot =
                 mapData.bullets.filter(

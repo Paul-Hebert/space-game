@@ -7,6 +7,7 @@ export class PlayerShip extends BaseShip {
 
     this.currentGun = 0;
   }
+  rotationSpeed = 360;
 
   graphic = document.getElementById("ship");
 

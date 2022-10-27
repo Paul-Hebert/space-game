@@ -60,17 +60,11 @@ document.querySelectorAll(".start-button").forEach((button) => {
 });
 
 window.addEventListener("keydown", ({ key }) => {
-  if (key === "Shift") {
+  if (key === "d") {
     playerState.currentGun++;
     if (playerState.currentGun >= playerState.weapons.length) {
       playerState.currentGun = 0;
     }
-  }
-});
-
-window.addEventListener("keydown", ({ key }) => {
-  if (key === "s") {
-    addRandomShip();
   }
 });
 
