@@ -4,7 +4,10 @@ import { newLevel } from "./new-level.js";
 import { showMenu } from "../hud/menus.js";
 import { level2 } from "./level2.js";
 import { level3 } from "./level3.js";
+import { level4 } from "./level4.js";
+import { level5 } from "./level5.js";
 import { shipsDestroyed } from "../game-stats.js";
+import { fightLevel } from "./random/fight.js";
 
 export let currentLevel = 0;
 
@@ -28,4 +31,29 @@ export function completeLevel() {
   }
 }
 
-export const levels = [tutorial, level2, level1, level3];
+export const levels = [
+  tutorial,
+  () => {
+    fightLevel({ difficulty: 8 });
+  },
+  level2,
+  () => {
+    fightLevel({ difficulty: 12 });
+  },
+  level4,
+  () => {
+    fightLevel({ difficulty: 20 });
+  },
+  level3,
+  () => {
+    fightLevel({ difficulty: 30 });
+  },
+  level1,
+  () => {
+    fightLevel({ difficulty: 50 });
+  },
+  level5,
+  () => {
+    fightLevel({ difficulty: 100 });
+  },
+];
