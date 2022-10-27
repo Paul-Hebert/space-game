@@ -10,7 +10,8 @@ export class FastShip extends BaseShip {
 
   rotationSpeed = 5;
   accelerationSpeed = 1;
-  maxSpeed = 18;
+  maxSpeed = 15;
+  graphic = document.getElementById("ship-3");
 
   size = 40;
 

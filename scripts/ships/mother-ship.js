@@ -7,6 +7,8 @@ export class MotherShip extends BaseShip {
     this.currentGun = 0;
   }
 
+  graphic = document.getElementById("ship-2");
+
   accelerationSpeed = 0.125;
   rotationSpeed = 1;
 
