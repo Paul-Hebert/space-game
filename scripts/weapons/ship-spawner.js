@@ -7,7 +7,7 @@ import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-play
 export class ShipSpawner extends BaseWeapon {
   speed = 100;
   reloadSpeed = 50;
-  sound = "laser-4";
+  sound = "pop";
 
   shoot(ship) {
     playSoundFile(this.sound, volumeRelativeToPlayer(ship));

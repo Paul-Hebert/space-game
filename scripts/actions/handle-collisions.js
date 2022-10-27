@@ -140,7 +140,7 @@ function explodeBullet(bullet) {
 }
 
 function explodeShip(ship) {
-  playSoundFile("explosion", volumeRelativeToPlayer(ship));
+  playSoundFile("explosion-2", volumeRelativeToPlayer(ship));
 
   const explosions = [];
   const resources = [];

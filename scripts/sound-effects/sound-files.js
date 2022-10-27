@@ -4,10 +4,14 @@ export const soundFiles = await createSounds([
   { file: "laser.wav", baseVolume: 0.02 },
   { file: "laser-2.wav", baseVolume: 0.3 },
   { file: "laser-4.wav", baseVolume: 0.3 },
+  { file: "small-shot.wav", baseVolume: 0.3 },
+  { file: "pop.wav", baseVolume: 0.3 },
   { file: "explosion.wav", baseVolume: 0.02 },
+  { file: "explosion-2.mp3", baseVolume: 0.1 },
   { file: "engine.mp3", baseVolume: 0.01 },
-  { file: "music.mp3", baseVolume: 0.1 },
+  { file: "music.mp3", baseVolume: 0.15 },
   { file: "resource-pickup.wav", baseVolume: 0.1 },
+  { file: "notification-2.mp3", baseVolume: 0.1 },
 ]);
 
 async function createSounds(sounds) {

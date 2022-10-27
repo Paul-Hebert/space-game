@@ -62,7 +62,7 @@ export class BaseShip {
     playCustomSound({
       duration: random(1000 / 60, 1000 / 30),
       frequency: random(0, 200),
-      volume: random(0.4, 0.8) * volumeRelativeToPlayer(this),
+      volume: random(0.8, 1) * volumeRelativeToPlayer(this),
       nodeType: "triangle",
     });
   }

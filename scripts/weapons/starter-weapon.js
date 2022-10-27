@@ -8,6 +8,7 @@ export class StarterWeapon extends BaseWeapon {
   bulletColor = "yellow";
   damage = 3;
   maxAge = 40;
+  sound = "small-shot";
 
   shoot(playerState) {
     return this.bulletStream(playerState, 15, 2);

@@ -35,7 +35,7 @@ export function updateResources() {
           radius: 60,
         })
       ) {
-        playSoundFile("resource-pickup");
+        playSoundFile("notification-2");
         if (resource.type === "health") {
           playerState.health += 100;
           updateHealthBar();

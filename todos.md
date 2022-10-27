@@ -20,7 +20,6 @@
 
 - Move generative image logic into this repo?
 - Sprites for resources
-- Fix asteroid sprite clipping bugs
 - Better explosions - player explosion
 
 ## UI

@@ -8,7 +8,7 @@ import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-play
 const resourceChance = 0.05;
 
 export function explodeAsteroid(asteroid, impactSpeed, playerState) {
-  playSoundFile("explosion", volumeRelativeToPlayer(asteroid) * 0.25);
+  playSoundFile("explosion-2", volumeRelativeToPlayer(asteroid) * 0.25);
 
   const asteroids = [];
   const resources = [];
