@@ -6,7 +6,7 @@ import { level2 } from "./level2.js";
 import { level3 } from "./level3.js";
 import { level4 } from "./level4.js";
 import { level5 } from "./level5.js";
-import { shipsDestroyed } from "../game-stats.js";
+import { shipsDestroyed } from "../state/game-stats.js";
 import { fightLevel } from "./random/fight.js";
 
 export let currentLevel = 0;

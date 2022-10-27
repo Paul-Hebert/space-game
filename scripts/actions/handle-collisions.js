@@ -9,8 +9,7 @@ import { Resource } from "../objects/resource.js";
 import { showMenu } from "../hud/menus.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
-import { increaseShipsDestroyed } from "../game-stats.js";
-import { shipsDestroyed } from "../game-stats.js";
+import { increaseShipsDestroyed, shipsDestroyed } from "../state/game-stats.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
