@@ -63,7 +63,7 @@ document.querySelectorAll(".start-button").forEach((button) => {
 });
 
 window.addEventListener("keydown", ({ key }) => {
-  if (key === "d") {
+  if (key === "d" || key === "Shift") {
     playerState.currentGun++;
     if (playerState.currentGun >= playerState.weapons.length) {
       playerState.currentGun = 0;
