@@ -18,5 +18,7 @@ export class FastShip extends BaseShip {
   maxHealth = 50;
   health = 50;
 
+  maxResourceCount = 1;
+
   weapons = [new BaseWeapon()];
 }

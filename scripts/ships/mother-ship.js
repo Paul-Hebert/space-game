@@ -17,6 +17,7 @@ export class MotherShip extends BaseShip {
   maxHealth = 1200;
   health = 1200;
   maxSpeed = 5;
+  maxResourceCount = 5;
 
   weapons = [new ShipSpawner()];
 }

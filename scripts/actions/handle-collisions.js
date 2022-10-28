@@ -142,8 +142,6 @@ function explodeShip(ship) {
   playSoundFile("explosion-2", volumeRelativeToPlayer(ship));
 
   const explosions = [];
-  const resources = [];
-
   for (let i = 0; i < randomInt(ship.maxHealth, ship.maxHealth * 2); i++) {
     explosions.push(
       new Explosion({
@@ -158,18 +156,17 @@ function explodeShip(ship) {
     );
   }
 
-  for (let i = 0; i < Math.min(randomInt(0, ship.maxHealth / 50), 3); i++) {
-    resources.push(
-      new Resource({
-        x: ship.x,
-        y: ship.y,
-        speed: {
-          x: random(-3, 3),
-          y: random(-3, 3),
-        },
-      })
-    );
-  }
+  const resources = ship.resources.map((resource) => {
+    return {
+      ...resource,
+      x: ship.x,
+      y: ship.y,
+      speed: {
+        x: random(-3, 3),
+        y: random(-3, 3),
+      },
+    };
+  });
 
   return { explosions, resources };
 }

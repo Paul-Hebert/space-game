@@ -12,6 +12,7 @@ import { mapData } from "../state/map-data.js";
 import { rotatedDraw } from "../graphics/rotated-draw.js";
 import { playCustomSound } from "../sound-effects/play-custom-sound.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
+import { Resource } from "../objects/resource.js";
 
 let shipId = 0;
 
@@ -26,6 +27,15 @@ export class BaseShip {
 
     this.id = shipId;
     shipId++;
+
+    this.resources = [];
+    for (
+      let i = random(0, this.maxResourceCount + 1);
+      i <= this.maxResourceCount;
+      i++
+    ) {
+      this.resources.push(new Resource({}));
+    }
   }
 
   draw(context) {
@@ -82,4 +92,6 @@ export class BaseShip {
   maxSpeed = 10;
 
   currentGun = 0;
+
+  maxResourceCount = 2;
 }
