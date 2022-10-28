@@ -7,6 +7,7 @@ import { addRandomShip } from "./actions/add-random-ship.js";
 import { nextLevel } from "./levels/levels.js";
 import { muted, toggleMute } from "./sound-effects/muted.js";
 import { initMusic } from "./sound-effects/music.js";
+import { setControlOption } from "./state/control-option.js";
 
 let music = false;
 
@@ -56,6 +57,8 @@ document.querySelectorAll(".start-button").forEach((button) => {
       toggleMute(false);
       music = initMusic();
     }
+
+    setControlOption(document.querySelector('[name="controls"]:checked').value);
   });
 });
 

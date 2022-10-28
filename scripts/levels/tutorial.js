@@ -18,6 +18,7 @@ import {
   positionToMapLeft,
 } from "../math/position-to-map-edge.js";
 import { randomItemInArray } from "../math/random.js";
+import { controlOption } from "../state/control-option.js";
 
 export function tutorial() {
   playerState.health = playerState.maxHealth - 100;
@@ -34,9 +35,20 @@ export function tutorial() {
       <p>We took some damage back there captain. Shoot an asteroid so we can gather resources to repair the ship.</p>
 
       <ul>
-        <li>Move the mouse to rotate your ship</li>
-        <li>Press the <kbd>a</kbd> button to accelerate</li>
-        <li>Hold <kbd>Spacebar</kbd> to shoot</li>
+        ${
+          controlOption === "keyboard"
+            ? `
+              <li>Use the arrow keys to fly your shipt</li>
+              <li>Press the <kbd>a</kbd> button to accelerate</li>
+              <li>Hold <kbd>Spacebar</kbd> to shoot</li>
+              `
+            : `
+              <li>Move the mouse to rotate your ship</li>
+              <li>Press the <kbd>a</kbd> button to accelerate</li>
+              <li>Hold the <kbd>s</kbd> button to shoot</li>
+              `
+        }
+
         <li>Destroy asteroids and gather resources to repair your ship.</li>
       </ul>
     `,
@@ -73,10 +85,14 @@ export function tutorial() {
                 We recovered a weapon from one of the destroyed ships. Let's give it a try.
               </p>
 
-              <p>Press the <kbd>d</kbd> key to switch between weapons and try shooting it.</p>
+              <p>Press the <kbd>${
+                controlOption === "keyboard" ? "Shift" : "d"
+              }</kbd> key to switch between weapons and try shooting it.</p>
             `,
             exitRequirements: () => {
-              const hasSwitched = keysThatHaveBeenPressed.includes("d");
+              const hasSwitched = keysThatHaveBeenPressed.includes(
+                controlOption === "keyboard" ? "Shift" : "d"
+              );
 
               const hasShot =
                 mapData.bullets.filter(

@@ -8,10 +8,24 @@ import {
   pointerAngleFromCenter,
 } from "../state/pointer-position.js";
 import { updateShipAngle } from "../math/update-ship-angle.js";
+import { controlOption } from "../state/control-option.js";
 
 export function handlePlayerActions() {
-  if (pointerPosition) {
+  console.log(controlOption);
+  if (controlOption === "pointer" && pointerPosition) {
+    playerState.rotationSpeed = 360;
     updateShipAngle(pointerAngleFromCenter() + 90, playerState);
+  }
+
+  if (controlOption === "keyboard") {
+    if (pressedKeys["ArrowRight"]) {
+      playerState.rotation += playerState.rotationSpeed;
+    }
+    if (pressedKeys["ArrowLeft"]) {
+      playerState.rotation -= playerState.rotationSpeed;
+    }
+
+    console.log(playerState.rotation);
   }
 
   if (pressedKeys["ArrowUp"] || pressedKeys["a"]) {

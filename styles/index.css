@@ -114,6 +114,7 @@ body {
 .settings {
   display: flex;
   gap: 1em;
+  align-items: center;
 }
 
 .menu-inner {
