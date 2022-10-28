@@ -3,7 +3,6 @@ import { playerState } from "./state/player-state.js";
 import { gameLoop } from "./game-loop.js";
 import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
 import { newGame } from "./new-game.js";
-import { addRandomShip } from "./actions/add-random-ship.js";
 import { nextLevel } from "./levels/levels.js";
 import { muted, toggleMute } from "./sound-effects/muted.js";
 import { initMusic } from "./sound-effects/music.js";
