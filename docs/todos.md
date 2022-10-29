@@ -7,6 +7,7 @@
   - Ship logic and shoot functionality should move to ship class
   - Position to nose and position to tail should move to ship class
   - Bullets should maybe be assigned a ship, not a ship id?
+  - Move map size to map data?
 
 ## Advanced Features
 
@@ -41,4 +42,7 @@
 ## Bugs
 
 - Bullets don't work when facing directly to the right
-- Looping doesn't work for stars (because they have parallax)
+
+## Audio
+
+- Explosions are too loud. Tone down impact of proximity to player?
