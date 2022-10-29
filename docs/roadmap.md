@@ -1,7 +1,6 @@
 # Road map
 
 - Improved level transitions
-  - Fix parallax star issue
   - Move level transitions out of popup menu and in to message queue (for now)
   - Animate transitions
 - Upgrades

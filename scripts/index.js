@@ -46,6 +46,7 @@ document.querySelectorAll(".next-level-button").forEach((button) => {
 
 document.querySelectorAll(".start-button").forEach((button) => {
   button.addEventListener("click", () => {
+    document.querySelector(".game").classList.add("is-started");
     hideAllMenus();
     newGame();
 

@@ -126,3 +126,19 @@ body {
   gap: 1em;
   align-items: center;
 }
+
+.game > :not(#main-canvas) {
+  transition: opacity 2s ease-out;
+}
+
+#main-canvas {
+  transition: transform 2s ease-out;
+}
+
+.game:not(.is-started) > :not(#main-canvas) {
+  opacity: 0;
+}
+
+.game:not(.is-started) #main-canvas {
+  transform: scale(3);
+}
