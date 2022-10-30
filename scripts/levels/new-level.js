@@ -5,7 +5,6 @@ import { playerState } from "../state/player-state.js";
 export function newLevel(level) {
   playerState.health = playerState.maxHealth;
   updateHealthBar();
-  resetMap();
 
   level();
 }

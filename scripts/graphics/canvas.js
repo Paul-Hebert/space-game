@@ -1,3 +1,6 @@
+import { angledSpeed } from "../math/constrain-speed.js";
+import { playerState } from "../state/player-state.js";
+
 export const mainCanvas = document.querySelector("#main-canvas");
 export const mainCtx = mainCanvas.getContext("2d");
 mainCtx.imageSmoothingEnabled = false;
@@ -19,7 +22,17 @@ function resizeCanvas() {
 }
 
 export function clearMainCanvas() {
-  clearCanvas(mainCtx, mainCanvas);
+  if (angledSpeed(playerState.speed) > playerState.maxSpeed) {
+    mainCtx.globalAlpha = 0.1;
+
+    mainCtx.rect(0, 0, mainCanvas.width, mainCanvas.height);
+    mainCtx.fillStyle = "#000";
+    mainCtx.fill();
+
+    mainCtx.globalAlpha = 1;
+  } else {
+    clearCanvas(mainCtx, mainCanvas);
+  }
 }
 
 export function clearMiniMap() {

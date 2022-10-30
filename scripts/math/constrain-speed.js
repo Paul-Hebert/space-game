@@ -1,9 +1,7 @@
 import { distanceBetweenPoints } from "./distance-between-points.js";
 
 export function constrainSpeed({ speed, maxSpeed }) {
-  const angledSpeed = distanceBetweenPoints({ x: 0, y: 0 }, speed);
-
-  const speedRelativeToMax = angledSpeed / maxSpeed;
+  const speedRelativeToMax = angledSpeed(speed) / maxSpeed;
 
   if (speedRelativeToMax > 1) {
     speed.x /= speedRelativeToMax;
@@ -11,4 +9,8 @@ export function constrainSpeed({ speed, maxSpeed }) {
   }
 
   return speed;
+}
+
+export function angledSpeed(speed) {
+  return distanceBetweenPoints({ x: 0, y: 0 }, speed);
 }

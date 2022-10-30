@@ -9,6 +9,7 @@ import { level5 } from "./level5.js";
 import { shipsDestroyed } from "../state/game-stats.js";
 import { fightLevel } from "./random/fight.js";
 import { playerState } from "../state/player-state.js";
+import { startHyperSpeedJump } from "../actions/hyper-speed-jump.js";
 
 export let currentLevel = 0;
 
@@ -17,7 +18,9 @@ export function resetCurrentLevel() {
 }
 
 export function nextLevel() {
-  newLevel(levels[currentLevel]);
+  startHyperSpeedJump(() => {
+    newLevel(levels[currentLevel]);
+  });
 }
 
 export function completeLevel() {
