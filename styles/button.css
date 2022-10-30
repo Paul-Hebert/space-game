@@ -1,0 +1,48 @@
+button {
+  appearance: none;
+  border: none;
+  position: relative;
+  padding: 1.5rem 3rem;
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  background: none;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  background: inherit;
+  color: #fff;
+  cursor: pointer;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  width: 200%;
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: conic-gradient(
+    transparent,
+    hsl(200, 100%, 20%),
+    transparent
+  );
+  animation: rotate 4s linear infinite;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0.1em;
+  background: hsl(200, 50%, 50%);
+  border-radius: 0.4em;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
