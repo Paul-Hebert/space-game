@@ -38,7 +38,7 @@ export function tutorial() {
         ${
           controlOption === "keyboard"
             ? `
-              <li>Use the arrow keys to fly your shipt</li>
+              <li>Use the arrow keys to fly your ship</li>
               <li>Press the <kbd>a</kbd> button to accelerate</li>
               <li>Hold <kbd>Spacebar</kbd> to shoot</li>
               `
