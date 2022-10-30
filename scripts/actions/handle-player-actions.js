@@ -12,8 +12,7 @@ import { controlOption } from "../state/control-option.js";
 
 export function handlePlayerActions() {
   if (controlOption === "pointer" && pointerPosition) {
-    playerState.rotationSpeed = 360;
-    updateShipAngle(pointerAngleFromCenter() + 90, playerState);
+    playerState.rotation = pointerAngleFromCenter() + 90;
   }
 
   if (controlOption === "keyboard") {
