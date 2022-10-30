@@ -46,10 +46,6 @@ document.querySelectorAll(".next-level-button").forEach((button) => {
 
 document.querySelectorAll(".start-button").forEach((button) => {
   button.addEventListener("click", () => {
-    document.querySelector(".game").classList.add("is-started");
-    hideAllMenus();
-    newGame();
-
     if (document.querySelector('[name="full-screen"]').checked) {
       toggleFullScreen();
     }
@@ -57,8 +53,10 @@ document.querySelectorAll(".start-button").forEach((button) => {
       toggleMute(false);
       music = initMusic();
     }
-
     setControlOption(document.querySelector('[name="controls"]:checked').value);
+    hideAllMenus();
+    newGame();
+    document.querySelector(".game").classList.add("is-started");
   });
 });
 
