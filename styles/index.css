@@ -98,7 +98,7 @@ body {
 
 .menu {
   background-color: hsla(192, 72%, 17%, 0.5);
-  transition-property: opacity, transform;
+  transition-property: opacity;
   transition-duration: 0.2s;
   transition-timing-function: ease-out;
   position: absolute;
@@ -112,13 +112,6 @@ body {
 .menu:not(.is-shown) {
   pointer-events: none;
   opacity: 0;
-  transform: scale(0.8);
-}
-
-.settings {
-  display: flex;
-  gap: 1em;
-  align-items: center;
 }
 
 .menu-inner {
@@ -127,6 +120,17 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 1em;
+  gap: 1em;
+  align-items: center;
+  transition: transform 0.3s ease-out;
+}
+
+.menu:not(.is-shown) .menu-inner {
+  transform: scale(0.9);
+}
+
+.settings {
+  display: flex;
   gap: 1em;
   align-items: center;
 }
