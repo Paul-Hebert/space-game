@@ -8,6 +8,7 @@ import { level4 } from "./level4.js";
 import { level5 } from "./level5.js";
 import { shipsDestroyed } from "../state/game-stats.js";
 import { fightLevel } from "./random/fight.js";
+import { playerState } from "../state/player-state.js";
 
 export let currentLevel = 0;
 
@@ -20,6 +21,8 @@ export function nextLevel() {
 }
 
 export function completeLevel() {
+  if (playerState.health <= 0) return;
+
   currentLevel++;
   if (levels[currentLevel]) {
     showMenu("nextLevel");
