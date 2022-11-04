@@ -14,7 +14,7 @@ export class BaseWeapon {
   bulletRadius = 2;
   bulletColor = "yellow";
   damage = 2;
-  maxAge = 50;
+  maxAge = 30;
   sound = "laser";
 
   lastShotFrame = null;
