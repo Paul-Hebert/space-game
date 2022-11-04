@@ -1,5 +1,6 @@
 import { angledSpeed } from "../math/constrain-speed.js";
 import { playerState } from "../state/player-state.js";
+import { isJumping } from "../actions/hyper-speed-jump.js";
 
 export const mainCanvas = document.querySelector("#main-canvas");
 export const mainCtx = mainCanvas.getContext("2d");
@@ -22,7 +23,7 @@ function resizeCanvas() {
 }
 
 export function clearMainCanvas() {
-  if (angledSpeed(playerState.speed) > playerState.maxSpeed) {
+  if (isJumping && angledSpeed(playerState.speed) > playerState.maxSpeed) {
     mainCtx.globalAlpha = 0.1;
 
     mainCtx.rect(0, 0, mainCanvas.width, mainCanvas.height);

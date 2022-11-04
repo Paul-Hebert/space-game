@@ -11,7 +11,15 @@
       <canvas id="main-canvas" width="500" height="500"></canvas>
       <canvas id="mini-map-canvas" width="200" height="200"></canvas>
 
-      <meter class="health" value="100" min="0" max="100"></meter>
+      <meter
+        class="health"
+        value="100"
+        min="0"
+        max="100"
+        low="30"
+        high="80"
+        optimum="100"
+      ></meter>
       <div class="resource-count">0</div>
 
       <div class="message-queue"></div>
@@ -22,6 +30,7 @@
         <div class="menu-inner">
           <h2>Your Ship Has Been Destroyed</h2>
 
+          <p class="sectors-cleared"></p>
           <p class="ships-destroyed"></p>
 
           <button class="restart-button">Try again?</button>
@@ -41,6 +50,7 @@
         <div class="menu-inner">
           <h2>You win!</h2>
 
+          <p class="sectors-cleared"></p>
           <p class="ships-destroyed"></p>
 
           <button class="restart-button">Restart</button>
@@ -50,6 +60,9 @@
       <div class="next-level-menu menu">
         <div class="menu-inner">
           <h2>You completed the level</h2>
+
+          <p class="sectors-cleared"></p>
+          <p class="ships-destroyed"></p>
 
           <button class="next-level-button">Next Level</button>
         </div>

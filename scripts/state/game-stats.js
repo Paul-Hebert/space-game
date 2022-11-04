@@ -1,7 +1,10 @@
-export let shipsDestroyed = 0;
-export function resetShipsDestroyed() {
-  shipsDestroyed = 0;
-}
-export function increaseShipsDestroyed() {
-  shipsDestroyed++;
+export let gameStats = {
+  shipsDestroyed: 0,
+  sectorsCleared: 0,
+};
+export function resetGameStats() {
+  gameStats = {
+    shipsDestroyed: 0,
+    sectorsCleared: 0,
+  };
 }
