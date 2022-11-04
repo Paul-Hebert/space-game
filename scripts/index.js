@@ -51,7 +51,10 @@ document.querySelectorAll(".start-button").forEach((button) => {
     }
     if (document.querySelector('[name="enable-sound"]').checked) {
       toggleMute(false);
-      music = initMusic();
+
+      if (document.querySelector('[name="enable-music"]').checked) {
+        music = initMusic();
+      }
     }
     setControlOption(document.querySelector('[name="controls"]:checked').value);
     hideAllMenus();
