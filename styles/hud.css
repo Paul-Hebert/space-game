@@ -1,0 +1,21 @@
+.resource-count,
+.health {
+  font-weight: bold;
+  font-size: 3rem;
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+}
+
+.resource-count {
+  color: gold;
+  bottom: 3rem;
+}
+
+#mini-map-canvas {
+  background: black;
+  border: 1px solid #666;
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}

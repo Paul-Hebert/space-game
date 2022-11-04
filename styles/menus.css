@@ -1,0 +1,38 @@
+.menu {
+  background-color: hsla(192, 72%, 17%, 0.5);
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(1px);
+  opacity: 1;
+}
+
+.menu:not(.is-shown) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.menu-inner {
+  background: hsla(190, 10%, 95%, 0.8);
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  gap: 1em;
+  align-items: center;
+  transition: transform 0.3s ease-out;
+}
+
+.menu:not(.is-shown) .menu-inner {
+  transform: scale(0.9);
+}
+
+.settings {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
