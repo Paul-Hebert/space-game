@@ -33,7 +33,11 @@ export function updateShips() {
   });
 
   mapData.ships.forEach((ship) => {
-    if (shipIsAimingTowardsPlayer(ship) && playerIsInRange(ship)) {
+    if (
+      shipIsAimingTowardsPlayer(ship) &&
+      playerIsInRange(ship) &&
+      playerState.health > 0
+    ) {
       shoot(ship);
     }
   });
