@@ -70,9 +70,9 @@
 }
 
 .menu-section {
-  padding: 1em 3em;
+  padding: 1rem 3rem;
   display: grid;
-  gap: 1em;
+  gap: 1rem;
   text-align: center;
   justify-content: center;
 }

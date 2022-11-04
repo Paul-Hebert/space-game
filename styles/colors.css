@@ -10,6 +10,7 @@
   --color-primary-bright-4: hsl(var(--primary-hue), 100%, 16%);
 
   --color-primary-dark-0: hsl(var(--primary-hue), 100%, 5%);
+  --color-primary-dark-0-t-90: hsla(var(--primary-hue), 100%, 5%, 90%);
   --color-primary-dark-1: hsl(var(--primary-hue), 100%, 9%);
   --color-primary-dark-1-t-90: hsla(var(--primary-hue), 100%, 9%, 90%);
 }
