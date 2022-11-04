@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Cartridge";
+  src: url("../fonts/Cartridge-Regular.woff2") format("woff2");
+}
+
+@font-feature-values 'Cartridge' {
+  @styleset {
+    special-styleset: 1;
+  }
+}
+
+:root {
+  --base-font: Roboto, system-ui, sans-serif;
+  --display-font: "Cartridge";
+}
+
+html {
+  font-family: var(--base-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--display-font);
+  font-variant-alternates: styleset(special-styleset);
+  text-transform: uppercase;
+}
+
+button {
+  font-family: var(--display-font);
+  text-transform: uppercase;
+}
