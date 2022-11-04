@@ -1,0 +1,29 @@
+:root {
+  --primary-hue: 107;
+
+  --color-white: hsl(var(--primary-hue), 37%, 86%);
+
+  --color-primary-bright-0: hsl(104, 37%, 86%);
+  --color-primary-bright-1: hsl(var(--primary-hue), 82%, 47%);
+  --color-primary-bright-2: hsl(var(--primary-hue), 100%, 31%);
+  --color-primary-bright-3: hsl(var(--primary-hue), 100%, 23%);
+  --color-primary-bright-4: hsl(var(--primary-hue), 100%, 16%);
+
+  --color-primary-dark-0: hsl(var(--primary-hue), 100%, 5%);
+  --color-primary-dark-1: hsl(var(--primary-hue), 100%, 9%);
+  --color-primary-dark-1-t-90: hsla(var(--primary-hue), 100%, 9%, 90%);
+}
+
+html {
+  color: var(--color-white);
+  accent-color: var(--color-primary-bright-1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-primary-bright-1);
+}

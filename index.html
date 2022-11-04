@@ -6,6 +6,7 @@
     <script type="module" src="/scripts/index.js"></script>
 
     <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="stylesheet" href="/styles/colors.css" />
     <link rel="stylesheet" href="/styles/type.css" />
     <link rel="stylesheet" href="/styles/game-core.css" />
     <link rel="stylesheet" href="/styles/animations.css" />
@@ -19,20 +20,35 @@
       <canvas id="main-canvas" width="500" height="500"></canvas>
 
       <div class="hud">
-        <div>
-          <meter
-            class="health"
-            value="100"
-            min="0"
-            max="100"
-            low="30"
-            high="80"
-            optimum="100"
-          ></meter>
-          <div class="resource-count">0</div>
+        <div class="hud-section">
+          <div>
+            Current Weapon:
+            <span class="current-weapon"></span>
+          </div>
+          <div>
+            Resources:
+            <span class="resource-count">0</span>
+          </div>
+          <div>
+            Health:
+            <meter
+              class="health"
+              value="100"
+              min="0"
+              max="100"
+              low="30"
+              high="80"
+              optimum="100"
+            ></meter>
+          </div>
         </div>
 
-        <canvas id="mini-map-canvas" width="200" height="200"></canvas>
+        <canvas
+          id="mini-map-canvas"
+          class="hud-section"
+          width="200"
+          height="200"
+        ></canvas>
       </div>
 
       <div class="message-queue"></div>
@@ -41,85 +57,113 @@
     <div class="menus">
       <div class="restart-menu menu">
         <div class="menu-inner">
-          <h2>Your Ship Has Been Destroyed</h2>
+          <div class="menu-section">
+            <h2>Your Ship Has Been Destroyed</h2>
+          </div>
+          <div class="menu-section">
+            <p class="sectors-cleared"></p>
+            <p class="ships-destroyed"></p>
+          </div>
 
-          <p class="sectors-cleared"></p>
-          <p class="ships-destroyed"></p>
-
-          <button class="restart-button">Try again?</button>
+          <div class="menu-section">
+            <button class="restart-button">Try again?</button>
+          </div>
         </div>
       </div>
 
       <div class="pause-menu menu">
         <div class="menu-inner">
-          <h2>The Game Has Been Paused</h2>
+          <div class="menu-section">
+            <h2>The Game Has Been Paused</h2>
+          </div>
 
-          <button class="resume-button">Resume Playing</button>
-          <button class="restart-button">Start Over</button>
+          <div class="menu-section">
+            <button class="resume-button">Resume Playing</button>
+            <button class="restart-button">Start Over</button>
+          </div>
         </div>
       </div>
 
       <div class="success-menu menu">
         <div class="menu-inner">
-          <h2>You win!</h2>
+          <div class="menu-section">
+            <h2>You win!</h2>
+          </div>
 
-          <p class="sectors-cleared"></p>
-          <p class="ships-destroyed"></p>
+          <div class="menu-section">
+            <p class="sectors-cleared"></p>
+            <p class="ships-destroyed"></p>
+          </div>
 
-          <button class="restart-button">Restart</button>
+          <div class="menu-section">
+            <button class="restart-button">Restart</button>
+          </div>
         </div>
       </div>
 
       <div class="next-level-menu menu">
         <div class="menu-inner">
-          <h2>You completed the level</h2>
+          <div class="menu-section">
+            <h2>You completed the level</h2>
+          </div>
 
-          <p class="sectors-cleared"></p>
-          <p class="ships-destroyed"></p>
+          <div class="menu-section">
+            <p class="sectors-cleared"></p>
+            <p class="ships-destroyed"></p>
+          </div>
 
-          <button class="next-level-button">Next Level</button>
+          <div class="menu-section">
+            <button class="next-level-button">Next Level</button>
+          </div>
         </div>
       </div>
 
       <div class="start-menu menu is-shown">
         <div class="menu-inner">
-          <h1>Spaced</h1>
+          <div class="menu-section">
+            <h1>Spaced</h1>
+          </div>
 
-          <p>
-            Your ship is damaged and you're stranded in an enemy galaxy. Can you
-            fight your way back to your home world?
-          </p>
+          <div class="menu-section subhead">
+            <p>Your ship is damaged and you're stranded in an enemy galaxy.</p>
+            <p>Can you fight your way back to your home world?</p>
+          </div>
 
-          <form class="settings">
+          <form class="settings menu-section">
             <fieldset>
               <legend>Controls:</legend>
 
               <label>
                 <input name="controls" value="pointer" type="radio" checked />
-                Mouse/Touchscreen
+                Mouse and Keyboard
               </label>
 
               <label>
                 <input name="controls" value="keyboard" type="radio" />
-                Keyboard
+                Pure Keyboard
               </label>
             </fieldset>
 
-            <label>
-              <input type="checkbox" name="full-screen" checked />
-              Enable Full Screen
-            </label>
-            <label>
-              <input type="checkbox" name="enable-sound" checked />
-              Enable Sound
-            </label>
-            <label>
-              <input type="checkbox" name="enable-music" checked />
-              Enable Music (Only works if sound is enabled)
-            </label>
+            <fieldset>
+              <legend>Settings:</legend>
+              <label>
+                <input type="checkbox" name="full-screen" checked />
+                Enable Full Screen
+              </label>
+              <label>
+                <input type="checkbox" name="enable-sound" checked />
+                Enable Sound
+              </label>
+              <label>
+                <input type="checkbox" name="enable-music" checked />
+                Enable Music
+              </label>
+            </fieldset>
           </form>
 
-          <button class="start-button">Blast Off</button>
+          <div class="menu-section">
+            <button class="start-button">Blast Off</button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,48 +1,52 @@
 button {
   appearance: none;
-  border: none;
+  border: 1px solid var(--color-primary-bright-3);
+  color: var(--color-primary-bright-1);
+  background-color: var(--color-primary-dark-0);
   position: relative;
-  padding: 1.5rem 3rem;
+  font-family: var(--font-display);
+  text-transform: uppercase;
   font-size: 1.5em;
-  border-radius: 0.5em;
-  overflow: hidden;
-  background: none;
-  display: grid;
-  place-items: center;
-  z-index: 1;
-  background: inherit;
-  color: #fff;
+  padding: 1em 2em;
   cursor: pointer;
+  transition: background-color 0.2s ease-out;
+  letter-spacing: 0.01em;
+}
+
+/* TODO: Focus styles */
+button:hover {
+  background-color: var(--color-primary-dark-1-90);
+}
+
+button::before,
+button::after {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  width: 4rem;
+  aspect-ratio: 1;
+  border: inherit;
+  border-width: 1px;
+  transition: transform 0.2s ease-out;
 }
 
 button::before {
-  content: "";
-  position: absolute;
-  z-index: -2;
-  left: -50%;
-  width: 200%;
-  aspect-ratio: 1;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-image: conic-gradient(
-    transparent,
-    hsl(200, 100%, 20%),
-    transparent
-  );
-  animation: rotate 4s linear infinite;
+  top: -0.3em;
+  left: -0.3em;
+  border-bottom: none;
+  border-right: none;
+  transform-origin: top left;
 }
 
 button::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0.1em;
-  background: hsl(200, 50%, 50%);
-  border-radius: 0.4em;
+  bottom: -0.3em;
+  right: -0.3em;
+  border-top: none;
+  border-left: none;
+  transform-origin: bottom right;
 }
 
-@keyframes rotate {
-  100% {
-    transform: rotate(1turn);
-  }
+button:hover::before,
+button:hover::after {
+  transform: scale(1.1);
 }

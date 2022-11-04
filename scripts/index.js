@@ -7,6 +7,8 @@ import { nextLevel } from "./levels/levels.js";
 import { muted, toggleMute } from "./sound-effects/muted.js";
 import { initMusic } from "./sound-effects/music.js";
 import { setControlOption } from "./state/control-option.js";
+import { updateCurrentWeapon } from "./hud/update-current-weapon.js";
+import { resetMap } from "./state/map-data.js";
 
 let music = false;
 
@@ -33,6 +35,7 @@ document.querySelector(".resume-button").addEventListener("click", () => {
 document.querySelectorAll(".restart-button").forEach((button) => {
   button.addEventListener("click", () => {
     hideAllMenus();
+    resetMap();
     newGame();
   });
 });
@@ -69,6 +72,7 @@ window.addEventListener("keydown", ({ key }) => {
     if (playerState.currentGun >= playerState.weapons.length) {
       playerState.currentGun = 0;
     }
+    updateCurrentWeapon();
   }
 });
 

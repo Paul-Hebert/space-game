@@ -5,7 +5,7 @@ import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 
 export class DoubleGun extends BaseWeapon {
-  name = "double-gun";
+  name = "Refurbished Side Cannons";
 
   shoot(ship) {
     this.bulletStream(ship, 5, 2);
