@@ -54,15 +54,15 @@ export class BaseShip {
     });
   }
 
-  addExhaust() {
+  addExhaust(distance = 10) {
     const exhaustDirection = degreesToRadians(this.rotation + 90);
 
     mapData.exhaust.push(
       new Exhaust({
         ...positionToTail(this),
         speed: {
-          x: Math.cos(exhaustDirection) * 10,
-          y: Math.sin(exhaustDirection) * 10,
+          x: Math.cos(exhaustDirection) * distance,
+          y: Math.sin(exhaustDirection) * distance,
         },
       })
     );
