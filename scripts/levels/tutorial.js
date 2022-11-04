@@ -11,7 +11,6 @@ import { CrowShip } from "../ships/crow.js";
 import { FastShip } from "../ships/fast.js";
 import { DoubleGun } from "../weapons/double-gun.js";
 import { Pew } from "../weapons/pew.js";
-import { Laser } from "../weapons/laser.js";
 import { completeLevel } from "./levels.js";
 import {
   positionToMapRight,
@@ -24,11 +23,7 @@ export function tutorial() {
   playerState.health = playerState.maxHealth - 100;
   updateHealthBar();
 
-  const firstWeaponUpgrade = randomItemInArray([
-    new DoubleGun(),
-    new Pew(),
-    new Laser(),
-  ]);
+  const firstWeaponUpgrade = randomItemInArray([new DoubleGun(), new Pew()]);
 
   addMessageToQueue({
     content: `
