@@ -2,6 +2,7 @@ import { moveObject } from "./move-object.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
 import { mapSize } from "../map-size.js";
+import { random } from "../math/random.js";
 
 export function updateParticles() {
   mapData.asteroids = updateParticleGroup(mapData.asteroids);
@@ -39,14 +40,30 @@ function updateParticleGroup(particles, aging) {
     // This ensures that as you fly you never fly past all the stars/asteroids/etc.
     if (particle.looping) {
       const depth = particle.parallaxDepth || 1;
-      if (particle.x * depth < playerState.x + mapSize * -1)
-        particle.x += mapSize * 2; //* depth;
-      if (particle.y * depth < playerState.y + mapSize * -1)
-        particle.y += mapSize * 2; //* depth;
-      if (particle.x * depth > playerState.x + mapSize)
-        particle.x -= mapSize * 2; //* depth;
-      if (particle.y * depth > playerState.y + mapSize)
-        particle.y -= mapSize * 2; //* depth;
+      let xOverflowed = false;
+      let yOverflowed = false;
+
+      if (particle.x * depth < playerState.x + mapSize * -1) {
+        particle.x += mapSize * 2;
+        xOverflowed = true;
+      }
+      if (particle.y * depth < playerState.y + mapSize * -1) {
+        particle.y += mapSize * 2;
+        yOverflowed = true;
+      }
+      if (particle.x * depth > playerState.x + mapSize) {
+        particle.x -= mapSize * 2;
+        xOverflowed = true;
+      }
+      if (particle.y * depth > playerState.y + mapSize) {
+        particle.y -= mapSize * 2;
+        yOverflowed = true;
+      }
+
+      // Make repeating patterns less obvious
+      if ((xOverflowed || yOverflowed) && particle.rotation) {
+        particle.rotation = random(0, 360);
+      }
     }
 
     return particle;
