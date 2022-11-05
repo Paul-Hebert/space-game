@@ -1,9 +1,6 @@
 import { addMessageToQueue } from "../hud/messaging.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
-import {
-  keysThatHaveBeenPressed,
-  resetPressedKeys,
-} from "../state/pressed-keys.js";
+import { resetPressedKeys } from "../state/pressed-keys.js";
 import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
@@ -53,6 +50,7 @@ export function tutorial() {
     nextAction: () => {
       const enemyShip = new CrowShip(positionToMapRight());
       enemyShip.weapons = [firstWeaponUpgrade];
+      enemyShip.upgradeDropChance = 1;
       mapData.ships.push(enemyShip);
 
       addMessageToQueue({
@@ -72,12 +70,14 @@ export function tutorial() {
         nextAction: () => {
           resetPressedKeys();
 
-          playerState.weapons.push(firstWeaponUpgrade);
-
           addMessageToQueue({
             content: `
               <p>
-                We recovered a weapon from one of the destroyed ships. Let's give it a try.
+                The enemy ship dropped its weapon! Let's pick it up and try it out.
+              </p>
+
+              <p>
+                Fly over the white circle to pick up the gun.
               </p>
 
               <p>Press the <kbd>${
@@ -85,16 +85,12 @@ export function tutorial() {
               }</kbd> key to switch between weapons and try shooting it.</p>
             `,
             exitRequirements: () => {
-              const hasSwitched = keysThatHaveBeenPressed.includes(
-                controlOption === "keyboard" ? "Shift" : "d"
-              );
-
               const hasShot =
                 mapData.bullets.filter(
                   (b) => b.weapon === firstWeaponUpgrade.name
                 ).length > 1;
 
-              return hasSwitched && hasShot;
+              return hasShot;
             },
             nextAction: () => {
               for (let i = 0; i < 7; i++) {

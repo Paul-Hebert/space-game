@@ -31,7 +31,7 @@ function updateParticleGroup(particles, aging) {
       particle = moveObject(particle);
     }
 
-    if (aging) {
+    if (aging && particle.maxAge) {
       particle.age++;
     }
 
@@ -70,7 +70,9 @@ function updateParticleGroup(particles, aging) {
   });
 
   if (aging) {
-    particles = particles.filter((particle) => particle.age < particle.maxAge);
+    particles = particles.filter(
+      (particle) => !particle.maxAge || particle.age < particle.maxAge
+    );
   }
 
   return particles;

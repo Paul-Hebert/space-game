@@ -6,8 +6,6 @@ import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
 import { showMenu } from "../hud/menus.js";
-import { playSoundFile } from "../sound-effects/play-sound-file.js";
-import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 import { gameStats } from "../state/game-stats.js";
 import { displayGameStats } from "./display-game-stats.js";
 
@@ -65,9 +63,7 @@ export function handleCollisions() {
           return true;
         }
 
-        newExplosions = newExplosions.concat(explodeShip(ship));
-
-        const { explosions, resources } = explodeShip(ship);
+        const { explosions, resources } = ship.explode();
         if (explosions.length) newExplosions = newExplosions.concat(explosions);
         if (resources.length) newResources = newResources.concat(resources);
 
@@ -134,37 +130,4 @@ function explodeBullet(bullet) {
     );
   }
   return newExplosions;
-}
-
-function explodeShip(ship) {
-  playSoundFile("explosion-2", volumeRelativeToPlayer(ship));
-
-  const explosions = [];
-  for (let i = 0; i < randomInt(ship.maxHealth, ship.maxHealth * 2); i++) {
-    explosions.push(
-      new Explosion({
-        age: randomInt(-10, 0),
-        x: ship.x,
-        y: ship.y,
-        speed: {
-          x: random(-3, 3),
-          y: random(-3, 3),
-        },
-      })
-    );
-  }
-
-  const resources = ship.resources.map((resource) => {
-    return {
-      ...resource,
-      x: ship.x,
-      y: ship.y,
-      speed: {
-        x: random(-3, 3),
-        y: random(-3, 3),
-      },
-    };
-  });
-
-  return { explosions, resources };
 }

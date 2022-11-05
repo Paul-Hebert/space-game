@@ -2,7 +2,7 @@ import { Pew } from "../weapons/pew.js";
 import { Ray } from "../weapons/ray.js";
 import { Laser } from "../weapons/laser.js";
 import { BaseWeapon } from "../weapons/base-weapon.js";
-import { randomInt, random } from "../math/random.js";
+import { randomInt, random, randomBool } from "../math/random.js";
 import { Boom } from "../weapons/boom.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { relativePosition } from "../math/relative-position.js";
@@ -13,6 +13,9 @@ import { rotatedDraw } from "../graphics/rotated-draw.js";
 import { playCustomSound } from "../sound-effects/play-custom-sound.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 import { Resource } from "../objects/resource.js";
+import { playSoundFile } from "../sound-effects/play-sound-file.js";
+import { Explosion } from "../objects/explosion.js";
+import { playerState } from "../state/player-state.js";
 
 let shipId = 0;
 
@@ -77,6 +80,65 @@ export class BaseShip {
     });
   }
 
+  explode() {
+    playSoundFile("explosion-2", volumeRelativeToPlayer(this));
+
+    const explosions = [];
+    for (let i = 0; i < randomInt(this.maxHealth, this.maxHealth * 2); i++) {
+      explosions.push(
+        new Explosion({
+          age: randomInt(-10, 0),
+          x: this.x,
+          y: this.y,
+          speed: {
+            x: random(-3, 3),
+            y: random(-3, 3),
+          },
+        })
+      );
+    }
+
+    const resources = this.resources.map((resource) => {
+      resource.x = this.x;
+      resource.y = this.y;
+      resource.speed = {
+        x: random(-3, 3),
+        y: random(-3, 3),
+      };
+      return resource;
+    });
+
+    if (randomBool(this.upgradeDropChance)) {
+      const gun = this.weapons[this.currentGun];
+
+      const playerHasGun = playerState.weapons.find(
+        (weapon) => weapon.name === gun.name
+      );
+      const gunOnMap = mapData.resources.find(
+        (resource) =>
+          resource.type === "weapon-upgrade" &&
+          resource.upgradeDetails.name === gun.name
+      );
+
+      if (!playerHasGun && !gunOnMap) {
+        resources.push(
+          new Resource({
+            x: this.x,
+            y: this.y,
+            speed: {
+              x: random(-3, 3),
+              y: random(-3, 3),
+            },
+            type: "weapon-upgrade",
+            upgradeDetails: gun,
+          })
+        );
+      }
+    }
+
+    return { explosions, resources };
+  }
+
   graphic = document.getElementById("enemy-ship");
 
   health = 200;
@@ -94,4 +156,6 @@ export class BaseShip {
   currentGun = 0;
 
   maxResourceCount = 2;
+
+  upgradeDropChance = 0.3;
 }

@@ -28,7 +28,7 @@ function toggleFullScreen() {
 }
 
 document.querySelector(".resume-button").addEventListener("click", () => {
-  hideMenu("pause");
+  hideAllMenus();
   gameLoop.play();
 });
 

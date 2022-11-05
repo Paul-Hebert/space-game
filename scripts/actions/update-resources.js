@@ -5,6 +5,11 @@ import { distanceBetweenPoints } from "../math/distance-between-points.js";
 import { angleBetweenPoints } from "../math/angle-between-points.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
+import { gameLoop } from "../game-loop.js";
+import { playSoundFile } from "../sound-effects/play-sound-file.js";
+import { updateHealthBar } from "../hud/update-health-bar.js";
+import { updateResourceCount } from "../hud/update-resource-count.js";
+import { showMenu } from "../hud/menus.js";
 
 export function updateResources() {
   mapData.resources = mapData.resources
@@ -32,7 +37,19 @@ export function updateResources() {
           radius: 60,
         })
       ) {
-        resource.handlePickup();
+        playSoundFile("notification-2");
+
+        if (resource.type === "health") {
+          playerState.health += 100;
+          updateHealthBar();
+        } else if (resource.type === "money") {
+          playerState.resourceCount++;
+          updateResourceCount();
+        } else if (resource.type === "weapon-upgrade") {
+          showMenu("upgrade");
+          gameLoop.pause();
+          playerState.weapons.push(resource.upgradeDetails);
+        }
         return false;
       }
       return true;
