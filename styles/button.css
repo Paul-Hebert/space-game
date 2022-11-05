@@ -9,12 +9,13 @@ button {
   font-size: 1.5em;
   padding: 1em 2em;
   cursor: pointer;
-  transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
   letter-spacing: 0.01em;
 }
 
 /* TODO: Focus styles */
 button:hover {
+  border-color: var(--color-primary-bright-2);
   background-color: var(--color-primary-dark-1-90);
 }
 
@@ -27,7 +28,8 @@ button::after {
   aspect-ratio: 1;
   border: inherit;
   border-width: 1px;
-  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, border-color 0.2s ease-out;
+  transform: scale(0.5);
 }
 
 button::before {
@@ -48,5 +50,6 @@ button::after {
 
 button:hover::before,
 button:hover::after {
-  transform: scale(1.1);
+  transform: scale(1);
+  border-color: var(--color-primary-bright-2);
 }

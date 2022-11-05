@@ -37,7 +37,7 @@ export function updateResources() {
           radius: 60,
         })
       ) {
-        playSoundFile("notification-2");
+        let sound = "notification-2";
 
         if (resource.type === "health") {
           playerState.health += 100;
@@ -46,10 +46,13 @@ export function updateResources() {
           playerState.resourceCount++;
           updateResourceCount();
         } else if (resource.type === "weapon-upgrade") {
+          sound = "weapon-pickup";
           showMenu("upgrade");
           gameLoop.pause();
           playerState.weapons.push(resource.upgradeDetails);
         }
+
+        playSoundFile(sound);
         return false;
       }
       return true;

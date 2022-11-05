@@ -9,11 +9,12 @@ export const soundFiles = await createSounds([
   { file: "explosion.wav", baseVolume: 0.02 },
   { file: "explosion-2.mp3", baseVolume: 0.1 },
   { file: "engine.mp3", baseVolume: 0.01 },
-  { file: "music.mp3", baseVolume: 0.15 },
+  { file: "music-2.mp3", baseVolume: 0.4 },
   { file: "resource-pickup.wav", baseVolume: 0.1 },
   { file: "notification-2.mp3", baseVolume: 0.1 },
   { file: "hyper-speed.mp3", baseVolume: 0.3 },
   { file: "success-echo.mp3", baseVolume: 0.5 },
+  { file: "weapon-pickup.mp3", baseVolume: 0.5 },
 ]);
 
 async function createSounds(sounds) {

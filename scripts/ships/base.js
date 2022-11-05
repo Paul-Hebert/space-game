@@ -157,5 +157,5 @@ export class BaseShip {
 
   maxResourceCount = 2;
 
-  upgradeDropChance = 0.3;
+  upgradeDropChance = 0.15;
 }

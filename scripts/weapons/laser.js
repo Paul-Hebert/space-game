@@ -1,7 +1,7 @@
 import { BaseWeapon } from "./base-weapon.js";
 
 export class Laser extends BaseWeapon {
-  name = "laser";
+  name = "Class 3 Restricted Laser";
   speed = 50;
   reloadSpeed = 50;
   bulletRadius = 4;
