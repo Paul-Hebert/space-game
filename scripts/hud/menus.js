@@ -10,6 +10,7 @@ const menus = {
   success: document.querySelector(".success-menu"),
   nextLevel: document.querySelector(".next-level-menu"),
   start: document.querySelector(".start-menu"),
+  upgrade: document.querySelector(".upgrade-menu"),
 };
 
 export function showMenu(name) {
