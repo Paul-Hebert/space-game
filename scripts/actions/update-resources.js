@@ -5,9 +5,6 @@ import { distanceBetweenPoints } from "../math/distance-between-points.js";
 import { angleBetweenPoints } from "../math/angle-between-points.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
-import { updateHealthBar } from "../hud/update-health-bar.js";
-import { updateResourceCount } from "../hud/update-resource-count.js";
-import { playSoundFile } from "../sound-effects/play-sound-file.js";
 
 export function updateResources() {
   mapData.resources = mapData.resources
@@ -35,14 +32,7 @@ export function updateResources() {
           radius: 60,
         })
       ) {
-        playSoundFile("notification-2");
-        if (resource.type === "health") {
-          playerState.health += 100;
-          updateHealthBar();
-        } else if (resource.type === "money") {
-          playerState.resourceCount++;
-          updateResourceCount();
-        }
+        resource.handlePickup();
         return false;
       }
       return true;
