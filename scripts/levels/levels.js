@@ -64,6 +64,6 @@ export const levels = [
   },
   level5,
   () => {
-    fightLevel({ difficulty: 100 });
+    fightLevel({ difficulty: 75 });
   },
 ];
