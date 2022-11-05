@@ -1,9 +1,7 @@
 # Road map
 
 - Upgrades
-  - Display current weapon (and weapon options?)
-  - Change "Next Level" to non-blocking UI (so you can grab upgrades after beating a level)
-  - Add logic to determine what weapons the player currently has (should be exposed on BaseShip)
+  - Change "Next Level" to non-blocking UI (so you can grab upgrades after beating a level) - this may not be necessary. Maybe you need to collect upgrades to finish a level?
   - Add logic to determine if a ship should drop its weapon
   - Add code around weapons acting as graphics on map
   - Add logic about weapon pickup + notification
