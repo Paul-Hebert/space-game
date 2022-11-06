@@ -84,18 +84,39 @@ export class BaseShip {
     playSoundFile("explosion-2", volumeRelativeToPlayer(this));
 
     const explosions = [];
-    for (let i = 0; i < randomInt(this.maxHealth, this.maxHealth * 2); i++) {
+    for (let i = 0; i < randomInt(this.size / 2, this.size); i++) {
+      const angle = random(0, 360);
+      const rotationInRadians = degreesToRadians(angle);
+      const speed = (Math.min(150, this.size) / 300) * random(1, 10);
+      const offset = Math.min(200, this.size) / 100;
+
       explosions.push(
         new Explosion({
-          age: randomInt(-10, 0),
-          x: this.x,
-          y: this.y,
+          age: random(-10, 0),
+          x: this.x + Math.cos(rotationInRadians) * offset,
+          y: this.y + Math.sin(rotationInRadians) * offset,
           speed: {
-            x: random(-3, 3),
-            y: random(-3, 3),
+            x: Math.cos(rotationInRadians) * speed,
+            y: Math.sin(rotationInRadians) * speed,
           },
         })
       );
+
+      if (randomBool(0.3)) {
+        for (let x = 0; x < random(10, 20); x++) {
+          explosions.push(
+            new Explosion({
+              age: random(-10, 0),
+              x: this.x + Math.cos(rotationInRadians) * offset * x * 2,
+              y: this.y + Math.cos(rotationInRadians) * offset * x * 2,
+              speed: {
+                x: Math.cos(rotationInRadians) * speed,
+                y: Math.sin(rotationInRadians) * speed,
+              },
+            })
+          );
+        }
+      }
     }
 
     const resources = this.resources.map((resource) => {
