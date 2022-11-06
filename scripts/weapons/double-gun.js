@@ -7,6 +7,8 @@ import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-play
 export class DoubleGun extends BaseWeapon {
   name = "Refurbished Side Cannons";
 
+  damage = 10;
+
   shoot(ship) {
     this.bulletStream(ship, 5, 2);
     // this.singleShot(ship);

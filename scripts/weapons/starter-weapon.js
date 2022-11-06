@@ -6,7 +6,7 @@ export class StarterWeapon extends BaseWeapon {
   reloadSpeed = 10;
   bulletRadius = 3;
   bulletColor = "yellow";
-  damage = 3;
+  damage = 12;
   maxAge = 40;
   sound = "small-shot";
 

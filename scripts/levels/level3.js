@@ -8,11 +8,12 @@ import {
   positionToMapBottom,
 } from "../math/position-to-map-edge.js";
 import { MotherShip } from "../ships/mother-ship.js";
+import { MiningOverseer } from "../ships/mining-overseer.js";
 
 export function level3() {
-  mapData.ships.push(new MotherShip(positionToMapRight(0.5)));
+  mapData.ships.push(new MiningOverseer(positionToMapRight(0.5)));
   mapData.ships.push(new MotherShip(positionToMapTop(0.5)));
-  mapData.ships.push(new MotherShip(positionToMapLeft(0.5)));
+  mapData.ships.push(new MiningOverseer(positionToMapLeft(0.5)));
   mapData.ships.push(new MotherShip(positionToMapBottom(0.5)));
 
   addMessageToQueue({

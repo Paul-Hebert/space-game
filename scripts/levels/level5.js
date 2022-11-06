@@ -12,15 +12,16 @@ import {
   positionToMapTop,
 } from "../math/position-to-map-edge.js";
 import { MotherShip } from "../ships/mother-ship.js";
+import { MiningOverseer } from "../ships/mining-overseer.js";
 
 export function level5() {
   for (let i = 0; i < 3; i++) {
     mapData.ships.push(new MotherShip(positionToMapLeft()));
+    mapData.ships.push(new MiningOverseer(positionToMapRight()));
   }
 
   mapData.ships.push(new SniperShip(positionToMapTop()));
   mapData.ships.push(new SniperShip(positionToMapBottom()));
-  mapData.ships.push(new BigShip(positionToMapRight()));
 
   addMessageToQueue({
     content: `

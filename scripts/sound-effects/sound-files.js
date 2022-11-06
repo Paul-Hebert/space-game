@@ -2,7 +2,6 @@ import { audioContext } from "./audio-context.js";
 
 export const soundFiles = await createSounds([
   { file: "laser.wav", baseVolume: 0.02 },
-  { file: "laser-2.wav", baseVolume: 0.3 },
   { file: "laser-4.wav", baseVolume: 0.3 },
   { file: "small-shot.wav", baseVolume: 0.3 },
   { file: "pop.wav", baseVolume: 0.3 },

@@ -9,11 +9,13 @@ export class ShipSpawner extends BaseWeapon {
   reloadSpeed = 50;
   sound = "pop";
 
+  spawnedShip = FastShip;
+
   shoot(ship) {
     playSoundFile(this.sound, volumeRelativeToPlayer(ship));
 
     mapData.ships.push(
-      new FastShip({
+      new this.spawnedShip({
         ...this.nosePosition(ship),
         speed: this.angledSpeed(ship),
         rotation: ship.rotation,

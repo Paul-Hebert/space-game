@@ -10,12 +10,14 @@ import { mapData } from "../../state/map-data.js";
 import { positionToRandomMapEdge } from "../../math/position-to-map-edge.js";
 import { addMessageToQueue } from "../../hud/messaging.js";
 import { completeLevel } from "../levels.js";
+import { MiningDrone } from "../../ships/mining-drone.js";
+import { MiningOverseer } from "../../ships/mining-overseer.js";
 
 // TODO: Clusters of enemies
 const enemyOptions = [
   {
     difficulty: 10,
-    options: [MotherShip, SniperShip, BigShip],
+    options: [MotherShip, SniperShip, BigShip, MiningOverseer],
   },
   {
     difficulty: 3,
@@ -23,7 +25,7 @@ const enemyOptions = [
   },
   {
     difficulty: 1,
-    options: [FastShip],
+    options: [FastShip, MiningDrone],
   },
 ];
 

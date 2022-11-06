@@ -6,7 +6,7 @@ export class Pew extends BaseWeapon {
   reloadSpeed = 5;
   bulletRadius = 6;
   bulletColor = "red";
-  damage = 5;
+  damage = 10;
   maxAge = 35;
 
   graphic = document.getElementById("pew");

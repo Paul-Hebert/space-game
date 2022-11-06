@@ -6,6 +6,6 @@ export class Ray extends BaseWeapon {
   reloadSpeed = 1;
   bulletRadius = 10;
   bulletColor = "blue";
-  damage = 10;
+  damage = 12;
   maxAge = 40;
 }

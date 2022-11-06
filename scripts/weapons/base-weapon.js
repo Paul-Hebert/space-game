@@ -13,7 +13,7 @@ export class BaseWeapon {
   reloadSpeed = 5;
   bulletRadius = 2;
   bulletColor = "yellow";
-  damage = 2;
+  damage = 5;
   maxAge = 30;
   sound = "laser";
 
@@ -50,6 +50,7 @@ export class BaseWeapon {
   }
 
   createBullet(ship, position) {
+    console.log(this.damage);
     return new Bullet({
       ...position,
       speed: this.angledSpeed(ship),

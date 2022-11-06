@@ -6,6 +6,6 @@ export class Boom extends BaseWeapon {
   reloadSpeed = 3;
   bulletRadius = 10;
   bulletColor = "green";
-  damage = 100;
+  damage = 30;
   maxAge = 30;
 }
