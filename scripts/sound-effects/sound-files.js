@@ -15,7 +15,7 @@ export const soundFiles = await createSounds([
   { file: "success-echo.mp3", baseVolume: 0.5 },
   { file: "weapon-pickup.wav", baseVolume: 0.75 },
   { file: "weapon-dropped.wav", baseVolume: 0.5 },
-  { file: "lost-2.wav", baseVolume: 0.15 },
+  { file: "lost-2.wav", baseVolume: 0.1 },
 ]);
 
 async function createSounds(sounds) {
