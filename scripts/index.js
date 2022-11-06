@@ -67,17 +67,15 @@ document.querySelectorAll(".start-button").forEach((button) => {
 });
 
 window.addEventListener("keydown", ({ key }) => {
-  if (key === "d" || key === "Shift") {
+  if (key === "d" || key === "D" || key === "Shift") {
     playerState.currentGun++;
     if (playerState.currentGun >= playerState.weapons.length) {
       playerState.currentGun = 0;
     }
     updateCurrentWeapon();
   }
-});
 
-window.addEventListener("keydown", ({ key }) => {
-  if (key === "m") {
+  if (key === "m" || key === "M") {
     toggleMute();
 
     if (muted && music) {

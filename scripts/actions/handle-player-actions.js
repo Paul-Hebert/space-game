@@ -22,11 +22,11 @@ export function handlePlayerActions() {
     }
   }
 
-  if (pressedKeys["ArrowUp"] || pressedKeys["a"]) {
+  if (pressedKeys["ArrowUp"] || pressedKeys["a"] || pressedKeys["A"]) {
     acceleratePlayer();
   }
 
-  if (pressedKeys[" "] || pressedKeys["s"]) {
+  if (pressedKeys[" "] || pressedKeys["s"] || pressedKeys["S"]) {
     shoot(playerState);
   }
 
