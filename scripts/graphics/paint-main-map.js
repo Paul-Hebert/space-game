@@ -5,6 +5,7 @@ import { playerState } from "../state/player-state.js";
 import { mainCanvas, mainCtx, clearMainCanvas } from "./canvas.js";
 import { drawCircle } from "./draw-circle.js";
 import { drawSprite } from "./draw-sprite.js";
+import { Resource } from "../objects/resource.js";
 
 const asteroidSprites = document.getElementById("asteroid-sprites");
 
@@ -47,6 +48,19 @@ export function paintMainMap() {
             },
             asteroidSprites,
             object.spritePos
+          );
+        }
+
+        // If this is a resource with a weapon upgrade, draw the weapon.
+        if (object instanceof Resource && object.type === "weapon-upgrade") {
+          // TODO: Switch to `draw` to get double guns working?
+          object.upgradeDetails.drawGun(
+            mainCtx,
+            {
+              ...object,
+              size: object.radius * 2,
+            },
+            object
           );
         }
       }

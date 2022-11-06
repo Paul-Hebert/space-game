@@ -28,7 +28,7 @@ export class Resource extends Particle {
         s: 0,
         l: 100,
       });
-      this.radius = Math.round(random(20, 30));
+      this.radius = Math.round(random(40, 50));
       this.maxAge = null;
     }
   }

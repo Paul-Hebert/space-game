@@ -143,18 +143,21 @@ export class BaseShip {
 
       if (!playerHasGun && !gunOnMap) {
         playSoundFile("weapon-dropped");
-        resources.push(
-          new Resource({
-            x: this.x,
-            y: this.y,
-            speed: {
-              x: random(-3, 3),
-              y: random(-3, 3),
-            },
-            type: "weapon-upgrade",
-            upgradeDetails: gun,
-          })
-        );
+        const gunUpgrade = new Resource({
+          x: this.x,
+          y: this.y,
+          speed: {
+            x: random(-3, 3),
+            y: random(-3, 3),
+          },
+          type: "weapon-upgrade",
+          upgradeDetails: gun,
+        });
+
+        gunUpgrade.rotation = random(0, 360);
+        gunUpgrade.rotationSpeed = random(-3, 3);
+
+        resources.push(gunUpgrade);
       }
     }
 

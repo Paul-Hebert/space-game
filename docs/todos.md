@@ -20,6 +20,7 @@
 - Move generative image logic into this repo?
 - Sprites for resources
 - Better explosions - player explosion
+  - Bullet explosion size/count should be based on damage
 
 ## UI
 

@@ -86,7 +86,6 @@ export function handleCollisions() {
 
       newExplosions = newExplosions.concat(explodeBullet(bullet));
 
-      console.log(bullet);
       playerState.health -= bullet.damage;
 
       if (playerState.health <= 0) {

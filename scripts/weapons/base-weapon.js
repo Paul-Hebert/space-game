@@ -50,7 +50,6 @@ export class BaseWeapon {
   }
 
   createBullet(ship, position) {
-    console.log(this.damage);
     return new Bullet({
       ...position,
       speed: this.angledSpeed(ship),
