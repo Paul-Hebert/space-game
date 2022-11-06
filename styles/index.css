@@ -18,3 +18,22 @@ body {
   margin: 0;
   width: 100%;
 }
+
+kbd {
+  padding: 0 0.4em;
+  position: relative;
+  background: var(--color-primary-dark-1-t-90);
+  color: var(--color-primary-bright-1);
+  border: 1px solid var(--color-primary-bright-3);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  top: -1px;
+}
+
+kbd::before {
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 1px 0 2px var(--color-primary-bright-3);
+  content: "";
+}

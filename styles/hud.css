@@ -10,7 +10,7 @@
 }
 
 .resource-count {
-  color: var(--color-primary-bright-2);
+  color: var(--color-primary-bright-1);
   font-weight: bold;
 }
 
@@ -34,5 +34,5 @@ meter {
 
 .current-weapon {
   display: block;
-  color: var(--color-primary-bright-2);
+  color: var(--color-primary-bright-1);
 }
