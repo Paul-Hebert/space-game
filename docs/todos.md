@@ -1,6 +1,5 @@
 ## Technical Refactors
 
-- Loop should have a target frame rate and handle dropped frames
 - tests
 - Math.hypot is slow. Roll our own
 - Clean things up
@@ -11,7 +10,6 @@
 
 ## Advanced Features
 
-- Generative Levels
 - Traveling between stars/planets
 - Ship upgrades
 - Quests
@@ -35,13 +33,8 @@
 
 ## Gameplay tweaks
 
-- Smaller ships should drop less resources?
 - Should asteroid collisions be a thing?
-- Ships should "drop" upgrades in addition to esources
-
-## Bugs
-
-- Bullets don't work when facing directly to the right
+- Ships should "drop" upgrades in addition to resources
 
 ## Audio
 
