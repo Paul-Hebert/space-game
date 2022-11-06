@@ -73,11 +73,13 @@ export class BaseWeapon {
     };
   }
 
-  draw(context, ship) {
+  draw(context, ship, verticalOffset = true) {
     this.drawGun(
       context,
       ship,
-      positionToNose(ship, (this.gunSize(ship).y * -1) / 5)
+      verticalOffset
+        ? positionToNose(ship, (this.gunSize(ship).y * -1) / 5)
+        : ship
     );
   }
 

@@ -54,13 +54,13 @@ export function paintMainMap() {
         // If this is a resource with a weapon upgrade, draw the weapon.
         if (object instanceof Resource && object.type === "weapon-upgrade") {
           // TODO: Switch to `draw` to get double guns working?
-          object.upgradeDetails.drawGun(
+          object.upgradeDetails.draw(
             mainCtx,
             {
               ...object,
               size: object.radius * 2,
             },
-            object
+            false
           );
         }
       }
