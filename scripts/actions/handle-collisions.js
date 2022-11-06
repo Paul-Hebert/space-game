@@ -8,6 +8,7 @@ import { updateHealthBar } from "../hud/update-health-bar.js";
 import { showMenu } from "../hud/menus.js";
 import { gameStats } from "../state/game-stats.js";
 import { displayGameStats } from "./display-game-stats.js";
+import { playSoundFile } from "../sound-effects/play-sound-file.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -89,6 +90,7 @@ export function handleCollisions() {
       playerState.health -= bullet.damage;
 
       if (playerState.health <= 0) {
+        playSoundFile("lost-2");
         displayGameStats(".restart-menu");
         showMenu("restart");
         // This isn't working

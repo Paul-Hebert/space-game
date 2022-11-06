@@ -142,6 +142,7 @@ export class BaseShip {
       );
 
       if (!playerHasGun && !gunOnMap) {
+        playSoundFile("weapon-dropped");
         resources.push(
           new Resource({
             x: this.x,
