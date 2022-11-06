@@ -14,5 +14,5 @@ export class Explosion extends Particle {
     l: random(50, 100),
   });
 
-  maxAge = 10;
+  maxAge = 30;
 }
