@@ -1,5 +1,6 @@
 :root,
-.themed {
+.themed,
+kbd {
   /* --primary-hue: 107; Original green concept */
   --primary-hue: 205;
 
@@ -31,6 +32,7 @@ h6 {
   color: var(--color-primary-bright-1);
 }
 
-.themed.danger {
+.themed.danger,
+kbd {
   --primary-hue: 25;
 }

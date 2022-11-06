@@ -20,20 +20,29 @@ body {
 }
 
 kbd {
-  padding: 0 0.4em;
+  padding: 0 0.8em;
   position: relative;
-  background: var(--color-primary-dark-1-t-90);
   color: var(--color-primary-bright-1);
-  border: 1px solid var(--color-primary-bright-3);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  top: -1px;
+  top: -0.075em;
+  z-index: 0;
+}
+
+kbd::before,
+kbd::after {
+  content: "";
+  position: absolute;
+  inset: 0 0.4em;
+  z-index: -1;
 }
 
 kbd::before {
-  position: absolute;
-  inset: 0;
-  box-shadow: 0 1px 0 2px var(--color-primary-bright-3);
-  content: "";
+  box-shadow: 0 0.05em 0 0.15em var(--color-primary-bright-3);
+}
+
+kbd::after {
+  background: var(--color-primary-dark-1-t-90);
+  border: 1px solid var(--color-primary-bright-3);
 }
