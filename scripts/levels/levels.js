@@ -12,6 +12,8 @@ import { startHyperSpeedJump } from "../actions/hyper-speed-jump.js";
 import { displayGameStats } from "../actions/display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 
+const sectorTitle = document.querySelector(".sector-title");
+
 export let currentLevel = 0;
 
 export function resetCurrentLevel() {
@@ -19,8 +21,12 @@ export function resetCurrentLevel() {
 }
 
 export function nextLevel() {
+  sectorTitle.classList.add("is-hidden");
+
   startHyperSpeedJump(() => {
-    levels[currentLevel]();
+    levels[currentLevel].action();
+    sectorTitle.textContent = levels[currentLevel].title;
+    sectorTitle.classList.remove("is-hidden");
   });
 }
 
@@ -42,28 +48,64 @@ export function completeLevel() {
 }
 
 export const levels = [
-  tutorial,
-  () => {
-    fightLevel({ difficulty: 8 });
+  {
+    title: "Company Mining Colony",
+    action: tutorial,
   },
-  level2,
-  () => {
-    fightLevel({ difficulty: 12 });
+  {
+    title: "Out of the Frying Pan",
+    action: () => {
+      fightLevel({ difficulty: 8 });
+    },
   },
-  level4,
-  () => {
-    fightLevel({ difficulty: 20 });
+  {
+    title: "Into the Fire",
+    action: level2,
   },
-  level3,
-  () => {
-    fightLevel({ difficulty: 30 });
+  {
+    title: "Outside New Sol X",
+    action: () => {
+      fightLevel({ difficulty: 12 });
+    },
   },
-  level1,
-  () => {
-    fightLevel({ difficulty: 50 });
+  {
+    title: "Ambushed By Company Drones",
+    action: level4,
   },
-  level5,
-  () => {
-    fightLevel({ difficulty: 75 });
+  {
+    title: "Company Resupply Depot",
+    action: () => {
+      fightLevel({ difficulty: 20 });
+    },
+  },
+  {
+    title: "Company Logistics HQ",
+    action: level3,
+  },
+  {
+    title: "The Edge of the Belt",
+    action: () => {
+      fightLevel({ difficulty: 30 });
+    },
+  },
+  {
+    title: "The Big Empty",
+    action: level1,
+  },
+  {
+    title: "In Hot Pursuit",
+    action: () => {
+      fightLevel({ difficulty: 50 });
+    },
+  },
+  {
+    title: "Almost Home",
+    action: level5,
+  },
+  {
+    title: "The Final Battle",
+    action: () => {
+      fightLevel({ difficulty: 75 });
+    },
   },
 ];

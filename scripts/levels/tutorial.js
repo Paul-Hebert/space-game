@@ -24,7 +24,10 @@ export function tutorial() {
 
   addMessageToQueue({
     content: `
-      <p>We took some damage back there captain. Shoot an asteroid so we can gather resources to repair the ship.</p>
+      <p>
+        Your ship is damaged. 
+        Shoot an asteroid and gather resources from it to repair the ship.
+      </p>
 
       <ul>
         ${

@@ -17,6 +17,8 @@
   </head>
   <body>
     <div class="game">
+      <h2 class="sector-title"></h2>
+
       <canvas id="main-canvas" width="500" height="500"></canvas>
 
       <div class="hud">
@@ -120,7 +122,7 @@
       <div class="next-level-menu menu">
         <div class="menu-inner">
           <div class="menu-section">
-            <h2>You completed the level</h2>
+            <h2>Sector Cleared</h2>
           </div>
 
           <div class="menu-section subhead">
@@ -129,7 +131,7 @@
           </div>
 
           <div class="menu-section">
-            <button class="next-level-button">Next Level</button>
+            <button class="next-level-button">Next Sector</button>
           </div>
         </div>
       </div>
@@ -141,8 +143,13 @@
           </div>
 
           <div class="menu-section subhead">
-            <p>Your ship is damaged and you're stranded in an enemy galaxy.</p>
-            <p>Can you fight your way back to your home world?</p>
+            <p>
+              You've escaped from a penal mining colony flying a stolen mining
+              rig.
+            </p>
+            <p>
+              Can you stay alive and fight your way back to your home world?
+            </p>
           </div>
 
           <form class="settings menu-section">

@@ -1,7 +1,7 @@
 import { BaseWeapon } from "./base-weapon.js";
 
 export class StarterWeapon extends BaseWeapon {
-  name = "Old Mining Laser";
+  name = "Stolen Mining Laser";
   speed = 25;
   reloadSpeed = 10;
   bulletRadius = 3;
