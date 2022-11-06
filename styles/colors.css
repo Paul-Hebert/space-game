@@ -1,5 +1,7 @@
-:root {
-  --primary-hue: 107;
+:root,
+.themed {
+  /* --primary-hue: 107; Original green concept */
+  --primary-hue: 205;
 
   --color-white: hsl(var(--primary-hue), 37%, 86%);
 
@@ -27,4 +29,8 @@ h4,
 h5,
 h6 {
   color: var(--color-primary-bright-1);
+}
+
+.themed.danger {
+  --primary-hue: 25;
 }
