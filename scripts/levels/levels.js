@@ -42,7 +42,7 @@ export function completeLevel() {
 }
 
 export const levels = [
-  // tutorial,
+  tutorial,
   () => {
     fightLevel({ difficulty: 8 });
   },
