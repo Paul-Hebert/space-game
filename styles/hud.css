@@ -32,6 +32,16 @@ meter {
   width: 100%;
 }
 
+.weapons-list {
+  padding: 0;
+  list-style: none;
+  color: var(--color-primary-bright-3);
+}
+
+.weapon {
+  transition: color 0.2s ease-out;
+}
+
 .current-weapon {
   display: block;
   color: var(--color-primary-bright-1);

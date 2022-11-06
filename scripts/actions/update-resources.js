@@ -10,6 +10,7 @@ import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
 import { updateResourceCount } from "../hud/update-resource-count.js";
 import { showMenu } from "../hud/menus.js";
+import { updateWeapons } from "../hud/update-weapons.js";
 
 export function updateResources() {
   mapData.resources = mapData.resources
@@ -50,6 +51,7 @@ export function updateResources() {
           showMenu("upgrade");
           gameLoop.pause();
           playerState.weapons.push(resource.upgradeDetails);
+          updateWeapons();
         }
 
         playSoundFile(sound);

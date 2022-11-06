@@ -7,7 +7,7 @@ import { nextLevel } from "./levels/levels.js";
 import { muted, toggleMute } from "./sound-effects/muted.js";
 import { initMusic } from "./sound-effects/music.js";
 import { setControlOption } from "./state/control-option.js";
-import { updateCurrentWeapon } from "./hud/update-current-weapon.js";
+import { updateCurrentWeapon } from "./hud/update-weapons.js";
 import { resetMap } from "./state/map-data.js";
 
 let music = false;
