@@ -12,23 +12,6 @@ export function updateCurrentWeapon() {
 }
 
 export function updateWeapons() {
-  console.log(weaponsList);
-
-  console.log(
-    playerState.weapons
-      .map(
-        (weapon, i) =>
-          `
-    <li
-      data-name="${weapon.name}"
-      class="weapon ${i === playerState.currentGun ? "current-weapon" : ""}
-    >
-      ${weapon.name}
-    </li>
-  `
-      )
-      .join("")
-  );
   weaponsList.innerHTML = playerState.weapons
     .map(
       (weapon, i) =>

@@ -27,9 +27,11 @@ function toggleFullScreen() {
   }
 }
 
-document.querySelector(".resume-button").addEventListener("click", () => {
-  hideAllMenus();
-  gameLoop.play();
+document.querySelectorAll(".resume-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    hideAllMenus();
+    gameLoop.play();
+  });
 });
 
 document.querySelectorAll(".restart-button").forEach((button) => {
@@ -37,6 +39,7 @@ document.querySelectorAll(".restart-button").forEach((button) => {
     hideAllMenus();
     resetMap();
     newGame();
+    gameLoop.play();
   });
 });
 

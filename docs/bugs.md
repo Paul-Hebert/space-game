@@ -1,4 +1,3 @@
 - Loop should have a target frame rate and handle dropped frames
 - Bullets don't work when facing directly to the right
 - If you pick up an upgrade while completing a level the game crashes
-- Pause menu buttons are busted
