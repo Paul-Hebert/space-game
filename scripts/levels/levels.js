@@ -54,13 +54,13 @@ export const levels = [
   },
   {
     title: "Out of the Frying Pan",
-    action: () => {
-      fightLevel({ difficulty: 8 });
-    },
+    action: level2,
   },
   {
     title: "Into the Fire",
-    action: level2,
+    action: () => {
+      fightLevel({ difficulty: 8 });
+    },
   },
   {
     title: "Outside New Sol X",
