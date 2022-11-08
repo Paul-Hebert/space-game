@@ -12,6 +12,7 @@ import {
   positionToMapRight,
   positionToMapTop,
 } from "../math/position-to-map-edge.js";
+import { battleObjective } from "./objectives/battle.js";
 
 export function level4() {
   for (let i = 0; i < 3; i++) {
@@ -29,16 +30,9 @@ export function level4() {
   addMessageToQueue({
     content: `
       <p>More enemy ships incoming!.</p>
-      <div class="objective">0/15 ships destroyed.</div>
     `,
 
-    updateObjective: () => {
-      return `${15 - mapData.ships.length}/15 ships destroyed.`;
-    },
-
-    exitRequirements: () => {
-      return mapData.ships.length === 0;
-    },
+    objectives: [battleObjective()],
 
     nextAction: () => {
       completeLevel();

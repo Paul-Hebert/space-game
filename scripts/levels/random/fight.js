@@ -12,6 +12,7 @@ import { addMessageToQueue } from "../../hud/messaging.js";
 import { completeLevel } from "../levels.js";
 import { MiningDrone } from "../../ships/mining-drone.js";
 import { MiningOverseer } from "../../ships/mining-overseer.js";
+import { battleObjective } from "../objectives/battle.js";
 
 // TODO: Clusters of enemies
 const enemyOptions = [
@@ -49,16 +50,9 @@ export function fightLevel({ difficulty = 5 }) {
   addMessageToQueue({
     content: `
       <p>More enemy ships incoming!</p>
-      <div class="objective">${mapData.ships.length} Ships Remaining.</div>
     `,
 
-    updateObjective: () => {
-      return `${mapData.ships.length} Ships Remaining`;
-    },
-
-    exitRequirements: () => {
-      return mapData.ships.length === 0;
-    },
+    objectives: [battleObjective()],
 
     nextAction: () => {
       completeLevel();

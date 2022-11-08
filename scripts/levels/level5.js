@@ -13,6 +13,7 @@ import {
 } from "../math/position-to-map-edge.js";
 import { MotherShip } from "../ships/mother-ship.js";
 import { MiningOverseer } from "../ships/mining-overseer.js";
+import { battleObjective } from "./objectives/battle.js";
 
 export function level5() {
   for (let i = 0; i < 3; i++) {
@@ -26,16 +27,9 @@ export function level5() {
   addMessageToQueue({
     content: `
       <p>More enemy ships incoming!.</p>
-      <div class="objective">6 ships remaining.</div>
     `,
 
-    updateObjective: () => {
-      return `${mapData.ships.length} ships remaining.`;
-    },
-
-    exitRequirements: () => {
-      return mapData.ships.length === 0;
-    },
+    objectives: [battleObjective()],
 
     nextAction: () => {
       completeLevel();
