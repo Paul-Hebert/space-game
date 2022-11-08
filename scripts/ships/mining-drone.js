@@ -7,9 +7,9 @@ export class MiningDrone extends BaseShip {
     this.currentGun = 0;
   }
 
-  rotationSpeed = 5;
-  accelerationSpeed = 1;
-  maxSpeed = 8;
+  rotationSpeed = 10;
+  accelerationSpeed = 2;
+  maxSpeed = 12;
   graphic = document.getElementById("ship-2");
 
   size = 80;
