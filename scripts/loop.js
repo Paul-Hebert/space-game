@@ -1,10 +1,14 @@
 export class Loop {
   play() {
+    if (this.isPlaying) return;
+
     this.isPlaying = true;
     this.doLoopCallback();
   }
 
   pause() {
+    if (!this.isPlaying) return;
+
     this.isPlaying = false;
     cancelAnimationFrame(this.animationFrame);
   }
