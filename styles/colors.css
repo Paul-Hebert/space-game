@@ -36,3 +36,7 @@ h6 {
 kbd {
   --primary-hue: 25;
 }
+
+.themed.success {
+  --primary-hue: 115;
+}
