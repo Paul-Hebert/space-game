@@ -8,6 +8,7 @@ import { drawSprite } from "./draw-sprite.js";
 import { Resource } from "../objects/resource.js";
 import { controlOption } from "../state/control-option.js";
 import { pointerPosition } from "../state/pointer-position.js";
+import { playerControlsEnabled } from "../state/player-controls-enabled.js";
 
 const asteroidSprites = document.getElementById("asteroid-sprites");
 const cursorImg = document.getElementById("cursor");
@@ -30,7 +31,7 @@ export function paintMainMap() {
 
   [...exhaust, ...explosions, ...bullets].forEach(drawObject);
 
-  if (controlOption === "pointer" && pointerPosition) {
+  if (controlOption === "pointer" && pointerPosition && playerControlsEnabled) {
     const pointerSize = 50;
     mainCtx.drawImage(
       cursorImg,
