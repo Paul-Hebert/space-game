@@ -2,10 +2,11 @@
 
 - Upgrades
   - Change "Next Level" to non-blocking UI (so you can grab upgrades after beating a level) - this may not be necessary. Maybe you need to collect upgrades to finish a level?
-  - Support showing things off-minimap with arrows
-  - Show upgrade details in modal
   - Add support for primary + secondary weapons (front and sides)
   - Non-weapon upgrades
+- Show ship damage better
+  - Create repeated explosions based on damage?
+  - Warning noise + popup when health is low
 - Improved objectives
   - Revamp message queue design
   - Explore more objective types

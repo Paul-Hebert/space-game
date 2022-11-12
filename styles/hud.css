@@ -24,9 +24,8 @@
   gap: 1rem;
 }
 
-.hud-section canvas {
-  width: 180px;
-  aspect-ratio: 1;
+canvas.hud-section {
+  padding: 0;
 }
 
 meter {
