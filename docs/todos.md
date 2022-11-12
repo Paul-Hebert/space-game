@@ -21,6 +21,7 @@
 - Sprites for resources
 - Better explosions - player explosion
   - Bullet explosion size/count should be based on damage
+- Handle different screen resolutions better
 
 ## UI
 
@@ -28,14 +29,16 @@
   - Handle off-screen elements
 - Full screen controls
 - Audio toggle
+- Way to change controls
 - Show selected weapon
 - Touch screen controls
 - Better objective/messaging system
+- When selecting controls show longer descriptions
 
 ## Gameplay tweaks
 
 - Should asteroid collisions be a thing?
-- Ships should "drop" upgrades in addition to resources
+- Single use weapons
 
 ## Audio
 

@@ -84,7 +84,7 @@ export class BaseShip {
     playSoundFile("explosion-2", volumeRelativeToPlayer(this));
 
     const explosions = [];
-    for (let i = 0; i < randomInt(this.size / 2, this.size); i++) {
+    for (let i = 0; i < randomInt(this.size / 4, this.size / 2); i++) {
       const angle = random(0, 360);
       const rotationInRadians = degreesToRadians(angle);
       const speed = (Math.min(150, this.size) / 300) * random(1, 10);
@@ -93,6 +93,7 @@ export class BaseShip {
       explosions.push(
         new Explosion({
           age: random(-10, 0),
+          radius: random(this.size / 10, this.size / 5),
           x: this.x + Math.cos(rotationInRadians) * offset,
           y: this.y + Math.sin(rotationInRadians) * offset,
           speed: {
@@ -106,6 +107,7 @@ export class BaseShip {
         for (let x = 0; x < random(10, 20); x++) {
           explosions.push(
             new Explosion({
+              radius: random(this.size / 30, this.size / 20),
               age: random(-10, 0),
               x: this.x + Math.cos(rotationInRadians) * offset * x * 2,
               y: this.y + Math.cos(rotationInRadians) * offset * x * 2,
