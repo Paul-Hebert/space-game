@@ -103,14 +103,14 @@ export class BaseShip {
         })
       );
 
-      if (randomBool(0.3)) {
+      if (randomBool(0.2)) {
         for (let x = 0; x < random(10, 20); x++) {
           explosions.push(
             new Explosion({
-              radius: random(this.size / 30, this.size / 20),
+              radius: random(this.size / (8 * x), this.size / (5 * x)),
               age: random(-10, 0),
-              x: this.x + Math.cos(rotationInRadians) * offset * x * 2,
-              y: this.y + Math.cos(rotationInRadians) * offset * x * 2,
+              x: this.x + Math.cos(rotationInRadians) * offset * x * 5,
+              y: this.y + Math.sin(rotationInRadians) * offset * x * 5,
               speed: {
                 x: Math.cos(rotationInRadians) * speed,
                 y: Math.sin(rotationInRadians) * speed,
