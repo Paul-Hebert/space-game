@@ -9,10 +9,7 @@ export class Laser extends BaseWeapon {
   damage = 10;
   maxAge = 30;
   sound = "laser-4";
+  bulletsPerShot = 40;
 
   graphic = document.getElementById("laser");
-
-  shoot(playerState) {
-    return this.bulletStream(playerState, 40, 4);
-  }
 }

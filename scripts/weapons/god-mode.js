@@ -8,8 +8,6 @@ export class GodMode extends BaseWeapon {
   bulletColor = "purple";
   damage = 100;
   maxAge = 10;
-
-  shoot(playerState) {
-    return this.bulletStream(playerState, 40, 5);
-  }
+  streamLength = 40;
+  bulletsPerShot = 100;
 }

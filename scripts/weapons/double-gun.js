@@ -8,41 +8,25 @@ export class DoubleGun extends BaseWeapon {
   name = "Refurbished Side Cannons";
 
   damage = 10;
+  bulletsPerShot = 5;
 
   shoot(ship) {
-    this.bulletStream(ship, 5, 2);
-    // this.singleShot(ship);
-  }
-
-  singleShot(ship) {
     playSoundFile(this.sound, volumeRelativeToPlayer(ship));
 
-    mapData.bullets.push(this.createBullet(ship, this.gunPosition(ship)));
-    mapData.bullets.push(
-      this.createBullet(ship, this.gunPosition(ship, "left"))
-    );
-  }
+    const rightPosition = this.gunPosition(ship);
+    const leftPosition = this.gunPosition(ship, "left");
 
-  bulletStream(ship, count, distance) {
-    playSoundFile(this.sound, volumeRelativeToPlayer(ship));
-
-    for (let i = 0; i < count; i++) {
-      const rightPosition = this.gunPosition(ship);
-      const leftPosition = this.gunPosition(ship, "left");
+    for (let i = 0; i < this.bulletsPerShot; i++) {
       mapData.bullets.push(
         this.createBullet(
           ship,
-
-          // leftPosition
-          positionForward(leftPosition, ship.rotation, distance * i)
+          positionForward(leftPosition, ship.rotation, this.bulletRadius * i)
         )
       );
       mapData.bullets.push(
         this.createBullet(
           ship,
-
-          // rightPosition
-          positionForward(rightPosition, ship.rotation, distance * i)
+          positionForward(rightPosition, ship.rotation, this.bulletRadius * i)
         )
       );
     }
@@ -56,4 +40,6 @@ export class DoubleGun extends BaseWeapon {
   gunPosition(ship, side = "right") {
     return positionToSide(ship, (this.gunSize(ship).y * 2) / 3, side);
   }
+
+  gunMounts = 2;
 }

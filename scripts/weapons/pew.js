@@ -8,10 +8,6 @@ export class Pew extends BaseWeapon {
   bulletColor = "red";
   damage = 10;
   maxAge = 35;
-
+  bulletsPerShot = 7;
   graphic = document.getElementById("pew");
-
-  shoot(playerState) {
-    return this.bulletStream(playerState, 7, 2);
-  }
 }

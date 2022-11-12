@@ -15,28 +15,21 @@ export class BaseWeapon {
   bulletColor = "yellow";
   damage = 5;
   maxAge = 30;
+  bulletsPerShot = 1;
   sound = "laser";
 
   lastShotFrame = null;
 
   graphic = document.getElementById("gun");
 
+  gunMounts = 1;
+
   shoot(ship) {
-    this.singleShot(ship);
-  }
-
-  singleShot(ship) {
     playSoundFile(this.sound, volumeRelativeToPlayer(ship));
 
-    mapData.bullets.push(this.createBullet(ship, this.nosePosition(ship)));
-  }
-
-  bulletStream(ship, count, distance) {
-    playSoundFile(this.sound, volumeRelativeToPlayer(ship));
-
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < this.bulletsPerShot; i++) {
       mapData.bullets.push(
-        this.createBullet(ship, this.nosePosition(ship, distance * i))
+        this.createBullet(ship, this.nosePosition(ship, this.bulletRadius * i))
       );
     }
   }
@@ -63,7 +56,19 @@ export class BaseWeapon {
   }
 
   range() {
-    return this.speed * this.maxAge;
+    return this.bulletsPerShot * this.bulletRadius + this.speed * this.maxAge;
+  }
+
+  computedDamagePerShot() {
+    return this.bulletsPerShot * this.damage;
+  }
+
+  computedReloadSpeed() {
+    if (this.reloadSpeed <= 1) {
+      return "Instant";
+    }
+
+    return `${this.reloadSpeed} frames`;
   }
 
   gunSize(ship) {

@@ -1,5 +1,6 @@
 import { BaseShip } from "./base.js";
 import { StarterWeapon } from "../weapons/starter-weapon.js";
+import { GodMode } from "../weapons/god-mode.js";
 
 export class PlayerShip extends BaseShip {
   constructor(params) {
@@ -17,5 +18,5 @@ export class PlayerShip extends BaseShip {
 
   id = "player";
 
-  weapons = [new StarterWeapon()];
+  weapons = [new GodMode()];
 }

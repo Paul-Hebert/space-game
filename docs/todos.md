@@ -40,3 +40,8 @@
 ## Audio
 
 - Explosions are too loud. Tone down impact of proximity to player?
+
+## A11y
+
+- Alt text for upgrade images
+- Better modals

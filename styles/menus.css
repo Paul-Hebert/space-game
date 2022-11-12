@@ -107,3 +107,41 @@
   gap: 0.5em;
   cursor: pointer;
 }
+
+.upgrade-details {
+  display: flex;
+  gap: 1em;
+}
+
+.upgrade-graphic {
+  display: grid;
+  place-items: center;
+  padding: 1em;
+  background: var(--color-primary-dark-0);
+  border: 1px solid var(--color-primary-bright-3);
+  aspect-ratio: 1;
+}
+
+.upgrade-graphic-inner {
+  rotate: -45deg;
+}
+
+.upgrade-details-text {
+  display: grid;
+  gap: 1em;
+  text-align: left;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.5em;
+}
+
+.specs dt {
+  font-weight: bold;
+}
+
+.specs dt::after {
+  content: ":";
+}
