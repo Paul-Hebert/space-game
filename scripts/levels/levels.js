@@ -75,7 +75,7 @@ export const levels = [
   {
     title: "Company Resupply Depot",
     action: () => {
-      fightLevel({ difficulty: 20 });
+      fightLevel({ difficulty: 16 });
     },
   },
   {
@@ -85,7 +85,7 @@ export const levels = [
   {
     title: "The Edge of the Belt",
     action: () => {
-      fightLevel({ difficulty: 30 });
+      fightLevel({ difficulty: 25 });
     },
   },
   {

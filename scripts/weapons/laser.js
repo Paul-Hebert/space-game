@@ -6,7 +6,7 @@ export class Laser extends BaseWeapon {
   reloadSpeed = 50;
   bulletRadius = 4;
   bulletColor = "yellow";
-  damage = 10;
+  damage = 7.5;
   maxAge = 30;
   sound = "laser-4";
   bulletsPerShot = 40;
