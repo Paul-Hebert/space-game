@@ -13,7 +13,7 @@ export class PlayerShip extends BaseShip {
   resourceCount = 0;
   maxHealth = 1500;
   health = 1500;
-  maxSpeed = 11;
+  maxSpeed = 13;
 
   id = "player";
 
