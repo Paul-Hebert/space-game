@@ -3,14 +3,15 @@ import {
   enablePlayerControls,
   togglePlayerControls,
 } from "../state/player-controls-enabled.js";
+import { gameLoop } from "../game-loop.js";
 
-const menus = {
+export const menus = {
   pause: document.querySelector(".pause-menu"),
   restart: document.querySelector(".restart-menu"),
   success: document.querySelector(".success-menu"),
   nextLevel: document.querySelector(".next-level-menu"),
   start: document.querySelector(".start-menu"),
-  upgrade: document.querySelector(".upgrade-menu"),
+  weaponUpgrade: document.querySelector(".weapon-upgrade-menu"),
 };
 
 export function showMenu(name) {
@@ -21,6 +22,7 @@ export function showMenu(name) {
 export function hideMenu(name) {
   enablePlayerControls();
   menus[name].classList.remove("is-shown");
+  gameLoop.play();
 }
 
 export function toggleMenu(name) {
