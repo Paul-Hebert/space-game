@@ -25,11 +25,13 @@ export function paintMainMap() {
     ship.draw(mainCtx);
   });
 
+  [...exhaust, ...bullets].forEach(drawObject);
+
   if (playerState.health > 0) {
     playerState.draw(mainCtx);
   }
 
-  [...exhaust, ...explosions, ...bullets].forEach(drawObject);
+  [...explosions].forEach(drawObject);
 
   if (controlOption === "pointer" && pointerPosition && playerControlsEnabled) {
     const pointerSize = 50;
