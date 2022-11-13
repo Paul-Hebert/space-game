@@ -36,6 +36,7 @@
 - Touch screen controls
 - Better objective/messaging system
 - When selecting controls show longer descriptions
+- Support WASD
 
 ## Gameplay tweaks
 

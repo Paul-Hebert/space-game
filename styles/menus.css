@@ -82,17 +82,17 @@
 }
 
 .settings {
-  display: flex;
+  display: grid;
   gap: 1em;
   justify-content: stretch;
 }
 
 .settings fieldset {
   display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  align-items: flex-start;
-  flex-grow: 1;
+  gap: 1em;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
   border-color: var(--color-primary-bright-3);
 }
 
@@ -144,4 +144,81 @@
 
 .specs dt::after {
   content: ":";
+}
+
+fieldset.controls-fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.settings .radio-chunk {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5em;
+  text-align: left;
+  position: relative;
+  padding: 1em;
+}
+
+.radio-details {
+  display: grid;
+  justify-content: stretch;
+  gap: 0.5em;
+}
+
+.radio-details::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-primary-dark-0);
+  border: 1px solid var(--color-primary-bright-3);
+  z-index: 0;
+  transition-property: background-color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+
+.radio-details:hover::before {
+  background-color: var(--color-primary-dark-1);
+  border-color: var(--color-primary-bright-2);
+}
+
+:checked + .radio-details::before {
+  background-color: var(--color-primary-bright-4);
+  border-color: var(--color-primary-bright-1);
+}
+
+.radio-title {
+  font-size: 1.25em;
+  text-align: center;
+}
+
+.radio-chunk ul {
+  display: grid;
+  padding-left: 0.75em;
+  gap: 0.25em;
+}
+
+.radio-details > *,
+.radio-chunk input {
+  position: relative;
+  z-index: 1;
+}
+
+.settings input {
+  height: 1.5em;
+  width: 1.5em;
+  cursor: pointer;
+}
+
+.radio-chunk input {
+  width: 2em;
+  height: 2em;
+}
+
+.disclaimer {
+  text-align: center;
+  grid-column: span 2;
 }

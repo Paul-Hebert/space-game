@@ -1,8 +1,11 @@
 # Road map
 
 - Upgrades
+  - Clear old upgrades after jump
   - Change "Next Level" to non-blocking UI (so you can grab upgrades after beating a level) - this may not be necessary. Maybe you need to collect upgrades to finish a level?
   - Add support for primary + secondary weapons (front and sides)
+  - Guided missiles
+  - Single use items: bombs, speed boosts, etc.
   - Non-weapon upgrades
 - Show ship damage better
   - Create repeated explosions based on damage?

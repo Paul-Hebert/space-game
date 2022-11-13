@@ -1,7 +1,7 @@
 import "./graphics/canvas.js";
 import { playerState } from "./state/player-state.js";
 import { gameLoop } from "./game-loop.js";
-import { hideAllMenus, hideMenu, toggleMenu } from "./hud/menus.js";
+import { hideAllMenus, hideMenu, showMenu, toggleMenu } from "./hud/menus.js";
 import { newGame } from "./new-game.js";
 import { nextLevel } from "./levels/levels.js";
 import { muted, toggleMute } from "./sound-effects/muted.js";
@@ -47,6 +47,13 @@ document.querySelectorAll(".next-level-button").forEach((button) => {
   button.addEventListener("click", () => {
     hideAllMenus();
     nextLevel();
+  });
+});
+
+document.querySelectorAll(".settings-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    hideAllMenus();
+    showMenu("settings");
   });
 });
 

@@ -11,6 +11,7 @@ export const menus = {
   success: document.querySelector(".success-menu"),
   nextLevel: document.querySelector(".next-level-menu"),
   start: document.querySelector(".start-menu"),
+  settings: document.querySelector(".settings-menu"),
   weaponUpgrade: document.querySelector(".weapon-upgrade-menu"),
 };
 

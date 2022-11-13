@@ -16,11 +16,12 @@ kbd {
   --color-primary-dark-0-t-90: hsla(var(--primary-hue), 100%, 5%, 90%);
   --color-primary-dark-1: hsl(var(--primary-hue), 100%, 9%);
   --color-primary-dark-1-t-90: hsla(var(--primary-hue), 100%, 9%, 90%);
+
+  accent-color: var(--color-primary-bright-1);
 }
 
 html {
   color: var(--color-white);
-  accent-color: var(--color-primary-bright-1);
 }
 
 h1,
