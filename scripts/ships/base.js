@@ -75,7 +75,7 @@ export class BaseShip {
     playCustomSound({
       duration: random(1000 / 60, 1000 / 30),
       frequency: random(0, 200),
-      volume: random(0.8, 1) * volumeRelativeToPlayer(this),
+      volume: random(2, 3) * volumeRelativeToPlayer(this),
       nodeType: "triangle",
     });
   }
@@ -166,7 +166,7 @@ export class BaseShip {
     return { explosions, resources };
   }
 
-  graphic = document.getElementById("enemy-ship");
+  graphic = document.getElementById("ship-4");
 
   health = 200;
   maxHealth = 200;

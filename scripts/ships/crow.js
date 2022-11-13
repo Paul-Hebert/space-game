@@ -8,8 +8,6 @@ export class CrowShip extends BaseShip {
     this.currentGun = 0;
   }
 
-  graphic = document.getElementById("enemy-ship");
-
   size = 150;
 
   resourceCount = 0;
