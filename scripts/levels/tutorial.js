@@ -93,6 +93,7 @@ export function tutorial() {
             We're under attack! Shoot down the enemy ship!
           </p>
         `,
+        theme: "danger",
         objectives: [battleObjective()],
 
         nextAction: () => {
@@ -139,7 +140,7 @@ export function tutorial() {
                 content: `
                   <p>Uh oh, reinforcements are on the way.</p>
                 `,
-
+                theme: "danger",
                 objectives: [battleObjective()],
 
                 nextAction: () => {

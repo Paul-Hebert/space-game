@@ -31,7 +31,7 @@ export function level4() {
     content: `
       <p>More enemy ships incoming!.</p>
     `,
-
+    theme: "danger",
     objectives: [battleObjective()],
 
     nextAction: () => {

@@ -11,6 +11,7 @@ import { playerState } from "../state/player-state.js";
 import { startHyperSpeedJump } from "../actions/hyper-speed-jump.js";
 import { displayGameStats } from "../actions/display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
+import { addMessageToQueue } from "../hud/messaging.js";
 
 const sectorTitle = document.querySelector(".sector-title");
 
@@ -39,8 +40,16 @@ export function completeLevel() {
 
   currentLevel++;
   if (levels[currentLevel]) {
-    displayGameStats(".next-level-menu");
-    showMenu("nextLevel");
+    addMessageToQueue({
+      content: `
+        <h3>Sector Cleared!</h3>
+        <p>
+          ${gameStats.sectorsCleared}/${levels.length} sectors cleared!
+        </p>`,
+      dismissText: "Next Sector",
+      theme: "success",
+      nextAction: nextLevel,
+    });
   } else {
     displayGameStats(".success-menu");
     showMenu("success");

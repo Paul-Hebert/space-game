@@ -51,7 +51,7 @@ export function fightLevel({ difficulty = 5 }) {
     content: `
       <p>More enemy ships incoming!</p>
     `,
-
+    theme: "danger",
     objectives: [battleObjective()],
 
     nextAction: () => {

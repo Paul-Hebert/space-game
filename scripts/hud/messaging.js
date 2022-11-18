@@ -10,13 +10,29 @@ export function addMessageToQueue({
   duration = 200,
   nextAction = null,
   objectives = null,
+  dismissText = null,
+  theme = null,
 }) {
   queueEl.innerHTML += `
-  <div class="message" id="message-${currentId}">
+  <div
+    class="message ${theme ? `themed ${theme}` : ""}" 
+    id="message-${currentId}"
+  >
     ${content}
-    ${buildObjectives(objectives)}
+    ${objectives ? buildObjectives(objectives) : ""}
+    ${
+      dismissText
+        ? `<div><button class="dismiss-button">${dismissText}</button></div>`
+        : ""
+    }
   </div>
   `;
+
+  const messageEl = queueEl.querySelector(`#message-${currentId}`);
+
+  messageEl.querySelector(".dismiss-button")?.addEventListener("click", () => {
+    clearMessage(messageEl, nextAction);
+  });
 
   messagesInQueue.push({
     content,
@@ -25,12 +41,13 @@ export function addMessageToQueue({
     nextAction,
     id: currentId,
     startingFrame: gameLoop.frameCount,
+    dismissText,
   });
 }
 
 export function updateMessages() {
   messagesInQueue = messagesInQueue.filter(
-    ({ id, objectives, startingFrame, duration, nextAction }) => {
+    ({ id, objectives, startingFrame, duration, nextAction, dismissText }) => {
       const messageEl = document.getElementById(`message-${id}`);
       let stillValid = true;
 
@@ -63,17 +80,13 @@ export function updateMessages() {
         if (!objectives.find((objective) => !objective.completed)) {
           stillValid = false;
         }
-      } else if (pastDuration) {
+      } else if (pastDuration && !dismissText) {
         stillValid = false;
+        console.log("timed out");
       }
 
       if (!stillValid) {
-        messageEl.classList.add("is-hiding");
-
-        setTimeout(() => {
-          messageEl.remove();
-          if (nextAction) nextAction();
-        }, 500);
+        clearMessage(messageEl, nextAction);
       }
 
       return stillValid;
@@ -102,6 +115,15 @@ export function buildObjectives(objectives) {
       })
       .join("")}
   </ul>`;
+}
+
+export function clearMessage(messageEl, nextAction) {
+  messageEl.classList.add("is-hiding");
+
+  setTimeout(() => {
+    messageEl.remove();
+    if (nextAction) nextAction();
+  }, 500);
 }
 
 export function removeAllMessages() {
