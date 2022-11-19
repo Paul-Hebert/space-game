@@ -36,7 +36,7 @@ gameLoop.cb = () => {
 
   paint();
 
-  updateMessages();
+  if (playerControlsEnabled) updateMessages();
 };
 
 gameLoop.play();
