@@ -16,6 +16,7 @@ import { Resource } from "../objects/resource.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { Explosion } from "../objects/explosion.js";
 import { playerState } from "../state/player-state.js";
+import { SprayBlaster } from "../weapons/spray-blaster.js";
 
 let shipId = 0;
 
@@ -176,7 +177,14 @@ export class BaseShip {
   rotationSpeed = 3;
   accelerationSpeed = 0.35;
 
-  weapons = [new BaseWeapon(), new Pew(), new Ray(), new Laser(), new Boom()];
+  weapons = [
+    new BaseWeapon(),
+    new Pew(),
+    new Ray(),
+    new Laser(),
+    new Boom(),
+    new SprayBlaster(),
+  ];
 
   maxSpeed = 10;
 
