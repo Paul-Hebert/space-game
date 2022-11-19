@@ -18,14 +18,14 @@ export function paintMainMap() {
 
   const { resources, asteroids, bullets, stars, exhaust, explosions } = mapData;
 
-  [...stars, ...asteroids, ...resources].forEach(drawObject);
+  [...stars, ...asteroids, ...resources, ...bullets].forEach(drawObject);
 
   mapData.ships.forEach((ship) => {
     // TODO: Check if in bounds
     ship.draw(mainCtx);
   });
 
-  [...exhaust, ...bullets].forEach(drawObject);
+  exhaust.forEach(drawObject);
 
   if (playerState.health > 0) {
     playerState.draw(mainCtx);
