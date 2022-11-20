@@ -18,7 +18,7 @@ export function addMessageToQueue({
   currentId++;
 
   queueEl.insertAdjacentHTML(
-    "afterbegin",
+    "beforeend",
     `
       <div
         class="message ${theme ? `themed ${theme}` : ""}" 
