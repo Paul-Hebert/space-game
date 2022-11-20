@@ -37,36 +37,25 @@ export function updateResources() {
           radius: 60,
         })
       ) {
-        let sound = "notification-2";
-
         if (resource.type === "health") {
+          playSoundFile("notification-2");
           playerState.health += 100;
           updateHealthBar();
         } else if (resource.type === "money") {
+          playSoundFile("notification-2");
           playerState.resourceCount++;
           updateResourceCount();
-        } else if (resource.type === "weapon-upgrade") {
-          sound = "weapon-pickup";
-
-          const gun = resource.upgradeDetails;
-
-          playerState.weapons.push(gun);
-          updateWeapons();
-
-          // TODO: Add description (and graphic? stats?)
+        } else if (
+          resource.type === "weapon-upgrade" ||
+          resource.type === "ship-upgrade"
+        ) {
+          resource.upgradeDetails.pickup();
           addMessageToQueue({
-            content: `
-              <h4>Weapon Collected: ${gun.name}</h4>
-
-              <p><em>${gun.description}</em></p>
-
-            `,
-            theme: "success",
+            content: resource.upgradeDetails.messageContent(),
             duration: 600,
+            theme: "success",
           });
         }
-
-        playSoundFile(sound);
         return false;
       }
       return true;

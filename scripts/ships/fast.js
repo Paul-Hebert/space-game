@@ -21,6 +21,4 @@ export class FastShip extends BaseShip {
   maxResourceCount = 1;
 
   weapons = [new BaseWeapon()];
-
-  upgradeDropChance = 0;
 }

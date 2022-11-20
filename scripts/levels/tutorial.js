@@ -85,6 +85,7 @@ export function tutorial() {
       const enemyShip = new CrowShip(positionToMapRight());
       enemyShip.weapons = [firstWeaponUpgrade];
       enemyShip.upgradeDropChance = 1;
+      enemyShip.upgradeIsWeaponChance = 1;
       mapData.ships.push(enemyShip);
 
       addMessageToQueue({

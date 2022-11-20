@@ -22,7 +22,7 @@ export class Resource extends Particle {
         s: random(70, 100),
         l: random(40, 60),
       });
-    } else if (this.type === "weapon-upgrade") {
+    } else if (this.type === "weapon-upgrade" || this.type === "ship-upgrade") {
       this.fill = hsl({
         h: 0,
         s: 0,

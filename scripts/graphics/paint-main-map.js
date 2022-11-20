@@ -77,8 +77,7 @@ function drawObject(object) {
 
       // If this is a resource with a weapon upgrade, draw the weapon.
       if (object instanceof Resource && object.type === "weapon-upgrade") {
-        // TODO: Switch to `draw` to get double guns working?
-        object.upgradeDetails.draw(
+        object.upgradeDetails.gun.draw(
           mainCtx,
           {
             ...object,

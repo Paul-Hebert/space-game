@@ -9,3 +9,7 @@ export function updateHealthBar() {
 
   healthEl.value = (playerState.health / playerState.maxHealth) * 100;
 }
+
+export function updateHealthBarSize() {
+  healthEl.style.setProperty("--max-health", playerState.maxHealth);
+}
