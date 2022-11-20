@@ -2,6 +2,8 @@ import { BaseWeapon } from "./base-weapon.js";
 
 export class Pew extends BaseWeapon {
   name = "Discount Death Beam";
+  description = "Still has the price tag...";
+
   speed = 30;
   reloadSpeed = 5;
   bulletRadius = 6;

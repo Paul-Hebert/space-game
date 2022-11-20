@@ -6,6 +6,7 @@ import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-play
 
 export class DoubleGun extends BaseWeapon {
   name = "Refurbished Side Cannons";
+  description = "A bit rusty, but there's two of them...";
 
   damage = 10;
   bulletsPerShot = 5;

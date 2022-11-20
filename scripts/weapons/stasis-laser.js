@@ -1,7 +1,9 @@
 import { BaseWeapon } from "./base-weapon.js";
 
 export class StasisLaser extends BaseWeapon {
-  name = "Stasis Laser";
+  name = "Short-Range Mining Laser";
+  description = "Packs a punch up close.";
+
   speed = 0;
   reloadSpeed = 0;
   bulletRadius = 10;

@@ -56,14 +56,13 @@ export function updateResources() {
           // TODO: Add description (and graphic? stats?)
           addMessageToQueue({
             content: `
-              <h3>New Weapon Collected</h3>
+              <h4>Weapon Collected: ${gun.name}</h4>
 
-              <h4>${gun.name}</h4>
-              <p>Press <kbd>d</kbd> or <kbd>Shift</kbd> to switch weapons.</p>
+              <p><em>${gun.description}</em></p>
 
             `,
-            // duration: 3000,
             theme: "success",
+            duration: 600,
           });
         }
 

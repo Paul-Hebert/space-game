@@ -9,6 +9,8 @@ import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-play
 
 export class BaseWeapon {
   name = "base";
+  description = "What can I say? It's a gun...";
+
   speed = 25;
   reloadSpeed = 5;
   bulletRadius = 2;

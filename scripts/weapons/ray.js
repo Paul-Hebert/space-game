@@ -2,6 +2,8 @@ import { BaseWeapon } from "./base-weapon.js";
 
 export class Ray extends BaseWeapon {
   name = "Deconstructor Ray";
+  description = "A standard issue deconstruction tool.";
+
   speed = 20;
   reloadSpeed = 1;
   bulletRadius = 10;
