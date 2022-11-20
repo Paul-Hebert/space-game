@@ -1,16 +1,15 @@
 # Road map
 
-- Upgrades
-  - Clear old upgrades after jump
-  - Change "Next Level" to non-blocking UI (so you can grab upgrades after beating a level) - this may not be necessary. Maybe you need to collect upgrades to finish a level?
-  - Add support for primary + secondary weapons (front and sides)
-  - Guided missiles
-  - Single use items: bombs, speed boosts, etc.
-  - Non-weapon upgrades
-- Show ship damage better
-  - Create repeated explosions based on damage?
-  - Warning noise + popup when health is low
-- Improved objectives
+- Fixing the upgrade + level end issue
+
+  - Add "Upgrades" objective
+
+- Objectives UI
+
+  - Themed objectives (good/bad/neutral)
+  - Better animations
+    - Intro pulse and repeated pulse
+  - Sound effects
   - Revamp message queue design
   - Explore more objective types
     - "Boss" levels
@@ -19,3 +18,13 @@
     - "Obstacle course"
     - Destroy X stations without dying
   - Add map navigation between levels
+  - Move weapon upgrades to message queue?
+
+- Upgrades
+  - Add support for primary + secondary weapons (front and sides)
+  - Guided missiles
+  - Single use items: bombs, speed boosts, etc.
+  - Non-weapon upgrades
+- Show ship damage better
+  - Create repeated explosions/fires based on damage?
+  - Warning noise + popup when health is low

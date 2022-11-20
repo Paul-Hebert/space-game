@@ -1,3 +1,5 @@
 - Loop should have a target frame rate and handle dropped frames
 - Bullets don't work when facing directly to the right
-- If you pick up an upgrade while completing a level the game crashes
+- If you pick up an upgrade while completing a level you get awkwardly stacked menus
+- Pressing return sometimes triggers a button from a hidden menu
+- If the tab loses focus with keys pressed down they stay down
