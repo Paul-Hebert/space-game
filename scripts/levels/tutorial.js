@@ -35,9 +35,9 @@ export function tutorial() {
       {
         text: "Use the arrow keys to fly your ship.",
         evaluate: () =>
-          keysThatHaveBeenPressed.includes("ArrowLeft") &&
-          keysThatHaveBeenPressed.includes("ArrowRight") &&
-          keysThatHaveBeenPressed.includes("ArrowUp"),
+          keysThatHaveBeenPressed.includes("ArrowUp") **
+          (keysThatHaveBeenPressed.includes("ArrowLeft") &&
+            keysThatHaveBeenPressed.includes("ArrowRight")),
       },
       {
         text: "Hold <kbd>Spacebar</kbd> to shoot",
