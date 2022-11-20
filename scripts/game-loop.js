@@ -36,7 +36,7 @@ gameLoop.cb = () => {
 
   paint();
 
-  if (playerControlsEnabled) updateMessages();
+  if (playerControlsEnabled && gameLoop.frameCount % 10) updateMessages();
 };
 
 gameLoop.play();

@@ -11,7 +11,7 @@ import { playerState } from "../state/player-state.js";
 import { startHyperSpeedJump } from "../actions/hyper-speed-jump.js";
 import { displayGameStats } from "../actions/display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
-import { addMessageToQueue } from "../hud/messaging.js";
+import { addMessageToQueue, removeAllMessages } from "../hud/messaging.js";
 
 const sectorTitle = document.querySelector(".sector-title");
 
@@ -23,6 +23,7 @@ export function resetCurrentLevel() {
 
 export function nextLevel() {
   sectorTitle.classList.add("is-hidden");
+  removeAllMessages();
 
   startHyperSpeedJump(() => {
     levels[currentLevel].action();

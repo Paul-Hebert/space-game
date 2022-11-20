@@ -1,14 +1,11 @@
 # Road map
 
-- Fixing the upgrade + level end issue
-
-  - Add "Upgrades" objective
+- Add descriptions to weapons and make them more prominent than the stats
+- Make weapons use message UI
 
 - Objectives UI
 
-  - Themed objectives (good/bad/neutral)
-  - Better animations
-    - Intro pulse and repeated pulse
+  - Repeates pulses for "nag" messages
   - Sound effects
   - Revamp message queue design
   - Explore more objective types

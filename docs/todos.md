@@ -1,5 +1,6 @@
 ## Technical Refactors
 
+- build system for external deps
 - tests
 - Math.hypot is slow. Roll our own
 - Clean things up

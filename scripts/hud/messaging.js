@@ -1,6 +1,8 @@
 import { gameLoop } from "../game-loop.js";
+import autoAnimate from "https://unpkg.com/@formkit/auto-animate@1.0.0-beta.5/index.mjs";
 
 const queueEl = document.querySelector(".message-queue");
+autoAnimate(queueEl);
 
 let messagesInQueue = [];
 let currentId = 0;
@@ -13,20 +15,25 @@ export function addMessageToQueue({
   dismissText = null,
   theme = null,
 }) {
-  queueEl.innerHTML += `
-  <div
-    class="message ${theme ? `themed ${theme}` : ""}" 
-    id="message-${currentId}"
-  >
-    ${content}
-    ${objectives ? buildObjectives(objectives) : ""}
-    ${
-      dismissText
-        ? `<div><button class="dismiss-button">${dismissText}</button></div>`
-        : ""
-    }
-  </div>
-  `;
+  currentId++;
+
+  queueEl.insertAdjacentHTML(
+    "afterbegin",
+    `
+      <div
+        class="message ${theme ? `themed ${theme}` : ""}" 
+        id="message-${currentId}"
+      >
+        ${content}
+        ${objectives ? buildObjectives(objectives) : ""}
+        ${
+          dismissText
+            ? `<div><button class="dismiss-button">${dismissText}</button></div>`
+            : ""
+        }
+      </div>
+    `
+  );
 
   const messageEl = queueEl.querySelector(`#message-${currentId}`);
 
@@ -34,7 +41,8 @@ export function addMessageToQueue({
 
   if (dismissButtonEl) {
     dismissButtonEl.addEventListener("click", () => {
-      clearMessage(messageEl, nextAction);
+      clearMessage(messageEl);
+      nextAction();
     });
 
     setTimeout(() => {
@@ -54,6 +62,7 @@ export function addMessageToQueue({
 }
 
 export function updateMessages() {
+  const upcomingActions = [];
   messagesInQueue = messagesInQueue.filter(
     ({ id, objectives, startingFrame, duration, nextAction, dismissText }) => {
       const messageEl = document.getElementById(`message-${id}`);
@@ -90,16 +99,20 @@ export function updateMessages() {
         }
       } else if (pastDuration && !dismissText) {
         stillValid = false;
-        console.log("timed out");
       }
 
       if (!stillValid) {
-        clearMessage(messageEl, nextAction);
+        clearMessage(messageEl);
+        if (nextAction) upcomingActions.push(nextAction);
       }
 
       return stillValid;
     }
   );
+
+  upcomingActions.forEach((upcomingAction) => {
+    upcomingAction();
+  });
 }
 
 export function buildObjectives(objectives) {
@@ -125,13 +138,8 @@ export function buildObjectives(objectives) {
   </ul>`;
 }
 
-export function clearMessage(messageEl, nextAction) {
-  messageEl.classList.add("is-hiding");
-
-  setTimeout(() => {
-    messageEl.remove();
-    if (nextAction) nextAction();
-  }, 500);
+export function clearMessage(messageEl) {
+  messageEl.remove();
 }
 
 export function removeAllMessages() {

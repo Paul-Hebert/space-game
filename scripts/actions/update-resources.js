@@ -5,12 +5,11 @@ import { distanceBetweenPoints } from "../math/distance-between-points.js";
 import { angleBetweenPoints } from "../math/angle-between-points.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
-import { gameLoop } from "../game-loop.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
 import { updateResourceCount } from "../hud/update-resource-count.js";
-import { menus, showMenu } from "../hud/menus.js";
 import { updateWeapons } from "../hud/update-weapons.js";
+import { addMessageToQueue } from "../hud/messaging.js";
 
 export function updateResources() {
   mapData.resources = mapData.resources
@@ -54,38 +53,18 @@ export function updateResources() {
           playerState.weapons.push(gun);
           updateWeapons();
 
-          // TODO: Handle double guns
-          // TODO: Add description
-          let graphicInner = "";
-          for (let i = 0; i < gun.gunMounts; i++) {
-            graphicInner += `<img src="${gun.graphic.src}" alt=""/>`;
-          }
+          // TODO: Add description (and graphic? stats?)
+          addMessageToQueue({
+            content: `
+              <h3>New Weapon Collected</h3>
 
-          menus.weaponUpgrade.querySelector(".upgrade-details").innerHTML = `
-            <span class="upgrade-graphic">
-              <span class="upgrade-graphic-inner">${graphicInner}</span>
-            </span>
-            <div class="upgrade-details-text">
-              <h3>${gun.name}</h3>
+              <h4>${gun.name}</h4>
+              <p>Press <kbd>d</kbd> or <kbd>Shift</kbd> to switch weapons.</p>
 
-              <dl class="specs">
-                <dt>Mounting Points</dt>
-                <dd>${gun.gunMounts}</dd>
-
-                <dt>Damage Per Shot</dt>
-                <dd>${gun.computedDamagePerShot()}</dd>
-
-                <dt>Reload Speed</dt>
-                <dd>${gun.computedReloadSpeed()}</dd>
-
-                <dt>Maximum Range</dt>
-                <dd>${gun.range()} meters</dd>
-              </dl>
-            </div>
-          `;
-
-          showMenu("weaponUpgrade");
-          gameLoop.pause();
+            `,
+            // duration: 3000,
+            theme: "success",
+          });
         }
 
         playSoundFile(sound);
