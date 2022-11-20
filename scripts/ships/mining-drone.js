@@ -20,4 +20,6 @@ export class MiningDrone extends BaseShip {
   maxResourceCount = 1;
 
   weapons = [new StasisLaser()];
+
+  upgradeDropChance = 0;
 }
