@@ -3,8 +3,8 @@
 - tests
 - Math.hypot is slow. Roll our own
 - Clean things up
-  - Ship logic and shoot functionality should move to ship class
-  - Position to nose and position to tail should move to ship class
+  - Ship logic and shoot functionality should move to ship class?
+  - Position to nose and position to tail should move to ship class?
   - Bullets should maybe be assigned a ship, not a ship id?
   - Move map size to map data?
 
@@ -51,3 +51,4 @@
 
 - Alt text for upgrade images
 - Better modals
+- Focus styles

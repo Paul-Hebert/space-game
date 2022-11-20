@@ -42,10 +42,10 @@ export class BaseWeapon {
     return positionToSide(ship, offset + this.bulletRadius * 2, side);
   }
 
-  createBullet(ship, position) {
+  createBullet(ship, position, rotationOverride = null) {
     return new Bullet({
       ...position,
-      speed: this.angledSpeed(ship),
+      speed: this.angledSpeed(rotationOverride || ship.rotation),
       maxAge: this.maxAge,
       radius: this.bulletRadius,
       fill: this.bulletColor,
@@ -102,9 +102,8 @@ export class BaseWeapon {
     });
   }
 
-  angledSpeed(ship, speed) {
-    // I don't understand why -90 is necessary here...
-    const rotationInRadians = degreesToRadians(ship.rotation - 90);
+  angledSpeed(rotation) {
+    const rotationInRadians = degreesToRadians(rotation - 90);
     return {
       x: Math.cos(rotationInRadians) * this.speed,
       y: Math.sin(rotationInRadians) * this.speed,

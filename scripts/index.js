@@ -34,6 +34,20 @@ document.querySelectorAll(".resume-button").forEach((button) => {
   });
 });
 
+document.querySelectorAll(".upgrade-complete-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    hideMenu("weaponUpgrade");
+    gameLoop.play();
+  });
+});
+
+document.querySelectorAll(".resume-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    hideAllMenus();
+    gameLoop.play();
+  });
+});
+
 document.querySelectorAll(".restart-button").forEach((button) => {
   button.addEventListener("click", () => {
     hideAllMenus();

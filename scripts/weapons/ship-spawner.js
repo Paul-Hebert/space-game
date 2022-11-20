@@ -17,7 +17,7 @@ export class ShipSpawner extends BaseWeapon {
     mapData.ships.push(
       new this.spawnedShip({
         ...this.nosePosition(ship),
-        speed: this.angledSpeed(ship),
+        speed: this.angledSpeed(ship.rotation),
         rotation: ship.rotation,
       })
     );

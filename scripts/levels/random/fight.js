@@ -13,6 +13,7 @@ import { completeLevel } from "../levels.js";
 import { MiningDrone } from "../../ships/mining-drone.js";
 import { MiningOverseer } from "../../ships/mining-overseer.js";
 import { battleObjective } from "../objectives/battle.js";
+import { SprayerShip } from "../../ships/sprayer.js";
 
 // TODO: Clusters of enemies
 const enemyOptions = [
@@ -23,6 +24,10 @@ const enemyOptions = [
   {
     difficulty: 3,
     options: [SparrowShip, BaseShip, CrowShip],
+  },
+  {
+    difficulty: 2,
+    options: [SprayerShip],
   },
   {
     difficulty: 1,
