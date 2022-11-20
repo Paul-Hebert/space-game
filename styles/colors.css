@@ -8,7 +8,7 @@ kbd {
 
   --color-primary-bright-0: hsl(var(--primary-hue), 82%, 60%);
   --color-primary-bright-1: hsl(var(--primary-hue), 82%, 47%);
-  --color-primary-bright-1-t-70: hsla(var(--primary-hue), 82%, 47%, 70%);
+  --color-primary-bright-1-t-40: hsla(var(--primary-hue), 82%, 47%, 40%);
   --color-primary-bright-2: hsl(var(--primary-hue), 100%, 31%);
   --color-primary-bright-3: hsl(var(--primary-hue), 100%, 23%);
   --color-primary-bright-4: hsl(var(--primary-hue), 100%, 16%);

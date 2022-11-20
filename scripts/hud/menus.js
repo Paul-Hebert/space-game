@@ -18,6 +18,9 @@ export const menus = {
 export function showMenu(name) {
   disablePlayerControls();
   menus[name].classList.add("is-shown");
+  setTimeout(() => {
+    menus[name].querySelector("button")?.focus();
+  }, 100);
 }
 
 export function hideMenu(name) {

@@ -30,9 +30,17 @@ export function addMessageToQueue({
 
   const messageEl = queueEl.querySelector(`#message-${currentId}`);
 
-  messageEl.querySelector(".dismiss-button")?.addEventListener("click", () => {
-    clearMessage(messageEl, nextAction);
-  });
+  const dismissButtonEl = messageEl.querySelector(".dismiss-button");
+
+  if (dismissButtonEl) {
+    dismissButtonEl.addEventListener("click", () => {
+      clearMessage(messageEl, nextAction);
+    });
+
+    setTimeout(() => {
+      dismissButtonEl.focus();
+    }, 100);
+  }
 
   messagesInQueue.push({
     content,
