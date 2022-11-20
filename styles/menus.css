@@ -1,5 +1,5 @@
 .menu {
-  transition-property: opacity;
+  transition-property: opacity, visibility;
   transition-duration: 0.2s;
   transition-timing-function: ease-out;
   position: absolute;
@@ -28,6 +28,8 @@
 .menu:not(.is-shown) {
   pointer-events: none;
   opacity: 0;
+  visibility: none;
+  transition-delay: 0s, 0.2s;
 }
 
 .menu-inner {
