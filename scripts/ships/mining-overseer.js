@@ -17,4 +17,6 @@ export class MiningOverseer extends MotherShip {
   maxHealth = 1500;
 
   weapons = [new DroneSpawner()];
+
+  upgradeDropChance = 0.75;
 }

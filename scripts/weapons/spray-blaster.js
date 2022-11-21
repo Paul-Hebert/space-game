@@ -9,7 +9,7 @@ export class SprayBlaster extends SprayGun {
   reloadSpeed = 10;
   bulletRadius = 8;
   damage = 12;
-  bulletsPerShot = 2;
-  bulletSpeed = 70;
+  bulletsPerShot = 1;
+  bulletSpeed = 60;
   bulletColor = "green";
 }

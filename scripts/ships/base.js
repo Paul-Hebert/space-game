@@ -2,7 +2,12 @@ import { Pew } from "../weapons/pew.js";
 import { Ray } from "../weapons/ray.js";
 import { Laser } from "../weapons/laser.js";
 import { BaseWeapon } from "../weapons/base-weapon.js";
-import { randomInt, random, randomBool } from "../math/random.js";
+import {
+  randomInt,
+  random,
+  randomBool,
+  randomItemInArray,
+} from "../math/random.js";
 import { Boom } from "../weapons/boom.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { relativePosition } from "../math/relative-position.js";
@@ -19,6 +24,9 @@ import { playerState } from "../state/player-state.js";
 import { SprayBlaster } from "../weapons/spray-blaster.js";
 import { HealthUpgrade } from "../upgrades/health-upgrade.js";
 import { WeaponUpgrade } from "../upgrades/weapon-upgrade.js";
+import { AccelerationSpeedUpgrade } from "../upgrades/acceleration-upgrade.js";
+import { MaxSpeedUpgrade } from "../upgrades/max-speed-upgrade.js";
+import { TractorBeamUpgrade } from "../upgrades/tractor-beam-upgrade.js";
 
 let shipId = 0;
 
@@ -189,7 +197,12 @@ export class BaseShip {
         y: random(-3, 3),
       },
       type: "ship-upgrade",
-      upgradeDetails: new HealthUpgrade(),
+      upgradeDetails: randomItemInArray([
+        new HealthUpgrade(),
+        new AccelerationSpeedUpgrade(),
+        new MaxSpeedUpgrade(),
+        new TractorBeamUpgrade(),
+      ]),
     });
   }
 
@@ -218,6 +231,6 @@ export class BaseShip {
 
   maxResourceCount = 2;
 
-  upgradeDropChance = 0.15;
-  upgradeIsWeaponChance = 0.85;
+  upgradeDropChance = 0.25;
+  upgradeIsWeaponChance = 0.5;
 }

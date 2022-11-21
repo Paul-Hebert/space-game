@@ -14,11 +14,14 @@ import { addMessageToQueue } from "../hud/messaging.js";
 export function updateResources() {
   mapData.resources = mapData.resources
     .map((resource) => {
-      if (distanceBetweenPoints(playerState, resource) < 300) {
+      if (
+        distanceBetweenPoints(playerState, resource) <
+        playerState.resourceDrawDistance
+      ) {
         const angle = degreesToRadians(
           angleBetweenPoints(resource, playerState)
         );
-        const speed = 1;
+        const speed = playerState.resourceDrawSpeed;
 
         resource.speed.x += Math.cos(angle) * speed;
         resource.speed.y += Math.sin(angle) * speed;

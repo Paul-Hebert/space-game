@@ -48,7 +48,6 @@ export function completeLevel() {
           ${gameStats.sectorsCleared}/${levels.length} sectors cleared!
         </p>`,
       dismissText: "Next Sector",
-      theme: "success",
       nextAction: nextLevel,
     });
   } else {

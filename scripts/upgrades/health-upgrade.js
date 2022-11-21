@@ -6,10 +6,10 @@ import { playerState } from "../state/player-state.js";
 import { BaseUpgrade } from "./base-upgrade.js";
 
 export class HealthUpgrade extends BaseUpgrade {
-  value = 100;
+  value = 200;
 
-  name = "Hull Strength Increased";
-  description = `Maximum ship health increased by ${this.value}!`;
+  name = "Hull Strength Reinforced";
+  description = `Maximum ship health increased!`;
 
   upgradeAction = () => {
     playerState.health += this.value;

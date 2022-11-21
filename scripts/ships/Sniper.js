@@ -21,4 +21,7 @@ export class SniperShip extends BaseShip {
   accelerationSpeed = 0.125;
 
   weapons = [new Laser()];
+
+  upgradeDropChance = 0.75;
+  upgradeIsWeaponChance = 0.25;
 }

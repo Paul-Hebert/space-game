@@ -19,6 +19,7 @@ export class MotherShip extends BaseShip {
   maxSpeed = 5;
   maxResourceCount = 5;
 
+  upgradeDropChance = 0.5;
   upgradeIsWeaponChance = 0;
 
   weapons = [new ShipSpawner()];
