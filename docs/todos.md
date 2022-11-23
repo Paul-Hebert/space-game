@@ -2,7 +2,6 @@
 
 - build system for external deps
 - tests
-- Math.hypot is slow. Roll our own
 - Clean things up
   - Ship logic and shoot functionality should move to ship class?
   - Position to nose and position to tail should move to ship class?
