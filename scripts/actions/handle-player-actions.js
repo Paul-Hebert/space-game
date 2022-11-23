@@ -7,6 +7,8 @@ import {
 } from "../state/pointer-position.js";
 import { controlOption } from "../state/control-option.js";
 import { acceleratePlayer } from "./accelerate-player.js";
+import { constrainSpeed } from "../math/constrain-speed.js";
+import { isJumping } from "./hyper-speed-jump.js";
 
 export function handlePlayerActions() {
   if (controlOption === "pointer" && pointerPosition) {
@@ -23,24 +25,35 @@ export function handlePlayerActions() {
   }
 
   if (pressedKeys["ArrowUp"] || pressedKeys["w"] || pressedKeys["W"]) {
-    acceleratePlayer();
+    playerState.speed.y += playerState.accelerationSpeed;
+    exhaust();
   }
 
   if (pressedKeys["a"] || pressedKeys["A"]) {
-    acceleratePlayer(true, 1, -90);
+    playerState.speed.x -= playerState.accelerationSpeed;
+    exhaust();
   }
 
   if (pressedKeys["d"] || pressedKeys["D"]) {
-    acceleratePlayer(true, 1, 90);
+    playerState.speed.x += playerState.accelerationSpeed;
+    exhaust();
   }
 
   if (pressedKeys["s"] || pressedKeys["S"]) {
-    acceleratePlayer(true, 1, 180);
+    playerState.speed.y -= playerState.accelerationSpeed;
+    exhaust();
   }
+
+  playerState.speed = constrainSpeed(playerState);
 
   if (pressedKeys[" "]) {
     shoot(playerState);
   }
 
   return playerState;
+}
+
+function exhaust() {
+  playerState.addExhaust();
+  playerState.engineNoise();
 }
