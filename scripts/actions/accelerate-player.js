@@ -3,8 +3,14 @@ import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { angledSpeed, constrainSpeed } from "../math/constrain-speed.js";
 import { isJumping } from "./hyper-speed-jump.js";
 
-export function acceleratePlayer(constrained = true, modifier = 1) {
-  const rotationInRadians = degreesToRadians(playerState.rotation);
+export function acceleratePlayer(
+  constrained = true,
+  modifier = 1,
+  rotationModifier = 0
+) {
+  const rotationInRadians = degreesToRadians(
+    playerState.rotation + rotationModifier
+  );
   playerState.speed.x +=
     Math.sin(rotationInRadians) * playerState.accelerationSpeed * modifier;
   playerState.speed.y +=

@@ -53,14 +53,12 @@ export function tutorial() {
       {
         text: "Press the <kbd>a</kbd> key to accelerate.",
         evaluate: () =>
-          keysThatHaveBeenPressed.includes("a") ||
-          keysThatHaveBeenPressed.includes("A"),
+          keysThatHaveBeenPressed.includes("w") ||
+          keysThatHaveBeenPressed.includes("W"),
       },
       {
         text: "Hold <kbd>s</kbd> to shoot",
-        evaluate: () =>
-          keysThatHaveBeenPressed.includes("s") ||
-          keysThatHaveBeenPressed.includes("S"),
+        evaluate: () => keysThatHaveBeenPressed.includes(" "),
       },
     ];
   }
@@ -158,9 +156,6 @@ export function tutorial() {
 
 function gunWasSwitched() {
   return (
-    playerState.weapons.length > 1 &&
-    (keysThatHaveBeenPressed.includes("Shift") ||
-      keysThatHaveBeenPressed.includes("d") ||
-      keysThatHaveBeenPressed.includes("D"))
+    playerState.weapons.length > 1 && keysThatHaveBeenPressed.includes("Shift")
   );
 }

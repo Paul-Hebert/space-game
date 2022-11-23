@@ -22,11 +22,23 @@ export function handlePlayerActions() {
     }
   }
 
-  if (pressedKeys["ArrowUp"] || pressedKeys["a"] || pressedKeys["A"]) {
+  if (pressedKeys["ArrowUp"] || pressedKeys["w"] || pressedKeys["W"]) {
     acceleratePlayer();
   }
 
-  if (pressedKeys[" "] || pressedKeys["s"] || pressedKeys["S"]) {
+  if (pressedKeys["a"] || pressedKeys["A"]) {
+    acceleratePlayer(true, 1, -90);
+  }
+
+  if (pressedKeys["d"] || pressedKeys["D"]) {
+    acceleratePlayer(true, 1, 90);
+  }
+
+  if (pressedKeys["s"] || pressedKeys["S"]) {
+    acceleratePlayer(true, 1, 180);
+  }
+
+  if (pressedKeys[" "]) {
     shoot(playerState);
   }
 
