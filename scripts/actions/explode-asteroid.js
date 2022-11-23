@@ -4,6 +4,7 @@ import { Asteroid } from "../objects/asteroid.js";
 import { Resource } from "../objects/resource.js";
 import { mapSize } from "../map-size.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
+import { createExplosion } from "./create-explosion.js";
 
 const resourceChance = 0.05;
 
@@ -12,6 +13,7 @@ export function explodeAsteroid(asteroid, impactSpeed, playerState) {
 
   const asteroids = [];
   const resources = [];
+  const explosions = createExplosion(asteroid);
 
   // If it's one of our original asteroids, replace it.
   // This ensures you can't blow up all the asteroids
@@ -21,7 +23,7 @@ export function explodeAsteroid(asteroid, impactSpeed, playerState) {
 
   // Tiny asteroids don't break any further
   if (asteroid.radius < 5) {
-    return { asteroids, resources };
+    return { asteroids, resources, explosions };
   }
   let combinedSize = 0;
 
@@ -58,7 +60,7 @@ export function explodeAsteroid(asteroid, impactSpeed, playerState) {
     }
   }
 
-  return { asteroids, resources };
+  return { asteroids, resources, explosions };
 }
 
 function replaceAsteroid(playerState) {

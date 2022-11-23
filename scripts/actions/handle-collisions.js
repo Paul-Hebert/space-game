@@ -32,14 +32,17 @@ export function handleCollisions() {
           return true;
         }
 
-        const { asteroids, resources } = explodeAsteroid(
+        const { asteroids, resources, explosions } = explodeAsteroid(
           asteroid,
           bullet.speed,
           playerState
         );
 
+        console.log(explosions);
+
         if (asteroids.length) newAsteroids = newAsteroids.concat(asteroids);
         if (resources.length) newResources = newResources.concat(resources);
+        if (explosions.length) newExplosions = newExplosions.concat(explosions);
 
         return false;
       }

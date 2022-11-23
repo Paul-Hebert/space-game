@@ -19,7 +19,6 @@ import { playCustomSound } from "../sound-effects/play-custom-sound.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 import { Resource } from "../objects/resource.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
-import { Explosion } from "../objects/explosion.js";
 import { playerState } from "../state/player-state.js";
 import { SprayBlaster } from "../weapons/spray-blaster.js";
 import { HealthUpgrade } from "../upgrades/health-upgrade.js";
@@ -27,6 +26,7 @@ import { WeaponUpgrade } from "../upgrades/weapon-upgrade.js";
 import { AccelerationSpeedUpgrade } from "../upgrades/acceleration-upgrade.js";
 import { MaxSpeedUpgrade } from "../upgrades/max-speed-upgrade.js";
 import { TractorBeamUpgrade } from "../upgrades/tractor-beam-upgrade.js";
+import { createExplosion } from "../actions/create-explosion.js";
 
 let shipId = 0;
 
@@ -94,43 +94,7 @@ export class BaseShip {
   explode() {
     playSoundFile("explosion-2", volumeRelativeToPlayer(this));
 
-    const explosions = [];
-    for (let i = 0; i < randomInt(this.size / 4, this.size / 2); i++) {
-      const angle = random(0, 360);
-      const rotationInRadians = degreesToRadians(angle);
-      const speed = (Math.min(150, this.size) / 300) * random(1, 10);
-      const offset = Math.min(200, this.size) / 100;
-
-      explosions.push(
-        new Explosion({
-          age: random(-10, 0),
-          radius: random(this.size / 10, this.size / 5),
-          x: this.x + Math.cos(rotationInRadians) * offset,
-          y: this.y + Math.sin(rotationInRadians) * offset,
-          speed: {
-            x: Math.cos(rotationInRadians) * speed,
-            y: Math.sin(rotationInRadians) * speed,
-          },
-        })
-      );
-
-      if (randomBool(0.2)) {
-        for (let x = 0; x < random(10, 20); x++) {
-          explosions.push(
-            new Explosion({
-              radius: random(this.size / (8 * x), this.size / (5 * x)),
-              age: random(-10, 0),
-              x: this.x + Math.cos(rotationInRadians) * offset * x * 5,
-              y: this.y + Math.sin(rotationInRadians) * offset * x * 5,
-              speed: {
-                x: Math.cos(rotationInRadians) * speed,
-                y: Math.sin(rotationInRadians) * speed,
-              },
-            })
-          );
-        }
-      }
-    }
+    const explosions = createExplosion({ ...this, radius: this.size });
 
     const resources = this.resources.map((resource) => {
       resource.x = this.x;
