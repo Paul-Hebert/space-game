@@ -7,7 +7,10 @@ export function updateHealthBar() {
     playerState.health = playerState.maxHealth;
   }
 
-  healthEl.value = (playerState.health / playerState.maxHealth) * 100;
+  const percent = (playerState.health / playerState.maxHealth) * 100;
+  if (healthEl.value !== percent) {
+    healthEl.value = percent;
+  }
 }
 
 export function updateHealthBarSize() {

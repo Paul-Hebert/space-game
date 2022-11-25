@@ -6,9 +6,7 @@ import { angleBetweenPoints } from "../math/angle-between-points.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { constrainSpeed } from "../math/constrain-speed.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
-import { updateHealthBar } from "../hud/update-health-bar.js";
 import { updateResourceCount } from "../hud/update-resource-count.js";
-import { updateWeapons } from "../hud/update-weapons.js";
 import { addMessageToQueue } from "../hud/messaging.js";
 
 export function updateResources() {
@@ -43,11 +41,9 @@ export function updateResources() {
         if (resource.type === "health") {
           playSoundFile("notification-2");
           playerState.health += 50;
-          updateHealthBar();
         } else if (resource.type === "money") {
           playSoundFile("notification-2");
           playerState.resourceCount++;
-          updateResourceCount();
         } else if (
           resource.type === "weapon-upgrade" ||
           resource.type === "ship-upgrade"

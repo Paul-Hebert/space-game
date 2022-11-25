@@ -7,7 +7,6 @@ import { playerState } from "../state/player-state.js";
 import { updateShipAngle } from "../math/update-ship-angle.js";
 import { acceleratePlayer } from "./accelerate-player.js";
 import { angledSpeed } from "../math/constrain-speed.js";
-import { updateHealthBar } from "../hud/update-health-bar.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { mapData } from "../state/map-data.js";
 
@@ -38,7 +37,6 @@ function endHyperSpeedJump() {
 
   if (playerState.health < playerState.maxHealth) {
     playerState.health = playerState.maxHealth;
-    updateHealthBar();
   }
 
   // Wipe out anything from the last sector so it doesn't show on the minimap
@@ -53,7 +51,6 @@ export function hyperSpeedJump() {
 
   if (playerState.health < playerState.maxHealth) {
     playerState.health += 10;
-    updateHealthBar();
   }
 
   if (jumpAngle === playerState.rotation) {

@@ -4,12 +4,10 @@ import { random, randomInt } from "../math/random.js";
 import { Explosion } from "../objects/explosion.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
-import { updateHealthBar } from "../hud/update-health-bar.js";
 import { showMenu } from "../hud/menus.js";
 import { gameStats } from "../state/game-stats.js";
 import { displayGameStats } from "./display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
-import { updateShieldBar } from "../hud/update-shield-bar.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -104,8 +102,6 @@ export function handleCollisions() {
         //     )
         //   )
         // );
-
-        updateHealthBar();
       }
     }
 
@@ -145,8 +141,6 @@ function damageShip(damage, ship) {
     ship.shields -= damage;
 
     if (ship.shields < 0) ship.shields = 0;
-
-    updateShieldBar();
   }
 
   if (remainingDamage > 0) {

@@ -30,7 +30,6 @@ import { createExplosion } from "../actions/create-explosion.js";
 import { drawCircle } from "../graphics/draw-circle.js";
 import { mainCtx } from "../graphics/canvas.js";
 import { isJumping } from "../actions/hyper-speed-jump.js";
-import { updateShieldBar } from "../hud/update-shield-bar.js";
 
 let shipId = 0;
 
@@ -193,7 +192,6 @@ export class BaseShip {
       if (this.shields > this.maxShields) {
         this.shields = this.maxShields;
       }
-      updateShieldBar();
     }
   }
 

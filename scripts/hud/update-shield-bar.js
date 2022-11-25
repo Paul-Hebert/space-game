@@ -7,7 +7,10 @@ export function updateShieldBar() {
     playerState.shields = playerState.maxShields;
   }
 
-  shieldEl.value = (playerState.shields / playerState.maxShields) * 100;
+  const percent = (playerState.shields / playerState.maxShields) * 100;
+  if (shieldEl.value !== percent) {
+    shieldEl.value = percent;
+  }
 }
 
 export function updateShieldBarSize() {
