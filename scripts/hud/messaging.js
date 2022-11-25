@@ -1,8 +1,8 @@
 import { gameLoop } from "../game-loop.js";
-import autoAnimate from "https://unpkg.com/@formkit/auto-animate@1.0.0-beta.5/index.mjs";
+// import autoAnimate from "https://unpkg.com/@formkit/auto-animate@1.0.0-beta.5/index.mjs";
 
 const queueEl = document.querySelector(".message-queue");
-autoAnimate(queueEl);
+// autoAnimate(queueEl);
 
 let messagesInQueue = [];
 let currentId = 0;

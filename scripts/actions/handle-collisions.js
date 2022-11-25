@@ -9,6 +9,7 @@ import { showMenu } from "../hud/menus.js";
 import { gameStats } from "../state/game-stats.js";
 import { displayGameStats } from "./display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
+import { updateShieldBar } from "../hud/update-shield-bar.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -38,8 +39,6 @@ export function handleCollisions() {
           playerState
         );
 
-        console.log(explosions);
-
         if (asteroids.length) newAsteroids = newAsteroids.concat(asteroids);
         if (resources.length) newResources = newResources.concat(resources);
         if (explosions.length) newExplosions = newExplosions.concat(explosions);
@@ -59,7 +58,7 @@ export function handleCollisions() {
       ) {
         collided = true;
 
-        ship.health -= bullet.damage;
+        damageShip(bullet.damage, ship);
 
         newExplosions = newExplosions.concat(explodeBullet(bullet));
 
@@ -89,7 +88,7 @@ export function handleCollisions() {
 
       newExplosions = newExplosions.concat(explodeBullet(bullet));
 
-      playerState.health -= bullet.damage;
+      damageShip(bullet.damage, playerState);
 
       if (playerState.health <= 0) {
         playSoundFile("lost-2");
@@ -105,9 +104,9 @@ export function handleCollisions() {
         //     )
         //   )
         // );
-      }
 
-      updateHealthBar();
+        updateHealthBar();
+      }
     }
 
     return !collided;
@@ -135,4 +134,22 @@ function explodeBullet(bullet) {
     );
   }
   return newExplosions;
+}
+
+function damageShip(damage, ship) {
+  let remainingDamage = damage;
+
+  if (ship.shields > 0) {
+    remainingDamage -= ship.shields;
+
+    ship.shields -= damage;
+
+    if (ship.shields < 0) ship.shields = 0;
+
+    updateShieldBar();
+  }
+
+  if (remainingDamage > 0) {
+    ship.health -= remainingDamage;
+  }
 }

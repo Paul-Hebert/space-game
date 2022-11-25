@@ -27,6 +27,10 @@ import { AccelerationSpeedUpgrade } from "../upgrades/acceleration-upgrade.js";
 import { MaxSpeedUpgrade } from "../upgrades/max-speed-upgrade.js";
 import { TractorBeamUpgrade } from "../upgrades/tractor-beam-upgrade.js";
 import { createExplosion } from "../actions/create-explosion.js";
+import { drawCircle } from "../graphics/draw-circle.js";
+import { mainCtx } from "../graphics/canvas.js";
+import { isJumping } from "../actions/hyper-speed-jump.js";
+import { updateShieldBar } from "../hud/update-shield-bar.js";
 
 let shipId = 0;
 
@@ -53,9 +57,22 @@ export class BaseShip {
   }
 
   draw(context) {
-    this.weapons[this.currentGun].draw(context, this);
-
     const { x, y } = relativePosition(this);
+
+    if (this.shields) {
+      let shieldOpacity = this.shields / this.maxShields / 3;
+      if (isJumping) shieldOpacity /= 5;
+
+      drawCircle(mainCtx, {
+        x,
+        y,
+        radius: (this.size * 3) / 4,
+        fill: `hsla(230, 80%, 40%, ${shieldOpacity})`,
+        stroke: `hsla(230, 90%, 90%, ${shieldOpacity})`,
+      });
+    }
+
+    this.weapons[this.currentGun].draw(context, this);
 
     rotatedDraw(context, { x, y, rotation: this.rotation }, () => {
       context.drawImage(
@@ -168,6 +185,16 @@ export class BaseShip {
         new TractorBeamUpgrade(),
       ]),
     });
+  }
+
+  regenerateShields() {
+    if (this.maxShields) {
+      this.shields++;
+      if (this.shields > this.maxShields) {
+        this.shields = this.maxShields;
+      }
+      updateShieldBar();
+    }
   }
 
   graphic = document.getElementById("ship-4");

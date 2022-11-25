@@ -7,9 +7,14 @@ import { moveObject } from "./move-object.js";
 import { distanceBetweenPoints } from "../math/distance-between-points.js";
 import { shoot } from "./shoot.js";
 import { updateShipAngle } from "../math/update-ship-angle.js";
+import { gameLoop } from "../game-loop.js";
 
 export function updateShips() {
   mapData.ships = mapData.ships.map((ship) => {
+    if (gameLoop.frameCount % 10) {
+      ship.regenerateShields();
+    }
+
     ship = moveObject(ship);
 
     const targetAngle = getTargetAngle(ship);

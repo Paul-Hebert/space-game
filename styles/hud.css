@@ -29,7 +29,14 @@ canvas.hud-section {
 
 meter {
   display: block;
-  width: calc(var(--max-health) * 0.1px);
+}
+
+.health {
+  width: calc(var(--max-health) * 0.2px);
+}
+
+.shields {
+  width: calc(var(--max-shields) * 0.4px);
 }
 
 .weapons-list {

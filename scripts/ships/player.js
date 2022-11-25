@@ -11,8 +11,13 @@ export class PlayerShip extends BaseShip {
   graphic = document.getElementById("ship");
 
   resourceCount = 0;
-  maxHealth = 1300;
-  health = 1300;
+
+  maxHealth = 800;
+  health = 800;
+
+  maxShields = 400;
+  shields = 400;
+
   maxSpeed = 10;
 
   resourceDrawDistance = 300;

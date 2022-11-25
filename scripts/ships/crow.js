@@ -11,6 +11,8 @@ export class CrowShip extends BaseShip {
   size = 150;
 
   resourceCount = 0;
+  maxShields = 200;
+  health = 600;
   maxHealth = 600;
   health = 600;
   maxSpeed = 8;

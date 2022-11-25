@@ -9,6 +9,7 @@ import { paint } from "./graphics/paint.js";
 import { updateMessages } from "./hud/messaging.js";
 import { playerControlsEnabled } from "./state/player-controls-enabled.js";
 import { hyperSpeedJump, isJumping } from "./actions/hyper-speed-jump.js";
+import { updateShieldBar } from "./hud/update-shield-bar.js";
 
 export const gameLoop = new Loop();
 
@@ -35,6 +36,10 @@ gameLoop.cb = () => {
   handleCollisions();
 
   paint();
+
+  if (gameLoop.frameCount % 10) {
+    playerState.regenerateShields();
+  }
 
   if (playerControlsEnabled && gameLoop.frameCount % 10) updateMessages();
 };

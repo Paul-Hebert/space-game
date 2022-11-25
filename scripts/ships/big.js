@@ -1,8 +1,6 @@
 import { BaseShip } from "./base.js";
 import { Pew } from "../weapons/pew.js";
-import { Ray } from "../weapons/ray.js";
 import { Laser } from "../weapons/laser.js";
-import { Boom } from "../weapons/boom.js";
 import { randomInt } from "../math/random.js";
 
 export class BigShip extends BaseShip {
@@ -15,6 +13,9 @@ export class BigShip extends BaseShip {
   rotationSpeed = 1;
 
   size = 160;
+
+  shields = 200;
+  maxShields = 200;
 
   maxHealth = 400;
   health = 400;

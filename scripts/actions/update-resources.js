@@ -42,7 +42,7 @@ export function updateResources() {
       ) {
         if (resource.type === "health") {
           playSoundFile("notification-2");
-          playerState.health += 100;
+          playerState.health += 50;
           updateHealthBar();
         } else if (resource.type === "money") {
           playSoundFile("notification-2");
