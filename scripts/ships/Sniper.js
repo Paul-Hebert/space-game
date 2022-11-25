@@ -8,7 +8,7 @@ export class SniperShip extends BaseShip {
     this.currentGun = 0;
   }
 
-  graphic = document.getElementById("enemy-ship");
+  graphic = document.getElementById("ship-5");
 
   size = 200;
 
