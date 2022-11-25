@@ -52,6 +52,9 @@ export function hyperSpeedJump() {
   if (playerState.health < playerState.maxHealth) {
     playerState.health += 10;
   }
+  if (playerState.shields < playerState.maxShields) {
+    playerState.shields += 10;
+  }
 
   if (jumpAngle === playerState.rotation) {
     if (framesJumped <= 100) {
