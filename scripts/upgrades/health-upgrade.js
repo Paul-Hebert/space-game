@@ -1,3 +1,4 @@
+import { updateHealthBarSize } from "../hud/update-health-bar.js";
 import { playerState } from "../state/player-state.js";
 import { BaseUpgrade } from "./base-upgrade.js";
 
