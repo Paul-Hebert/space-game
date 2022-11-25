@@ -22,6 +22,20 @@ export function updateShips() {
     updateShipAngle(targetAngle, ship);
 
     if (shipIsAimingTowardsPlayer(ship)) {
+      if (ship.weapons.length > 0) {
+        // TODO: Do this in ship initialization!
+        const weaponsByRange = ship.weapons.sort((a, b) => {
+          return a.range() > b.range();
+        });
+
+        for (let i = 0; i < ship.weapons.length; i++) {
+          if (playerIsInRange(ship, weaponsByRange[i].range())) {
+            ship.currentGun = i;
+            break;
+          }
+        }
+      }
+
       if (!playerIsInRange(ship)) {
         const rotationInRadians = degreesToRadians(ship.rotation - 90);
         ship.speed.x += Math.cos(rotationInRadians) * ship.accelerationSpeed;
@@ -58,11 +72,8 @@ function shipIsAimingTowardsPlayer(ship) {
   );
 }
 
-function playerIsInRange(ship) {
-  return (
-    distanceBetweenPoints(ship, playerState) <
-    ship.weapons[ship.currentGun].range()
-  );
+function playerIsInRange(ship, range = ship.weapons[ship.currentGun].range()) {
+  return distanceBetweenPoints(ship, playerState) < range;
 }
 
 function getTargetAngle(ship) {

@@ -1,7 +1,9 @@
 # Road map
 
-- Add descriptions to weapons and make them more prominent than the stats
-- Make weapons use message UI
+- Shields
+
+  - Don't start with shields. Get as upgrade
+  - Shield upgrades
 
 - Objectives UI
 

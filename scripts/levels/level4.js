@@ -1,7 +1,6 @@
 import { addMessageToQueue } from "../hud/messaging.js";
 import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
-import { CrowShip } from "../ships/crow.js";
 import { FastShip } from "../ships/fast.js";
 import { SniperShip } from "../ships/Sniper.js";
 import { BigShip } from "../ships/big.js";

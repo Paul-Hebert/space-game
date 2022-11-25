@@ -13,6 +13,7 @@ import {
   positionToMapTop,
 } from "../math/position-to-map-edge.js";
 import { battleObjective } from "./objectives/battle.js";
+import { FalconShip } from "../ships/falcon.js";
 
 export function level1() {
   for (let i = 0; i < 5; i++) {
@@ -27,7 +28,7 @@ export function level1() {
 
   mapData.ships.push(new SniperShip(positionToMapBottom()));
 
-  mapData.ships.push(new BigShip(positionToMapTop()));
+  mapData.ships.push(new FalconShip(positionToMapTop()));
 
   addMessageToQueue({
     content: `

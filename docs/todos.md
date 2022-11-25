@@ -7,7 +7,6 @@
   - Position to nose and position to tail should move to ship class?
   - Bullets should maybe be assigned a ship, not a ship id?
   - Move map size to map data?
-- Only update UI once per loop
 
 ## Advanced Features
 
@@ -53,3 +52,7 @@
 - Alt text for upgrade images
 - Better modals
 - Focus styles
+
+## Perf
+
+- Sort ship weapons on ship creation

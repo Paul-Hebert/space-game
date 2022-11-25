@@ -14,7 +14,11 @@ export class MiningOverseer extends MotherShip {
 
   size = 400;
 
-  maxHealth = 1500;
+  shields = 1000;
+  maxShields = 1000;
+
+  health = 1000;
+  maxHealth = 1000;
 
   weapons = [new DroneSpawner()];
 

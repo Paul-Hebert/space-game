@@ -14,9 +14,14 @@ import { MiningDrone } from "../../ships/mining-drone.js";
 import { MiningOverseer } from "../../ships/mining-overseer.js";
 import { battleObjective } from "../objectives/battle.js";
 import { SprayerShip } from "../../ships/sprayer.js";
+import { FalconShip } from "../../ships/falcon.js";
 
 // TODO: Clusters of enemies
 const enemyOptions = [
+  {
+    difficulty: 20,
+    options: [FalconShip],
+  },
   {
     difficulty: 10,
     options: [MotherShip, SniperShip, BigShip, MiningOverseer],
