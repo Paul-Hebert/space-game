@@ -7,7 +7,6 @@
   display: grid;
   place-items: center;
   opacity: 1;
-  backdrop-filter: blur(2px);
 }
 
 .menu::before {

@@ -1,5 +1,9 @@
 # Road map
 
+- Bosses
+  - Boss fight UI
+  - Boss fight behabior
+    -Get shields
 - Shields
 
   - Don't start with shields. Get as upgrade
