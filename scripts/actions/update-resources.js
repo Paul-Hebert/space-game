@@ -49,11 +49,13 @@ export function updateResources() {
           resource.type === "ship-upgrade"
         ) {
           resource.upgradeDetails.pickup();
-          addMessageToQueue({
-            content: resource.upgradeDetails.messageContent(),
-            duration: 600,
-            theme: "success",
-          });
+          if (resource.upgradeDetails.addMessage) {
+            addMessageToQueue({
+              content: resource.upgradeDetails.messageContent(),
+              duration: 600,
+              theme: "success",
+            });
+          }
         }
         return false;
       }

@@ -2,12 +2,6 @@ import { BaseShip } from "./base.js";
 import { Laser } from "../weapons/laser.js";
 
 export class SniperShip extends BaseShip {
-  constructor(params) {
-    super(params);
-
-    this.currentGun = 0;
-  }
-
   graphic = document.getElementById("ship-5");
 
   size = 200;

@@ -2,7 +2,6 @@ import { addMessageToQueue } from "../hud/messaging.js";
 import { updateHealthBar } from "../hud/update-health-bar.js";
 import {
   keysThatHaveBeenPressed,
-  pressedKeys,
   resetPressedKeys,
 } from "../state/pressed-keys.js";
 import { SparrowShip } from "../ships/sparrow.js";
@@ -11,12 +10,8 @@ import { playerState } from "../state/player-state.js";
 import { CrowShip } from "../ships/crow.js";
 import { FastShip } from "../ships/fast.js";
 import { DoubleGun } from "../weapons/double-gun.js";
-import { Pew } from "../weapons/pew.js";
 import { completeLevel } from "./levels.js";
-import {
-  positionToMapRight,
-  positionToMapLeft,
-} from "../math/position-to-map-edge.js";
+import { positionToMapRight } from "../math/position-to-map-edge.js";
 import { controlOption } from "../state/control-option.js";
 import { pointerPosition } from "../state/pointer-position.js";
 import { battleObjective } from "./objectives/battle.js";
@@ -131,12 +126,12 @@ export function tutorial() {
               },
             ],
             nextAction: () => {
-              for (let i = 0; i < 7; i++) {
+              for (let i = 0; i < 5; i++) {
                 mapData.ships.push(new FastShip(positionToMapRight()));
               }
 
-              for (let i = 0; i < 3; i++) {
-                mapData.ships.push(new SparrowShip(positionToMapLeft()));
+              for (let i = 0; i < 1; i++) {
+                mapData.ships.push(new SparrowShip(positionToMapRight()));
               }
 
               addMessageToQueue({

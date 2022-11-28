@@ -12,7 +12,7 @@ import { startHyperSpeedJump } from "../actions/hyper-speed-jump.js";
 import { displayGameStats } from "../actions/display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { addMessageToQueue, removeAllMessages } from "../hud/messaging.js";
-import { testBoss } from "./bosses/test.js";
+import { theOverseer } from "./bosses/the-overseer.js";
 
 const sectorTitle = document.querySelector(".sector-title");
 
@@ -58,10 +58,6 @@ export function completeLevel() {
 }
 
 export const levels = [
-  // {
-  //   title: "Boss Test",
-  //   action: testBoss,
-  // },
   {
     title: "Company Mining Colony",
     action: tutorial,
@@ -73,8 +69,12 @@ export const levels = [
   {
     title: "Into the Fire",
     action: () => {
-      fightLevel({ difficulty: 8 });
+      fightLevel({ difficulty: 6 });
     },
+  },
+  {
+    title: "The Overseer",
+    action: theOverseer,
   },
   {
     title: "Outside New Sol X",

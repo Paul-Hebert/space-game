@@ -2,12 +2,6 @@ import { BaseShip } from "./base.js";
 import { DoubleGun } from "../weapons/double-gun.js";
 
 export class CrowShip extends BaseShip {
-  constructor(params) {
-    super(params);
-
-    this.currentGun = 0;
-  }
-
   size = 150;
 
   resourceCount = 0;

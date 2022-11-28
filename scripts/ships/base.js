@@ -30,6 +30,7 @@ import { createExplosion } from "../actions/create-explosion.js";
 import { drawCircle } from "../graphics/draw-circle.js";
 import { mainCtx } from "../graphics/canvas.js";
 import { isJumping } from "../actions/hyper-speed-jump.js";
+import { ShieldUpgrade } from "../upgrades/shield-upgrade.js";
 
 let shipId = 0;
 
@@ -40,7 +41,7 @@ export class BaseShip {
     this.speed = speed;
     this.rotation = rotation;
 
-    this.currentGun = randomInt(0, this.weapons.length - 1);
+    this.currentGun = 0;
 
     this.id = shipId;
     shipId++;
@@ -172,6 +173,16 @@ export class BaseShip {
   }
 
   dropShipUpgrade() {
+    const shipUpgradeOptions = [
+      new HealthUpgrade(),
+      new AccelerationSpeedUpgrade(),
+      new MaxSpeedUpgrade(),
+      new TractorBeamUpgrade(),
+    ];
+    if (playerState.maxShields) {
+      shipUpgradeOptions.push(new ShieldUpgrade());
+    }
+
     return new Resource({
       x: this.x,
       y: this.y,
@@ -180,12 +191,7 @@ export class BaseShip {
         y: random(-3, 3),
       },
       type: "ship-upgrade",
-      upgradeDetails: randomItemInArray([
-        new HealthUpgrade(),
-        new AccelerationSpeedUpgrade(),
-        new MaxSpeedUpgrade(),
-        new TractorBeamUpgrade(),
-      ]),
+      upgradeDetails: randomItemInArray(shipUpgradeOptions),
     });
   }
 

@@ -2,11 +2,6 @@ import { BaseShip } from "./base.js";
 import { StasisLaser } from "../weapons/stasis-laser.js";
 
 export class MiningDrone extends BaseShip {
-  constructor(params) {
-    super(params);
-    this.currentGun = 0;
-  }
-
   rotationSpeed = 10;
   accelerationSpeed = 2;
   maxSpeed = 12;

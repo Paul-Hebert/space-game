@@ -11,6 +11,7 @@ export const menus = {
   success: document.querySelector(".success-menu"),
   start: document.querySelector(".start-menu"),
   settings: document.querySelector(".settings-menu"),
+  shieldUpgrade: document.querySelector(".shield-upgrade-menu"),
 };
 
 export function showMenu(name) {

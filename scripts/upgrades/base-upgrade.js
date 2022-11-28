@@ -5,6 +5,7 @@ export class BaseUpgrade {
   description = "You got the default upgrade";
   upgradeAction = () => {};
   draw = null;
+  addMessage = true;
   messageContent = () => `
     <h4>${this.name}</h4>
     <p><em>${this.description}</em></p>

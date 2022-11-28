@@ -6,12 +6,6 @@ import { Pew } from "../weapons/pew.js";
 import { Boom } from "../weapons/boom.js";
 
 export class FalconShip extends BaseShip {
-  constructor(params) {
-    super(params);
-
-    this.currentGun = 0;
-  }
-
   size = 150;
 
   resourceCount = 0;

@@ -2,11 +2,6 @@ import { BaseShip } from "./base.js";
 import { ShipSpawner } from "../weapons/ship-spawner.js";
 
 export class MotherShip extends BaseShip {
-  constructor(params) {
-    super(params);
-    this.currentGun = 0;
-  }
-
   graphic = document.getElementById("ship-2");
 
   accelerationSpeed = 0.125;
