@@ -22,4 +22,8 @@ export class ShipSpawner extends BaseWeapon {
       })
     );
   }
+
+  range() {
+    return Infinity;
+  }
 }

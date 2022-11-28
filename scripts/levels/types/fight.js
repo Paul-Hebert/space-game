@@ -27,12 +27,8 @@ const enemyOptions = [
     options: [MotherShip, SniperShip, BigShip, MiningOverseer],
   },
   {
-    difficulty: 3,
-    options: [SparrowShip, BaseShip, CrowShip],
-  },
-  {
-    difficulty: 2,
-    options: [SprayerShip],
+    difficulty: 4,
+    options: [SprayerShip, SparrowShip, CrowShip],
   },
   {
     difficulty: 1,

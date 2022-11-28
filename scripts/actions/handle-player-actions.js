@@ -1,6 +1,5 @@
 import { pressedKeys } from "../state/pressed-keys.js";
 import { playerState } from "../state/player-state.js";
-import { shoot } from "./shoot.js";
 import {
   pointerPosition,
   pointerAngleFromCenter,
@@ -27,7 +26,7 @@ export function handlePlayerActions() {
   }
 
   if (pressedKeys[" "] || pressedKeys["s"] || pressedKeys["S"]) {
-    shoot(playerState);
+    playerState.shoot();
   }
 
   return playerState;

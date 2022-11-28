@@ -1,48 +1,47 @@
-import { addMessageToQueue } from "../../hud/messaging.js";
 import { positionToMapRight } from "../../math/position-to-map-edge.js";
 import { BaseShip } from "../../ships/base.js";
-import { playerState } from "../../state/player-state.js";
-import { InitialShieldUpgrade } from "../../upgrades/initial-shield-upgrade.js";
+import { DroneSpawner } from "../../weapons/drone-spawner.js";
+import { Laser } from "../../weapons/laser.js";
 import { Pew } from "../../weapons/pew.js";
-import { SprayBlaster } from "../../weapons/spray-blaster.js";
-import { completeLevel } from "../levels.js";
+import { ShipSpawner } from "../../weapons/ship-spawner.js";
 import { boss } from "../types/boss.js";
 
 export function theOverseer() {
-  const theOverseer = new BaseShip(positionToMapRight());
-  theOverseer.health = 400;
-  theOverseer.maxHealth = 400;
-  theOverseer.shields = 400;
-  theOverseer.maxShields = 400;
-  theOverseer.size = 200;
+  class TheOverseer extends BaseShip {
+    health = 2400;
+    maxHealth = 2400;
+    shields = 2000;
+    maxShields = 2000;
+    size = 250;
 
-  theOverseer.weapons = [new Pew(), new SprayBlaster()];
+    graphic = document.getElementById("ship-3");
 
-  theOverseer.hardCodedUpgrade = {
-    type: "ship-upgrade",
-    upgradeDetails: new InitialShieldUpgrade(),
-  };
+    weapons = [new ShipSpawner()];
+
+    hasBeenHurt = false;
+    hasBeenHurtTwice = false;
+    hasBeenHurtThrice = false;
+
+    specialBehavior() {
+      if (!this.hasBeenHurt && this.shields < this.maxShields) {
+        this.hasBeenHurt = true;
+        const specialDroneSpawner = new DroneSpawner();
+        specialDroneSpawner.reloadSpeed = 50;
+        this.weapons = [specialDroneSpawner];
+      }
+      if (!this.hasBeenHurtTwice && this.health < this.maxHealth) {
+        this.hasBeenHurtTwice = true;
+        this.weapons = [new Pew()];
+      }
+      if (!this.hasBeenHurtThrice && this.health < this.maxHealth / 2) {
+        this.hasBeenHurtThrice = true;
+        this.weapons.push(new Laser());
+      }
+    }
+  }
 
   boss({
-    ship: theOverseer,
+    ship: new TheOverseer(positionToMapRight()),
     heading: "Defeat the Overseer",
-    nextAction: () => {
-      addMessageToQueue({
-        content: `
-          <p>
-            The enemy ship dropped a shield! We can use that to upgrade our ship.
-          </p>
-        `,
-        objectives: [
-          {
-            text: "Fly over the white circle to pick up the shield.",
-            evaluate: () => playerState.maxShields > 0,
-          },
-        ],
-        nextAction: () => {
-          completeLevel();
-        },
-      });
-    },
   });
 }

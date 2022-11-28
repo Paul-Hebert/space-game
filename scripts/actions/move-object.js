@@ -1,6 +1,4 @@
-import { mapSize } from "../map-size.js";
-
-export function moveObject(object, playerState) {
+export function moveObject(object) {
   object.x += object.speed.x;
   object.y += object.speed.y;
 

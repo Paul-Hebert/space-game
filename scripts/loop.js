@@ -19,8 +19,6 @@ export class Loop {
 
   doLoopCallback() {
     if (this.isPlaying) {
-      this.frameCount++;
-
       if (this.cb) this.cb();
 
       this.animationFrame = requestAnimationFrame(() => {
@@ -31,10 +29,8 @@ export class Loop {
 
   reset() {
     this.pause();
-    this.frameCount = 0;
   }
 
-  frameCount = 0;
   animationFrame = null;
   isPlaying = false;
 }

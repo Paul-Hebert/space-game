@@ -1,16 +1,12 @@
 # Road map
 
 - Bosses
-  - Boss fight UI
-  - Boss fight behabior
-    -Get shields
-- Shields
 
-  - Don't start with shields. Get as upgrade
-  - Shield upgrades
+  - More dynamic ship behavior
 
 - Objectives UI
 
+  - Main "objective" message should always be at the top
   - Repeates pulses for "nag" messages
   - Sound effects
   - Revamp message queue design

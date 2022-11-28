@@ -1,9 +1,9 @@
-import { gameLoop } from "../game-loop.js";
+import { frameCount } from "../state/frameCount.js";
 import { mapData } from "../state/map-data.js";
-// import autoAnimate from "https://unpkg.com/@formkit/auto-animate@1.0.0-beta.5/index.mjs";
+import autoAnimate from "https://unpkg.com/@formkit/auto-animate@1.0.0-beta.5/index.mjs";
 
 const queueEl = document.querySelector(".message-queue");
-// autoAnimate(queueEl);
+autoAnimate(queueEl);
 
 let messagesInQueue = [];
 let currentId = 0;
@@ -60,7 +60,7 @@ export function addMessageToQueue({
     boss,
     nextAction,
     id: currentId,
-    startingFrame: gameLoop.frameCount,
+    startingFrame: frameCount,
     dismissText,
   });
 }
@@ -80,7 +80,7 @@ export function updateMessages() {
       const messageEl = document.getElementById(`message-${id}`);
       let stillValid = true;
 
-      const pastDuration = gameLoop.frameCount - startingFrame >= duration;
+      const pastDuration = frameCount - startingFrame >= duration;
 
       if (objectives) {
         objectives.forEach((objective, i) => {

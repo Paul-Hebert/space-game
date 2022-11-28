@@ -2,12 +2,7 @@ import { Pew } from "../weapons/pew.js";
 import { Ray } from "../weapons/ray.js";
 import { Laser } from "../weapons/laser.js";
 import { BaseWeapon } from "../weapons/base-weapon.js";
-import {
-  randomInt,
-  random,
-  randomBool,
-  randomItemInArray,
-} from "../math/random.js";
+import { random, randomBool, randomItemInArray } from "../math/random.js";
 import { Boom } from "../weapons/boom.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
 import { relativePosition } from "../math/relative-position.js";
@@ -31,6 +26,11 @@ import { drawCircle } from "../graphics/draw-circle.js";
 import { mainCtx } from "../graphics/canvas.js";
 import { isJumping } from "../actions/hyper-speed-jump.js";
 import { ShieldUpgrade } from "../upgrades/shield-upgrade.js";
+import { updateShipAngle } from "../math/update-ship-angle.js";
+import { constrainSpeed } from "../math/constrain-speed.js";
+import { frameCount } from "../state/frameCount.js";
+import { angleBetweenPoints } from "../math/angle-between-points.js";
+import { distanceBetweenPoints } from "../math/distance-between-points.js";
 
 let shipId = 0;
 
@@ -221,6 +221,98 @@ export class BaseShip {
       if (this.shields > this.maxShields) {
         this.shields = this.maxShields;
       }
+    }
+  }
+
+  update() {
+    this.specialBehavior();
+
+    if (frameCount % 10) {
+      this.regenerateShields();
+    }
+
+    this.x += this.speed.x;
+    this.y += this.speed.y;
+
+    const targetAngle = this.getTargetAngle();
+
+    updateShipAngle(targetAngle, this);
+
+    if (this.weapons.length > 0) {
+      this.changeWeapons();
+    }
+
+    if (this.isAimingTowardsPlayer()) {
+      if (!this.playerIsInRange()) {
+        const rotationInRadians = degreesToRadians(this.rotation - 90);
+        this.speed.x += Math.cos(rotationInRadians) * this.accelerationSpeed;
+        this.speed.y += Math.sin(rotationInRadians) * this.accelerationSpeed;
+
+        this.addExhaust();
+        this.engineNoise();
+      }
+    }
+
+    this.speed = constrainSpeed(this);
+
+    if (
+      this.isAimingTowardsPlayer() &&
+      this.playerIsInRange() &&
+      playerState.health > 0
+    ) {
+      this.shoot();
+    }
+  }
+
+  specialBehavior() {}
+
+  changeWeapons() {
+    this.changeWeaponsByRange({});
+  }
+
+  changeWeaponsByRange() {
+    console.log("changing!");
+    // TODO: Do this in ship initialization!
+    const weaponsByRange = this.weapons.sort((a, b) => {
+      return a.range() > b.range();
+    });
+
+    for (let i = 0; i < this.weapons.length; i++) {
+      if (this.playerIsInRange(weaponsByRange[i].range())) {
+        console.log(i);
+        this.currentGun = i;
+        break;
+      }
+    }
+  }
+
+  isAimingTowardsPlayer() {
+    const targetAngle = this.getTargetAngle(this);
+    const acceptableRange = 30;
+    return (
+      Math.abs(targetAngle - this.rotation) < acceptableRange ||
+      Math.abs(targetAngle - this.rotation - 360) < acceptableRange ||
+      Math.abs(targetAngle + this.rotation - 360) < acceptableRange
+    );
+  }
+
+  getTargetAngle() {
+    return angleBetweenPoints(this, playerState) + 90;
+  }
+
+  playerIsInRange(range = this.weapons[this.currentGun].range()) {
+    return distanceBetweenPoints(this, playerState) < range;
+  }
+
+  shoot() {
+    const gun = this.weapons[this.currentGun];
+    if (
+      gun.lastShotFrame === 0 ||
+      frameCount - gun.lastShotFrame > gun.reloadSpeed
+    ) {
+      gun.lastShotFrame = frameCount;
+
+      gun.shoot(this);
     }
   }
 

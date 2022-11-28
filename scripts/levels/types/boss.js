@@ -14,7 +14,11 @@ export function boss({
   addMessageToQueue({
     content: `<h3>${heading}</h3>`,
     theme: "danger",
-    nextAction,
+    nextAction: () => {
+      mapData.ships.forEach((ship) => ship.explode());
+      mapData.ships = [];
+      nextAction();
+    },
     boss: ship,
   });
 }

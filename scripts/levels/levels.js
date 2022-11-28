@@ -13,6 +13,7 @@ import { displayGameStats } from "../actions/display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { addMessageToQueue, removeAllMessages } from "../hud/messaging.js";
 import { theOverseer } from "./bosses/the-overseer.js";
+import { theDestroyer } from "./bosses/the-destroyer.js";
 
 const sectorTitle = document.querySelector(".sector-title");
 
@@ -69,12 +70,12 @@ export const levels = [
   {
     title: "Into the Fire",
     action: () => {
-      fightLevel({ difficulty: 6 });
+      fightLevel({ difficulty: 10 });
     },
   },
   {
-    title: "The Overseer",
-    action: theOverseer,
+    title: "Caught by the Destroyer",
+    action: theDestroyer,
   },
   {
     title: "Outside New Sol X",
@@ -116,10 +117,14 @@ export const levels = [
     title: "Almost Home",
     action: level5,
   },
+  // {
+  //   title: "The Final Battle",
+  //   action: () => {
+  //     fightLevel({ difficulty: 75 });
+  //   },
+  // },
   {
-    title: "The Final Battle",
-    action: () => {
-      fightLevel({ difficulty: 75 });
-    },
+    title: "The Overseer",
+    action: theOverseer,
   },
 ];
