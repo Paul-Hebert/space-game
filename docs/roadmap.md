@@ -1,8 +1,36 @@
 # Road map
 
-- Bosses
+- Enemy AI
 
-  - More dynamic ship behavior
+  - Add option to evade/flee when:
+    - Under a certain distance
+    - Shields are down
+    - Health is low
+  - Allow firing some weapon types while fleeing (For now just spawners. Bombs in the future.)
+  - Add bombs
+  - Ship behavior archetypes
+    - Space station
+      - Spawner
+      - 0 movement
+    - Transport
+      - Spawns ships
+      - Runs away when enemies are near
+    - Armed Transport
+      - Spawns ships when long range
+      - Shoots up close with short range gun
+    - Hunters
+      - Short-range guns
+      - Always wants to be close to enemy
+    - Taunter
+      - Short-range guns
+      - Flees right past gun range, but drop bombs when leaving
+    - Gunships
+      - Multiple weapon types - changes based on range
+      - If shield are 0, run
+      - May have bombs
+    - Bosses
+      - Mixed
+  - Better boss behaviors
 
 - Objectives UI
 

@@ -1,12 +1,8 @@
 import { addMessageToQueue } from "../../hud/messaging.js";
 import { positionToMapRight } from "../../math/position-to-map-edge.js";
 import { BaseShip } from "../../ships/base.js";
-import { mapData } from "../../state/map-data.js";
 import { playerState } from "../../state/player-state.js";
 import { InitialShieldUpgrade } from "../../upgrades/initial-shield-upgrade.js";
-import { DroneSpawner } from "../../weapons/drone-spawner.js";
-import { Laser } from "../../weapons/laser.js";
-import { Pew } from "../../weapons/pew.js";
 import { ShipSpawner } from "../../weapons/ship-spawner.js";
 import { SprayBlaster } from "../../weapons/spray-blaster.js";
 import { completeLevel } from "../levels.js";
@@ -14,7 +10,7 @@ import { boss } from "../types/boss.js";
 
 export function theDestroyer() {
   const specialSpawner = new ShipSpawner();
-  specialSpawner.reloadSpeed = 10;
+  specialSpawner.reloadSpeed = 20;
 
   class TheDestroyer extends BaseShip {
     health = 800;
