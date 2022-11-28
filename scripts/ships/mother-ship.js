@@ -11,11 +11,16 @@ export class MotherShip extends BaseShip {
 
   maxHealth = 1200;
   health = 1200;
-  maxSpeed = 5;
+  maxSpeed = 6;
   maxResourceCount = 5;
 
   upgradeDropChance = 0.5;
   upgradeIsWeaponChance = 0;
 
   weapons = [new ShipSpawner()];
+
+  targetRange = {
+    min: 600,
+    idea: 800,
+  };
 }

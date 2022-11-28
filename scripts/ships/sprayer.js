@@ -21,4 +21,6 @@ export class SprayerShip extends BaseShip {
   maxResourceCount = 2;
 
   weapons = [new SprayBlaster()];
+
+  targetRange = { min: 0 };
 }

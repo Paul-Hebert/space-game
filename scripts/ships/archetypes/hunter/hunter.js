@@ -1,7 +1,7 @@
-import { BaseShip } from "./base.js";
-import { Laser } from "../weapons/laser.js";
+import { Laser } from "../../../weapons/laser.js";
+import { BaseShip } from "../../base.js";
 
-export class SniperShip extends BaseShip {
+export class HunterShip extends BaseShip {
   graphic = document.getElementById("ship-5");
 
   size = 200;
@@ -9,13 +9,17 @@ export class SniperShip extends BaseShip {
   resourceCount = 0;
   maxHealth = 600;
   health = 600;
-  maxSpeed = 8;
+  maxSpeed = 10;
   rotationSpeed = 0.25;
   maxResourceCount = 5;
-  accelerationSpeed = 0.125;
+  accelerationSpeed = 0.25;
 
   weapons = [new Laser()];
 
   upgradeDropChance = 0.75;
   upgradeIsWeaponChance = 0.25;
+
+  targetRange = {
+    min: 600,
+  };
 }

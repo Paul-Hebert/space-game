@@ -1,5 +1,5 @@
 import { MotherShip } from "../../ships/mother-ship.js";
-import { SniperShip } from "../../ships/Sniper.js";
+import { HunterShip } from "../../ships/archetypes/hunter/hunter.js";
 import { CrowShip } from "../../ships/crow.js";
 import { FastShip } from "../../ships/fast.js";
 import { BaseShip } from "../../ships/base.js";
@@ -24,7 +24,7 @@ const enemyOptions = [
   },
   {
     difficulty: 10,
-    options: [MotherShip, SniperShip, BigShip, MiningOverseer],
+    options: [MotherShip, HunterShip, BigShip, MiningOverseer],
   },
   {
     difficulty: 4,

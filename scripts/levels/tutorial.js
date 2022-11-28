@@ -16,6 +16,7 @@ import { controlOption } from "../state/control-option.js";
 import { pointerPosition } from "../state/pointer-position.js";
 import { battleObjective } from "./objectives/battle.js";
 import { WeaponUpgrade } from "../upgrades/weapon-upgrade.js";
+import { HunterShip } from "../ships/archetypes/hunter/hunter.js";
 
 export function tutorial() {
   playerState.health = playerState.maxHealth - 100;

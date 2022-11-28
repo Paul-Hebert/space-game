@@ -3,8 +3,8 @@ import { hsl } from "../graphics/hsl.js";
 import { Particle } from "./particle.js";
 
 export class Exhaust extends Particle {
-  constructor({ x, y, speed }) {
-    super({ x, y, speed, radius: random(5, 15) });
+  constructor({ x, y, speed, radius }) {
+    super({ x, y, speed, radius: radius || random(5, 15) });
   }
 
   fill = hsl({

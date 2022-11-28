@@ -2,7 +2,7 @@ import { addMessageToQueue } from "../hud/messaging.js";
 import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
 import { FastShip } from "../ships/fast.js";
-import { SniperShip } from "../ships/Sniper.js";
+import { HunterShip } from "../ships/archetypes/hunter/hunter.js";
 import { BigShip } from "../ships/big.js";
 import { completeLevel } from "./levels.js";
 import {

@@ -10,7 +10,7 @@
   - Add bombs
   - Ship behavior archetypes
     - Space station
-      - Spawner
+      - Spawner or Shooter or Combo
       - 0 movement
     - Transport
       - Spawns ships
@@ -31,6 +31,10 @@
     - Bosses
       - Mixed
   - Better boss behaviors
+
+- Ships that spawn enemies should not be damageable by their child ships
+
+- Boss music
 
 - Objectives UI
 

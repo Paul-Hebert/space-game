@@ -91,6 +91,7 @@ export class BaseShip {
     mapData.exhaust.push(
       new Exhaust({
         ...positionToTail(this),
+        radius: random(this.size / 20, this.size / 10),
         speed: {
           x: Math.cos(exhaustDirection) * distance,
           y: Math.sin(exhaustDirection) * distance,
@@ -231,47 +232,71 @@ export class BaseShip {
       this.regenerateShields();
     }
 
-    this.x += this.speed.x;
-    this.y += this.speed.y;
+    if (this.isFleeing) {
+      this.isFleeing = !this.shouldStopFleeing();
+    } else {
+      this.isFleeing = this.shouldFlee();
+    }
 
-    const targetAngle = this.getTargetAngle();
-
-    updateShipAngle(targetAngle, this);
+    updateShipAngle(this.getTargetAngle(), this);
 
     if (this.weapons.length > 0) {
       this.changeWeapons();
     }
 
-    if (this.isAimingTowardsPlayer()) {
-      if (!this.playerIsInRange()) {
-        const rotationInRadians = degreesToRadians(this.rotation - 90);
-        this.speed.x += Math.cos(rotationInRadians) * this.accelerationSpeed;
-        this.speed.y += Math.sin(rotationInRadians) * this.accelerationSpeed;
-
-        this.addExhaust();
-        this.engineNoise();
-      }
+    if (
+      this.isFleeing ||
+      this.distanceToPlayer() >
+        (this.targetRange.ideal || this.weapons[this.currentGun].range())
+    ) {
+      this.accelerate();
+      this.speed = constrainSpeed(this);
     }
 
-    this.speed = constrainSpeed(this);
+    this.x += this.speed.x;
+    this.y += this.speed.y;
 
-    if (
-      this.isAimingTowardsPlayer() &&
-      this.playerIsInRange() &&
-      playerState.health > 0
-    ) {
+    const playerIsShootable =
+      this.isAimingTowardsPlayer() && this.playerIsInRange();
+    const gunHasInfiniteRange =
+      this.weapons[this.currentGun].range() === Infinity;
+
+    if ((playerIsShootable || gunHasInfiniteRange) && playerState.health > 0) {
       this.shoot();
     }
   }
 
   specialBehavior() {}
 
+  accelerate() {
+    const rotationInRadians = degreesToRadians(this.rotation - 90);
+    this.speed.x += Math.cos(rotationInRadians) * this.accelerationSpeed;
+    this.speed.y += Math.sin(rotationInRadians) * this.accelerationSpeed;
+
+    this.addExhaust();
+    this.engineNoise();
+  }
+
+  isFleeing = false;
+
+  targetRange = {
+    min: 200,
+  };
+  shouldFlee() {
+    return this.distanceToPlayer() < this.targetRange.min;
+  }
+  shouldStopFleeing() {
+    return (
+      this.distanceToPlayer() >
+      (this.targetRange.ideal || this.weapons[this.currentGun].range() / 2)
+    );
+  }
+
   changeWeapons() {
     this.changeWeaponsByRange({});
   }
 
   changeWeaponsByRange() {
-    console.log("changing!");
     // TODO: Do this in ship initialization!
     const weaponsByRange = this.weapons.sort((a, b) => {
       return a.range() > b.range();
@@ -279,7 +304,6 @@ export class BaseShip {
 
     for (let i = 0; i < this.weapons.length; i++) {
       if (this.playerIsInRange(weaponsByRange[i].range())) {
-        console.log(i);
         this.currentGun = i;
         break;
       }
@@ -287,7 +311,7 @@ export class BaseShip {
   }
 
   isAimingTowardsPlayer() {
-    const targetAngle = this.getTargetAngle(this);
+    const targetAngle = this.getAngleToPlayer();
     const acceptableRange = 30;
     return (
       Math.abs(targetAngle - this.rotation) < acceptableRange ||
@@ -296,12 +320,24 @@ export class BaseShip {
     );
   }
 
-  getTargetAngle() {
+  getAngleToPlayer() {
     return angleBetweenPoints(this, playerState) + 90;
   }
 
+  getTargetAngle() {
+    let angle = this.getAngleToPlayer();
+
+    if (this.isFleeing) angle += 180;
+
+    return angle;
+  }
+
+  distanceToPlayer() {
+    return distanceBetweenPoints(this, playerState);
+  }
+
   playerIsInRange(range = this.weapons[this.currentGun].range()) {
-    return distanceBetweenPoints(this, playerState) < range;
+    return this.distanceToPlayer() < range;
   }
 
   shoot() {
@@ -342,5 +378,4 @@ export class BaseShip {
   maxResourceCount = 2;
 
   upgradeDropChance = 0.25;
-  upgradeIsWeaponChance = 0.5;
 }
