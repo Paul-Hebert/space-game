@@ -6,12 +6,13 @@ import { level3 } from "./level3.js";
 import { level4 } from "./level4.js";
 import { level5 } from "./level5.js";
 import { gameStats } from "../state/game-stats.js";
-import { fightLevel } from "./random/fight.js";
+import { fightLevel } from "./types/fight.js";
 import { playerState } from "../state/player-state.js";
 import { startHyperSpeedJump } from "../actions/hyper-speed-jump.js";
 import { displayGameStats } from "../actions/display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { addMessageToQueue, removeAllMessages } from "../hud/messaging.js";
+import { testBoss } from "./bosses/test.js";
 
 const sectorTitle = document.querySelector(".sector-title");
 
@@ -57,6 +58,10 @@ export function completeLevel() {
 }
 
 export const levels = [
+  // {
+  //   title: "Boss Test",
+  //   action: testBoss,
+  // },
   {
     title: "Company Mining Colony",
     action: tutorial,

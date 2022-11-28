@@ -7,6 +7,7 @@
   - Position to nose and position to tail should move to ship class?
   - Bullets should maybe be assigned a ship, not a ship id?
   - Move map size to map data?
+- The UI messaging updates could use a perf pass
 
 ## Advanced Features
 

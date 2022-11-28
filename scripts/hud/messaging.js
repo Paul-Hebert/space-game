@@ -1,4 +1,5 @@
 import { gameLoop } from "../game-loop.js";
+import { mapData } from "../state/map-data.js";
 // import autoAnimate from "https://unpkg.com/@formkit/auto-animate@1.0.0-beta.5/index.mjs";
 
 const queueEl = document.querySelector(".message-queue");
@@ -9,6 +10,7 @@ let currentId = 0;
 
 export function addMessageToQueue({
   content,
+  boss,
   duration = 200,
   nextAction = null,
   objectives = null,
@@ -26,6 +28,7 @@ export function addMessageToQueue({
       >
         ${content}
         ${objectives ? buildObjectives(objectives) : ""}
+        ${boss ? buildBossObjective(boss) : ""}
         ${
           dismissText
             ? `<div><button class="dismiss-button">${dismissText}</button></div>`
@@ -54,6 +57,7 @@ export function addMessageToQueue({
     content,
     duration,
     objectives,
+    boss,
     nextAction,
     id: currentId,
     startingFrame: gameLoop.frameCount,
@@ -64,13 +68,21 @@ export function addMessageToQueue({
 export function updateMessages() {
   const upcomingActions = [];
   messagesInQueue = messagesInQueue.filter(
-    ({ id, objectives, startingFrame, duration, nextAction, dismissText }) => {
+    ({
+      id,
+      objectives,
+      startingFrame,
+      duration,
+      nextAction,
+      dismissText,
+      boss,
+    }) => {
       const messageEl = document.getElementById(`message-${id}`);
       let stillValid = true;
 
       const pastDuration = gameLoop.frameCount - startingFrame >= duration;
 
-      if (objectives !== null) {
+      if (objectives) {
         objectives.forEach((objective, i) => {
           if (objective.completed) return;
 
@@ -95,6 +107,12 @@ export function updateMessages() {
         });
 
         if (!objectives.find((objective) => !objective.completed)) {
+          stillValid = false;
+        }
+      } else if (boss) {
+        if (mapData.ships.includes(boss)) {
+          updateBossObjective(boss, messageEl);
+        } else {
           stillValid = false;
         }
       } else if (pastDuration && !dismissText) {
@@ -136,6 +154,29 @@ export function buildObjectives(objectives) {
       })
       .join("")}
   </ul>`;
+}
+
+export function buildBossObjective(boss) {
+  return `
+    <div>
+      ${
+        boss.maxShields
+          ? '<div>Shields:<meter class="boss-shields" max="100" value="100"/></div>'
+          : ""
+      }
+      <div>Health: <meter class="boss-health" max="100" value="100"/></div>
+    </div>
+  `;
+}
+
+export function updateBossObjective(boss, messageEl) {
+  if (boss.maxShields) {
+    messageEl.querySelector(".boss-shields").value =
+      (boss.shields / boss.maxShields) * 100;
+  }
+
+  messageEl.querySelector(".boss-health").value =
+    (boss.health / boss.maxHealth) * 100;
 }
 
 export function clearMessage(messageEl) {

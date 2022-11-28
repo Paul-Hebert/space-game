@@ -28,6 +28,10 @@
   animation: fade 0.5s ease-out reverse both;
 }
 
+.message meter {
+  width: 100%;
+}
+
 .objectives {
   list-style: none;
 }
