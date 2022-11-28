@@ -17,16 +17,16 @@ import {
   positionToMapRight,
   positionToMapLeft,
 } from "../math/position-to-map-edge.js";
-import { randomItemInArray } from "../math/random.js";
 import { controlOption } from "../state/control-option.js";
 import { pointerPosition } from "../state/pointer-position.js";
 import { battleObjective } from "./objectives/battle.js";
+import { WeaponUpgrade } from "../upgrades/weapon-upgrade.js";
 
 export function tutorial() {
   playerState.health = playerState.maxHealth - 100;
   updateHealthBar();
 
-  const firstWeaponUpgrade = randomItemInArray([new DoubleGun(), new Pew()]);
+  const firstWeaponUpgrade = new DoubleGun();
 
   let startingObjectives;
 
@@ -84,8 +84,10 @@ export function tutorial() {
     nextAction: () => {
       const enemyShip = new CrowShip(positionToMapRight());
       enemyShip.weapons = [firstWeaponUpgrade];
-      enemyShip.upgradeDropChance = 1;
-      enemyShip.upgradeIsWeaponChance = 1;
+      enemyShip.hardCodedUpgrade = {
+        type: "weapon-upgrade",
+        upgradeDetails: new WeaponUpgrade(firstWeaponUpgrade),
+      };
       mapData.ships.push(enemyShip);
 
       addMessageToQueue({

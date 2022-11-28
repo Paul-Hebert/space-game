@@ -122,7 +122,10 @@ export class BaseShip {
       return resource;
     });
 
-    if (randomBool(this.upgradeDropChance)) {
+    if (this.hardCodedUpgrade) {
+      playSoundFile("upgrade-dropped");
+      resources.push(this.dropHardCodedUpgrade(this.hardCodedUpgrade));
+    } else if (randomBool(this.upgradeDropChance)) {
       playSoundFile("upgrade-dropped");
 
       if (randomBool(this.upgradeIsWeaponChance)) {
@@ -184,6 +187,26 @@ export class BaseShip {
         new TractorBeamUpgrade(),
       ]),
     });
+  }
+
+  dropHardCodedUpgrade({ type, upgradeDetails }) {
+    const upgrade = new Resource({
+      x: this.x,
+      y: this.y,
+      speed: {
+        x: random(-3, 3),
+        y: random(-3, 3),
+      },
+      type,
+      upgradeDetails,
+    });
+
+    upgrade.rotation = random(0, 360);
+    upgrade.rotationSpeed = random(-3, 3);
+
+    console.log(upgrade);
+
+    return upgrade;
   }
 
   regenerateShields() {
