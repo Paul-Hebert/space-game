@@ -59,40 +59,40 @@ export function completeLevel() {
 }
 
 export const levels = [
-  // {
-  //   title: "Company Mining Colony",
-  //   action: tutorial,
-  // },
-  // {
-  //   title: "Out of the Frying Pan",
-  //   action: level2,
-  // },
-  // {
-  //   title: "Into the Fire",
-  //   action: () => {
-  //     fightLevel({ difficulty: 10 });
-  //   },
-  // },
-  // {
-  //   title: "Caught by the Destroyer",
-  //   action: theDestroyer,
-  // },
-  // {
-  //   title: "Outside New Sol X",
-  //   action: () => {
-  //     fightLevel({ difficulty: 12 });
-  //   },
-  // },
-  // {
-  //   title: "Ambushed By Company Drones",
-  //   action: level4,
-  // },
-  // {
-  //   title: "Company Resupply Depot",
-  //   action: () => {
-  //     fightLevel({ difficulty: 16 });
-  //   },
-  // },
+  {
+    title: "Company Mining Colony",
+    action: tutorial,
+  },
+  {
+    title: "Out of the Frying Pan",
+    action: level2,
+  },
+  {
+    title: "Into the Fire",
+    action: () => {
+      fightLevel({ difficulty: 10 });
+    },
+  },
+  {
+    title: "Caught by the Destroyer",
+    action: theDestroyer,
+  },
+  {
+    title: "Outside New Sol X",
+    action: () => {
+      fightLevel({ difficulty: 12 });
+    },
+  },
+  {
+    title: "Ambushed By Company Drones",
+    action: level4,
+  },
+  {
+    title: "Company Resupply Depot",
+    action: () => {
+      fightLevel({ difficulty: 16 });
+    },
+  },
   {
     title: "Company Logistics HQ",
     action: level3,
