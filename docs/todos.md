@@ -1,5 +1,6 @@
 ## Technical Refactors
 
+- HMR
 - build system for external deps
 - tests
 - Clean things up

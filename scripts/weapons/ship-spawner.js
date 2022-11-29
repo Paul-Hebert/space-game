@@ -5,6 +5,7 @@ import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 
 export class ShipSpawner extends BaseWeapon {
+  name = "spawner";
   speed = 100;
   reloadSpeed = 50;
   sound = "pop";

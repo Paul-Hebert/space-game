@@ -3,3 +3,4 @@
 - If you pick up an upgrade while completing a level you get awkwardly stacked menus
 - Pressing return sometimes triggers a button from a hidden menu
 - If the tab loses focus with keys pressed down they stay down
+- Pausing during a jump breaks things

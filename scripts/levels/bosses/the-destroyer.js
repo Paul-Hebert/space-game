@@ -21,6 +21,14 @@ export function theDestroyer() {
 
     weapons = [specialSpawner, new SprayBlaster()];
 
+    shouldFlee() {
+      return this.shields < 200;
+    }
+
+    shouldStopFleeing() {
+      return this.shields > 400 || this.distanceToPlayer() > 1000;
+    }
+
     hardCodedUpgrade = {
       type: "ship-upgrade",
       upgradeDetails: new InitialShieldUpgrade(),

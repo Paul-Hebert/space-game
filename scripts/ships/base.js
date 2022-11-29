@@ -88,10 +88,12 @@ export class BaseShip {
   addExhaust(distance = 10) {
     const exhaustDirection = degreesToRadians(this.rotation + 90);
 
+    const exhaustBaseSize = Math.min(this.size / 10, 8);
+
     mapData.exhaust.push(
       new Exhaust({
         ...positionToTail(this),
-        radius: random(this.size / 20, this.size / 10),
+        radius: random(exhaustBaseSize, exhaustBaseSize * 2),
         speed: {
           x: Math.cos(exhaustDirection) * distance,
           y: Math.sin(exhaustDirection) * distance,
@@ -211,8 +213,6 @@ export class BaseShip {
     upgrade.rotation = random(0, 360);
     upgrade.rotationSpeed = random(-3, 3);
 
-    console.log(upgrade);
-
     return upgrade;
   }
 
@@ -280,7 +280,8 @@ export class BaseShip {
   isFleeing = false;
 
   targetRange = {
-    min: 200,
+    min: 0,
+    ideal: 0,
   };
   shouldFlee() {
     return this.distanceToPlayer() < this.targetRange.min;
@@ -293,7 +294,19 @@ export class BaseShip {
   }
 
   changeWeapons() {
-    this.changeWeaponsByRange({});
+    if (this.isFleeing) {
+      this.selectInfiniteRangeWeapon();
+    } else {
+      this.changeWeaponsByRange({});
+    }
+  }
+
+  selectInfiniteRangeWeapon() {
+    const infiniteGun = this.weapons.findIndex(
+      (gun) => gun.range() === Infinity
+    );
+
+    if (infiniteGun !== -1) this.currentGun = infiniteGun;
   }
 
   changeWeaponsByRange() {

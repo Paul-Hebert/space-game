@@ -15,7 +15,10 @@ export function boss({
     content: `<h3>${heading}</h3>`,
     theme: "danger",
     nextAction: () => {
-      mapData.ships.forEach((ship) => ship.explode());
+      // TODO: This isn't working...
+      mapData.ships.forEach((ship) => {
+        ship.explode();
+      });
       mapData.ships = [];
       nextAction();
     },
