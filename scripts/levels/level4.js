@@ -1,7 +1,7 @@
 import { addMessageToQueue } from "../hud/messaging.js";
 import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
-import { FastShip } from "../ships/fast.js";
+import { ScoutShip } from "../ships/archetypes/scout/scout.js";
 import { HunterShip } from "../ships/archetypes/hunter/hunter.js";
 import { BigShip } from "../ships/big.js";
 import { completeLevel } from "./levels.js";
@@ -19,7 +19,7 @@ export function level4() {
   }
 
   for (let i = 0; i < 10; i++) {
-    mapData.ships.push(new FastShip(positionToMapLeft()));
+    mapData.ships.push(new ScoutShip(positionToMapLeft()));
   }
 
   mapData.ships.push(new HunterShip(positionToMapTop()));

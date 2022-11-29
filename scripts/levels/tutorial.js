@@ -8,7 +8,7 @@ import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
 import { CrowShip } from "../ships/crow.js";
-import { FastShip } from "../ships/fast.js";
+import { ScoutShip } from "../ships/archetypes/scout/scout.js";
 import { DoubleGun } from "../weapons/double-gun.js";
 import { completeLevel } from "./levels.js";
 import { positionToMapRight } from "../math/position-to-map-edge.js";
@@ -128,7 +128,7 @@ export function tutorial() {
             ],
             nextAction: () => {
               for (let i = 0; i < 5; i++) {
-                mapData.ships.push(new FastShip(positionToMapRight()));
+                mapData.ships.push(new ScoutShip(positionToMapRight()));
               }
 
               for (let i = 0; i < 1; i++) {

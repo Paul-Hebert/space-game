@@ -14,6 +14,7 @@ import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { addMessageToQueue, removeAllMessages } from "../hud/messaging.js";
 import { theOverseer } from "./bosses/the-overseer.js";
 import { theDestroyer } from "./bosses/the-destroyer.js";
+import { debugLevel } from "./debug.js";
 
 const sectorTitle = document.querySelector(".sector-title");
 
@@ -59,72 +60,76 @@ export function completeLevel() {
 }
 
 export const levels = [
-  {
-    title: "Company Mining Colony",
-    action: tutorial,
-  },
-  {
-    title: "Out of the Frying Pan",
-    action: level2,
-  },
-  {
-    title: "Into the Fire",
-    action: () => {
-      fightLevel({ difficulty: 10 });
-    },
-  },
-  {
-    title: "Caught by the Destroyer",
-    action: theDestroyer,
-  },
-  {
-    title: "Outside New Sol X",
-    action: () => {
-      fightLevel({ difficulty: 12 });
-    },
-  },
-  {
-    title: "Ambushed By Company Drones",
-    action: level4,
-  },
-  {
-    title: "Company Resupply Depot",
-    action: () => {
-      fightLevel({ difficulty: 16 });
-    },
-  },
-  {
-    title: "Company Logistics HQ",
-    action: level3,
-  },
-  {
-    title: "The Edge of the Belt",
-    action: () => {
-      fightLevel({ difficulty: 25 });
-    },
-  },
-  {
-    title: "The Big Empty",
-    action: level1,
-  },
-  {
-    title: "In Hot Pursuit",
-    action: () => {
-      fightLevel({ difficulty: 50 });
-    },
-  },
-  {
-    title: "Almost Home",
-    action: level5,
-  },
+  // {
+  //   title: "Company Mining Colony",
+  //   action: tutorial,
+  // },
+  // {
+  //   title: "Out of the Frying Pan",
+  //   action: level2,
+  // },
+  // {
+  //   title: "Into the Fire",
+  //   action: () => {
+  //     fightLevel({ difficulty: 10 });
+  //   },
+  // },
+  // {
+  //   title: "Caught by the Destroyer",
+  //   action: theDestroyer,
+  // },
+  // {
+  //   title: "Outside New Sol X",
+  //   action: () => {
+  //     fightLevel({ difficulty: 12 });
+  //   },
+  // },
+  // {
+  //   title: "Ambushed By Company Drones",
+  //   action: level4,
+  // },
+  // {
+  //   title: "Company Resupply Depot",
+  //   action: () => {
+  //     fightLevel({ difficulty: 16 });
+  //   },
+  // },
+  // {
+  //   title: "Company Logistics HQ",
+  //   action: level3,
+  // },
+  // {
+  //   title: "The Edge of the Belt",
+  //   action: () => {
+  //     fightLevel({ difficulty: 25 });
+  //   },
+  // },
+  // {
+  //   title: "The Big Empty",
+  //   action: level1,
+  // },
+  // {
+  //   title: "In Hot Pursuit",
+  //   action: () => {
+  //     fightLevel({ difficulty: 50 });
+  //   },
+  // },
+  // {
+  //   title: "Almost Home",
+  //   action: level5,
+  // },
   // {
   //   title: "The Final Battle",
   //   action: () => {
   //     fightLevel({ difficulty: 75 });
   //   },
   // },
+  // {
+  //   title: "The Overseer",
+  //   action: theOverseer,
+  // },
   {
-    title: "The Overseer",
-    action: theOverseer,
+    title: "Secret Debug Level",
+    action: debugLevel,
   },
 ];

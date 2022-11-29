@@ -1,7 +1,6 @@
 import { BaseShip } from "./base.js";
 import { Pew } from "../weapons/pew.js";
 import { Laser } from "../weapons/laser.js";
-import { randomInt } from "../math/random.js";
 
 export class BigShip extends BaseShip {
   accelerationSpeed = 0.125;

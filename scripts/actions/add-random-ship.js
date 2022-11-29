@@ -1,6 +1,6 @@
 import { BaseShip } from "../ships/base.js";
 import { BigShip } from "../ships/big.js";
-import { FastShip } from "../ships/fast.js";
+import { ScoutShip } from "../ships/archetypes/scout/scout.js";
 import { playerState } from "../state/player-state.js";
 import { randomBool, randomItemInArray } from "../math/random.js";
 import { mapSize } from "../map-size.js";
@@ -12,7 +12,7 @@ export function addRandomShip() {
     y: playerState.y + mapSize * (randomBool(0.5) ? 1 : -1),
   };
 
-  const shipOptions = [new BaseShip(pos), new BigShip(pos), new FastShip(pos)];
+  const shipOptions = [new BaseShip(pos), new BigShip(pos), new ScoutShip(pos)];
 
   mapData.ships.push(randomItemInArray(shipOptions));
 }
