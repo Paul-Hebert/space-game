@@ -4,8 +4,6 @@ import { DoubleGun } from "../weapons/double-gun.js";
 export class CrowShip extends BaseShip {
   size = 150;
 
-  resourceCount = 0;
-
   health = 600;
   maxHealth = 600;
 

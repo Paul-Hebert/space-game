@@ -1,7 +1,7 @@
-import { BaseShip } from "./base.js";
-import { ShipSpawner } from "../weapons/ship-spawner.js";
+import { BaseShip } from "../../base.js";
+import { ShipSpawner } from "../../../weapons/ship-spawner.js";
 
-export class MotherShip extends BaseShip {
+export class Transport extends BaseShip {
   graphic = document.getElementById("ship-2");
 
   accelerationSpeed = 0.125;

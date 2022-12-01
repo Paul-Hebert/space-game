@@ -1,4 +1,4 @@
-import { MotherShip } from "../../ships/mother-ship.js";
+import { Transport } from "../../ships/archetypes/transport/transport.js";
 import { HunterShip } from "../../ships/archetypes/hunter/hunter.js";
 import { CrowShip } from "../../ships/crow.js";
 import { ScoutShip } from "../../ships/archetypes/scout/scout.js";
@@ -10,7 +10,6 @@ import { positionToRandomMapEdge } from "../../math/position-to-map-edge.js";
 import { addMessageToQueue } from "../../hud/messaging.js";
 import { completeLevel } from "../levels.js";
 import { PestShip } from "../../ships/archetypes/pest/pest.js";
-import { MiningOverseer } from "../../ships/mining-overseer.js";
 import { battleObjective } from "../objectives/battle.js";
 import { SprayerShip } from "../../ships/sprayer.js";
 import { FalconShip } from "../../ships/falcon.js";
@@ -23,7 +22,7 @@ const enemyOptions = [
   },
   {
     difficulty: 10,
-    options: [MotherShip, HunterShip, BigShip, MiningOverseer],
+    options: [Transport, HunterShip],
   },
   {
     difficulty: 4,

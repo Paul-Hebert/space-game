@@ -35,7 +35,13 @@ import { distanceBetweenPoints } from "../math/distance-between-points.js";
 let shipId = 0;
 
 export class BaseShip {
-  constructor({ x = 0, y = 0, speed = { x: 0, y: 0 }, rotation = 0 }) {
+  constructor({
+    x = 0,
+    y = 0,
+    speed = { x: 0, y: 0 },
+    rotation = 0,
+    parentId,
+  }) {
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -45,6 +51,10 @@ export class BaseShip {
 
     this.id = shipId;
     shipId++;
+
+    if (parentId) {
+      this.parentId = parentId;
+    }
 
     this.resources = [];
     for (
@@ -218,7 +228,7 @@ export class BaseShip {
 
   regenerateShields() {
     if (this.maxShields) {
-      this.shields++;
+      this.shields += this.shieldRegenerationRate;
       if (this.shields > this.maxShields) {
         this.shields = this.maxShields;
       }
@@ -391,4 +401,6 @@ export class BaseShip {
   maxResourceCount = 2;
 
   upgradeDropChance = 0.25;
+
+  shieldRegenerationRate = 2;
 }

@@ -1,7 +1,7 @@
 import { DroneSpawner } from "../weapons/drone-spawner.js";
-import { MotherShip } from "./mother-ship.js";
+import { Transport } from "./archetypes/transport/transport.js";
 
-export class MiningOverseer extends MotherShip {
+export class MiningOverseer extends Transport {
   graphic = document.getElementById("ship-2");
 
   accelerationSpeed = 0.125;

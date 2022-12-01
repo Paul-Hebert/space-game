@@ -6,7 +6,6 @@ export class SparrowShip extends BaseShip {
 
   size = 100;
 
-  resourceCount = 0;
   maxHealth = 200;
   health = 200;
   maxSpeed = 8;

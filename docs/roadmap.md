@@ -2,12 +2,8 @@
 
 - Enemy AI
 
-  - Add option to evade/flee when:
-    - Under a certain distance
-    - Shields are down
-    - Health is low
-  - Allow firing some weapon types while fleeing (For now just spawners. Bombs in the future.)
   - Add bombs
+  - Add missiles
   - Ship behavior archetypes
     - Space station
       - Spawner or Shooter or Combo
@@ -26,11 +22,16 @@
       - Flees right past gun range, but drop bombs when leaving
     - Gunships
       - Multiple weapon types - changes based on range
-      - If shield are 0, run
+      - If shield are low, run and regenerate
       - May have bombs
+    - Escort
+      - Follow another ship
+      - Only split off when near player
+      - Return to main ship when too far away
     - Bosses
       - Mixed
   - Better boss behaviors
+  - Mess with ship speed more
 
 - Ships that spawn enemies should not be damageable by their child ships
 
@@ -44,7 +45,7 @@
   - Revamp message queue design
   - Explore more objective types
     - "Boss" levels
-    - Get to objective without dying
+    - Get to objective without dying - e.g. pick up X resources
     - Space station levels
     - "Obstacle course"
     - Destroy X stations without dying

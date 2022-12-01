@@ -8,14 +8,14 @@ import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 
 export class BaseWeapon {
-  name = "base";
+  name = "Basic Space Ray";
   description = "What can I say? It's a gun...";
 
   speed = 25;
   reloadSpeed = 5;
   bulletRadius = 2;
   bulletColor = "yellow";
-  damage = 5;
+  damage = 8;
   maxAge = 30;
   bulletsPerShot = 1;
   sound = "laser";

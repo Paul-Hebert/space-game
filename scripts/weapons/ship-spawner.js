@@ -20,6 +20,7 @@ export class ShipSpawner extends BaseWeapon {
         ...this.nosePosition(ship),
         speed: this.angledSpeed(ship.rotation),
         rotation: ship.rotation,
+        parentId: this.id,
       })
     );
   }
