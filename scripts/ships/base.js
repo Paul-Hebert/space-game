@@ -82,7 +82,9 @@ export class BaseShip {
       });
     }
 
-    this.weapons[this.currentGun].draw(context, this);
+    if (this.weapons.length) {
+      this.weapons[this.currentGun].draw(context, this);
+    }
 
     rotatedDraw(context, { x, y, rotation: this.rotation }, () => {
       context.drawImage(
@@ -121,10 +123,13 @@ export class BaseShip {
     });
   }
 
-  explode() {
+  explode(sizeModifier = 0) {
     playSoundFile("explosion-2", volumeRelativeToPlayer(this));
 
-    const explosions = createExplosion({ ...this, radius: this.size });
+    const explosions = createExplosion({
+      ...this,
+      radius: this.size * sizeModifier,
+    });
 
     const resources = this.resources.map((resource) => {
       resource.x = this.x;
@@ -154,7 +159,7 @@ export class BaseShip {
             resource.upgradeDetails.gun.name === gun.name
         );
 
-        if (!playerHasGun && !gunOnMap) {
+        if (!this.playerCannotHave && !playerHasGun && !gunOnMap) {
           resources.push(this.dropWeaponUpgrade(gun));
         } else {
           resources.push(this.dropShipUpgrade());
@@ -256,6 +261,7 @@ export class BaseShip {
 
     if (
       this.isFleeing ||
+      this.weapons.length === 0 ||
       this.distanceToPlayer() >
         (this.targetRange.ideal || this.weapons[this.currentGun].range())
     ) {
@@ -269,7 +275,7 @@ export class BaseShip {
     const playerIsShootable =
       this.isAimingTowardsPlayer() && this.playerIsInRange();
     const gunHasInfiniteRange =
-      this.weapons[this.currentGun].range() === Infinity;
+      this.weapons.length && this.weapons[this.currentGun].range() === Infinity;
 
     if ((playerIsShootable || gunHasInfiniteRange) && playerState.health > 0) {
       this.shoot();
@@ -359,7 +365,9 @@ export class BaseShip {
     return distanceBetweenPoints(this, playerState);
   }
 
-  playerIsInRange(range = this.weapons[this.currentGun].range()) {
+  playerIsInRange(range) {
+    if (!range && this.weapons.length)
+      range = this.weapons[this.currentGun].range();
     return this.distanceToPlayer() < range;
   }
 

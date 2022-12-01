@@ -14,7 +14,7 @@ import { battleObjective } from "./objectives/battle.js";
 import { ScoutShip } from "../ships/archetypes/scout/scout.js";
 import { PestShip } from "../ships/archetypes/pest/pest.js";
 import { HunterShip } from "../ships/archetypes/hunter/hunter.js";
-import { ArmedTransport } from "../ships/archetypes/armed-transpot/armed-transport.js";
+import { ArmedTransport } from "../ships/archetypes/armed-transport/armed-transport.js";
 import { GunShip } from "../ships/archetypes/gunship/gunship.js";
 import { playerState } from "../state/player-state.js";
 import { DoubleGun } from "../weapons/double-gun.js";
@@ -26,21 +26,38 @@ import { random } from "../math/random.js";
 import { MiningOverseer } from "../ships/mining-overseer.js";
 import { FalconShip } from "../ships/falcon.js";
 import { Commander } from "../ships/archetypes/commander/commander.js";
+import { Pew } from "../weapons/pew.js";
+import { StasisLaser } from "../weapons/stasis-laser.js";
+import { SprayBlaster } from "../weapons/spray-blaster.js";
+import { BaseWeapon } from "../weapons/base-weapon.js";
+import { Ray } from "../weapons/ray.js";
+import { RepeatLaser } from "../weapons/repeat-laser.js";
+import { ArtilleryShip } from "../ships/archetypes/artillery/artillery.js";
 
 export function debugLevel() {
   playerState.shields = 600;
   playerState.maxShields = 600;
-  playerState.weapons = [new DoubleGun(), new Laser(), new Boom()];
+  playerState.weapons = [
+    new DoubleGun(),
+    new Laser(),
+    new Boom(),
+    new Pew(),
+    new StasisLaser(),
+    new SprayBlaster(),
+    new BaseWeapon(),
+    new Ray(),
+    new RepeatLaser(),
+  ];
   updateWeapons();
   showShieldBar();
 
   // Anything goes!
-  // for (let i = 0; i < 10; i++) {
+  // for (let i = 0; i < 30; i++) {
   //   const edgeFunction = randomMapEdgeFunction();
   //   const randomDistance = random(1, 8);
   //   mapData.ships.push(new ScoutShip(edgeFunction(randomDistance)));
   // }
-  // for (let i = 0; i < 5; i++) {
+  // for (let i = 0; i < 10; i++) {
   //   const edgeFunction = randomMapEdgeFunction();
   //   const randomDistance = random(1, 8);
   //   mapData.ships.push(new PestShip(edgeFunction(randomDistance)));
@@ -53,7 +70,7 @@ export function debugLevel() {
   // for (let i = 0; i < 2; i++) {
   //   const edgeFunction = randomMapEdgeFunction();
   //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new GunShip(edgeFunction(randomDistance)));
+  //   mapData.ships.push(new GunShip(edgeFunction(1)));
   // }
   // for (let i = 0; i < 1; i++) {
   //   const edgeFunction = randomMapEdgeFunction();
@@ -75,10 +92,15 @@ export function debugLevel() {
   //   const randomDistance = random(1, 8);
   //   mapData.ships.push(new ArmedTransport(edgeFunction(randomDistance)));
   // }
-  for (let i = 0; i < 1; i++) {
+  // for (let i = 0; i < 1; i++) {
+  //   const edgeFunction = randomMapEdgeFunction();
+  //   const randomDistance = random(1, 8);
+  //   mapData.ships.push(new Commander(edgeFunction(randomDistance)));
+  // }
+  for (let i = 0; i < 2; i++) {
     const edgeFunction = randomMapEdgeFunction();
     const randomDistance = random(1, 8);
-    mapData.ships.push(new Commander(edgeFunction(1)));
+    mapData.ships.push(new ArtilleryShip(edgeFunction(1)));
   }
 
   addMessageToQueue({

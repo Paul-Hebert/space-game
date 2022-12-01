@@ -33,7 +33,11 @@
   - Better boss behaviors
   - Mess with ship speed more
 
-- Ships that spawn enemies should not be damageable by their child ships
+- Better levels/plot
+
+  - Same tutorial
+
+- Ships that spawn enemies should _maybe_ not be damageable by their child ships
 
 - Boss music
 
