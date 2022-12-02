@@ -60,14 +60,14 @@ export function completeLevel() {
 }
 
 export const levels = [
-  // {
-  //   title: "Company Mining Colony",
-  //   action: tutorial,
-  // },
-  // {
-  //   title: "Out of the Frying Pan",
-  //   action: level2,
-  // },
+  {
+    title: "Company Mining Colony",
+    action: tutorial,
+  },
+  {
+    title: "Out of the Frying Pan",
+    action: level1,
+  },
   // {
   //   title: "Into the Fire",
   //   action: () => {

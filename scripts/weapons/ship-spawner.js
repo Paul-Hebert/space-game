@@ -10,6 +10,8 @@ export class ShipSpawner extends BaseWeapon {
   reloadSpeed = 50;
   sound = "pop";
 
+  playerCannotHave = true;
+
   spawnedShip = ScoutShip;
 
   shoot(ship) {

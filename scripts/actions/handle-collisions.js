@@ -8,6 +8,7 @@ import { showMenu } from "../hud/menus.js";
 import { gameStats } from "../state/game-stats.js";
 import { displayGameStats } from "./display-game-stats.js";
 import { playSoundFile } from "../sound-effects/play-sound-file.js";
+import { damageShip } from "./damage-ship.js";
 
 export function handleCollisions() {
   if (!mapData.bullets.length) return mapData;
@@ -130,20 +131,4 @@ function explodeBullet(bullet) {
     );
   }
   return newExplosions;
-}
-
-function damageShip(damage, ship) {
-  let remainingDamage = damage;
-
-  if (ship.shields > 0) {
-    remainingDamage -= ship.shields;
-
-    ship.shields -= damage;
-
-    if (ship.shields < 0) ship.shields = 0;
-  }
-
-  if (remainingDamage > 0) {
-    ship.health -= remainingDamage;
-  }
 }

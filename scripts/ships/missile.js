@@ -1,3 +1,4 @@
+import { damageShip } from "../actions/damage-ship.js";
 import { isColliding } from "../math/is-colliding.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
@@ -50,7 +51,7 @@ export class Missile extends BaseShip {
         }
       )
     ) {
-      playerState.health -= this.damage;
+      damageShip(this.damage, playerState);
       this.die();
       return;
     }

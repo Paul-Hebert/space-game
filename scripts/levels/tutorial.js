@@ -4,19 +4,18 @@ import {
   keysThatHaveBeenPressed,
   resetPressedKeys,
 } from "../state/pressed-keys.js";
-import { SparrowShip } from "../ships/sparrow.js";
 import { mapData } from "../state/map-data.js";
 import { playerState } from "../state/player-state.js";
-import { CrowShip } from "../ships/crow.js";
-import { ScoutShip } from "../ships/archetypes/scout/scout.js";
-import { DoubleGun } from "../weapons/double-gun.js";
 import { completeLevel } from "./levels.js";
 import { positionToMapRight } from "../math/position-to-map-edge.js";
 import { controlOption } from "../state/control-option.js";
 import { pointerPosition } from "../state/pointer-position.js";
 import { battleObjective } from "./objectives/battle.js";
 import { WeaponUpgrade } from "../upgrades/weapon-upgrade.js";
+import { SmallFighterShip } from "../ships/archetypes/small-fighter/small-fighter.js";
 import { HunterShip } from "../ships/archetypes/hunter/hunter.js";
+import { DoubleGun } from "../weapons/double-gun.js";
+import { ScoutShip } from "../ships/archetypes/scout/scout.js";
 
 export function tutorial() {
   playerState.health = playerState.maxHealth - 100;
@@ -78,7 +77,7 @@ export function tutorial() {
       return playerState.health === playerState.maxHealth;
     },
     nextAction: () => {
-      const enemyShip = new CrowShip(positionToMapRight());
+      const enemyShip = new SmallFighterShip(positionToMapRight());
       enemyShip.weapons = [firstWeaponUpgrade];
       enemyShip.hardCodedUpgrade = {
         type: "weapon-upgrade",
@@ -131,8 +130,8 @@ export function tutorial() {
                 mapData.ships.push(new ScoutShip(positionToMapRight()));
               }
 
-              for (let i = 0; i < 1; i++) {
-                mapData.ships.push(new SparrowShip(positionToMapRight()));
+              for (let i = 0; i < 2; i++) {
+                mapData.ships.push(new SmallFighterShip(positionToMapRight()));
               }
 
               addMessageToQueue({

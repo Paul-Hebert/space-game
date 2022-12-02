@@ -15,7 +15,6 @@ export class SmallFighterShip extends BaseShip {
   weapons = [new Ray()];
 
   targetRange = {
-    min: 300,
-    ideal: 600,
+    min: 200,
   };
 }
