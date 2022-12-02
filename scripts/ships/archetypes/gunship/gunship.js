@@ -26,5 +26,5 @@ export class GunShip extends BaseShip {
     return this.shields > (this.maxShields * 2) / 3;
   }
 
-  weapons = [new DoubleGun(), new Pew(), new StasisLaser()];
+  weapons = [new Bomb(), new DoubleGun(), new Pew(), new StasisLaser()];
 }

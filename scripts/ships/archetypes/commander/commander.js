@@ -21,9 +21,13 @@ export class Commander extends BaseShip {
       mapData.ships.filter((ship) => (ship.parentId = this.id)).length <=
       this.minEscorts
     ) {
-      this.currentGun = 0;
+      this.currentGun = this.weapons.findIndex(
+        (weapon) => weapon.type === "spawner"
+      );
     } else {
-      this.currentGun = 1;
+      this.currentGun = this.weapons.findIndex(
+        (weapon) => weapon.type === "gun"
+      );
     }
   }
 
