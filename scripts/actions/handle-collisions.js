@@ -26,7 +26,7 @@ export function handleCollisions() {
 
         asteroid.durability -= bullet.damage;
 
-        newExplosions = newExplosions.concat(explodeBullet(bullet));
+        newExplosions = newExplosions.concat(bullet.explode());
 
         if (asteroid.durability > 0) {
           return true;
@@ -59,7 +59,7 @@ export function handleCollisions() {
 
         damageShip(bullet.damage, ship);
 
-        newExplosions = newExplosions.concat(explodeBullet(bullet));
+        newExplosions = newExplosions.concat(bullet.explode());
 
         if (ship.health > 0) {
           return true;
@@ -85,7 +85,7 @@ export function handleCollisions() {
     ) {
       collided = true;
 
-      newExplosions = newExplosions.concat(explodeBullet(bullet));
+      newExplosions = newExplosions.concat(bullet.explode());
 
       damageShip(bullet.damage, playerState);
 
@@ -114,21 +114,4 @@ export function handleCollisions() {
   mapData.explosions = mapData.explosions.concat(newExplosions);
 
   return mapData;
-}
-
-function explodeBullet(bullet) {
-  const newExplosions = [];
-  for (let i = 0; i < randomInt(5, 10); i++) {
-    newExplosions.push(
-      new Explosion({
-        x: bullet.x,
-        y: bullet.y,
-        speed: {
-          x: (bullet.speed.x * -1) / random(5, 50),
-          y: (bullet.speed.y * -1) / random(5, 50),
-        },
-      })
-    );
-  }
-  return newExplosions;
 }
