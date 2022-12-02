@@ -2,6 +2,7 @@ import { BaseShip } from "../../base.js";
 import { StasisLaser } from "../../../weapons/stasis-laser.js";
 import { Pew } from "../../../weapons/pew.js";
 import { DoubleGun } from "../../../weapons/double-gun.js";
+import { Bomb } from "../../../weapons/bomb.js";
 
 export class GunShip extends BaseShip {
   size = 150;
