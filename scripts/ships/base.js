@@ -266,7 +266,6 @@ export class BaseShip {
         (this.targetRange.ideal || this.weapons[this.currentGun].range())
     ) {
       this.accelerate();
-      this.speed = constrainSpeed(this);
     }
 
     this.x += this.speed.x;
@@ -288,6 +287,8 @@ export class BaseShip {
     const rotationInRadians = degreesToRadians(this.rotation - 90);
     this.speed.x += Math.cos(rotationInRadians) * this.accelerationSpeed;
     this.speed.y += Math.sin(rotationInRadians) * this.accelerationSpeed;
+
+    this.speed = constrainSpeed(this);
 
     this.addExhaust();
     this.engineNoise();
