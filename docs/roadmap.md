@@ -2,8 +2,9 @@
 
 - Enemy AI
 
-  - Add bombs
-  - Add missiles
+  - Idle ship behavior
+    - Min distance to detect player
+    - What to do before player detected
   - Ship behavior archetypes
     - Space station
       - Spawner or Shooter or Combo

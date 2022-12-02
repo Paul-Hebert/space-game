@@ -33,6 +33,7 @@ import { BaseWeapon } from "../weapons/base-weapon.js";
 import { Ray } from "../weapons/ray.js";
 import { RepeatLaser } from "../weapons/repeat-laser.js";
 import { ArtilleryShip } from "../ships/archetypes/artillery/artillery.js";
+import { SpaceStation } from "../ships/archetypes/space-station/space-station.js";
 
 export function debugLevel() {
   playerState.shields = 600;
@@ -97,11 +98,16 @@ export function debugLevel() {
   //   const randomDistance = random(1, 8);
   //   mapData.ships.push(new Commander(edgeFunction(randomDistance)));
   // }
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 2; i++) {
     const edgeFunction = randomMapEdgeFunction();
     const randomDistance = random(1, 8);
-    mapData.ships.push(new ArtilleryShip(edgeFunction(1)));
+    mapData.ships.push(new SpaceStation(edgeFunction(1)));
   }
+  // for (let i = 0; i < 1; i++) {
+  //   const edgeFunction = randomMapEdgeFunction();
+  //   const randomDistance = random(1, 8);
+  //   mapData.ships.push(new ArtilleryShip(edgeFunction(1)));
+  // }
 
   addMessageToQueue({
     content: `

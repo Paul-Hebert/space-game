@@ -247,10 +247,12 @@ export class BaseShip {
       this.regenerateShields();
     }
 
-    if (this.isFleeing) {
-      this.isFleeing = !this.shouldStopFleeing();
-    } else {
-      this.isFleeing = this.shouldFlee();
+    if (this.maxSpeed) {
+      if (this.isFleeing) {
+        this.isFleeing = !this.shouldStopFleeing();
+      } else {
+        this.isFleeing = this.shouldFlee();
+      }
     }
 
     updateShipAngle(this.getTargetAngle(), this);
@@ -260,16 +262,19 @@ export class BaseShip {
     }
 
     if (
-      this.isFleeing ||
-      this.weapons.length === 0 ||
-      this.distanceToPlayer() >
-        (this.targetRange.ideal || this.weapons[this.currentGun].range())
+      this.maxSpeed &&
+      (this.isFleeing ||
+        this.weapons.length === 0 ||
+        this.distanceToPlayer() >
+          (this.targetRange.ideal || this.weapons[this.currentGun].range()))
     ) {
       this.accelerate();
     }
 
-    this.x += this.speed.x;
-    this.y += this.speed.y;
+    if (this.maxSpeed) {
+      this.x += this.speed.x;
+      this.y += this.speed.y;
+    }
 
     const playerIsShootable =
       this.isAimingTowardsPlayer() && this.playerIsInRange();

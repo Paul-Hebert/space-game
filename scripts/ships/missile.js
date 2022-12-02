@@ -16,7 +16,7 @@ export class Missile extends BaseShip {
   age = 0;
   maxAge = 200;
 
-  graphic = document.getElementById("ship-3");
+  graphic = document.getElementById("sparrow");
 
   maxSpeed = 20;
   accelerationSpeed = 5;
