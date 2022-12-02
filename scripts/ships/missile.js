@@ -9,6 +9,8 @@ export class Missile extends BaseShip {
   maxHealth = 20;
   health = 20;
 
+  type = "gun";
+
   damage = 100;
 
   age = 0;

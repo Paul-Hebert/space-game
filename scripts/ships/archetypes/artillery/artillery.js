@@ -1,5 +1,6 @@
 import { BaseShip } from "../../base.js";
 import { MissileLauncher } from "../../../weapons/missile-launcher.js";
+import { Bomb } from "../../../weapons/bomb.js";
 
 export class ArtilleryShip extends BaseShip {
   graphic = document.getElementById("ship-4");
@@ -17,7 +18,7 @@ export class ArtilleryShip extends BaseShip {
   upgradeDropChance = 0.2;
   upgradeIsWeaponChance = 0;
 
-  weapons = [new MissileLauncher()];
+  weapons = [new MissileLauncher(), new Bomb()];
 
   targetRange = {
     min: 800,

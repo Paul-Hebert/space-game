@@ -273,10 +273,10 @@ export class BaseShip {
 
     const playerIsShootable =
       this.isAimingTowardsPlayer() && this.playerIsInRange();
-    const gunHasInfiniteRange =
-      this.weapons.length && this.weapons[this.currentGun].range() === Infinity;
+    const weaponIsNotGun =
+      this.weapons.length && this.weapons[this.currentGun].type !== "gun";
 
-    if ((playerIsShootable || gunHasInfiniteRange) && playerState.health > 0) {
+    if ((playerIsShootable || weaponIsNotGun) && playerState.health > 0) {
       this.shoot();
     }
   }
@@ -312,18 +312,27 @@ export class BaseShip {
 
   changeWeapons() {
     if (this.isFleeing) {
-      this.selectInfiniteRangeWeapon();
+      this.selectFleeingWeapon();
     } else {
       this.changeWeaponsByRange({});
     }
   }
 
-  selectInfiniteRangeWeapon() {
-    const infiniteGun = this.weapons.findIndex(
-      (gun) => gun.range() === Infinity
+  selectFleeingWeapon() {
+    const bombIndex = this.weapons.findIndex(
+      (weaponIndex) => weaponIndex.type === "bomb"
     );
 
-    if (infiniteGun !== -1) this.currentGun = infiniteGun;
+    if (bombIndex !== -1) {
+      this.currentGun = bombIndex;
+      return;
+    }
+
+    const spawnerIndex = this.weapons.findIndex(
+      (weaponIndex) => weaponIndex.type !== "spawner"
+    );
+
+    if (spawnerIndex !== -1) this.currentGun = spawnerIndex;
   }
 
   changeWeaponsByRange() {

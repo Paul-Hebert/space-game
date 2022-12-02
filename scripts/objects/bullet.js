@@ -43,4 +43,6 @@ export class Bullet extends Particle {
     }
     return newExplosions;
   }
+
+  expire() {}
 }

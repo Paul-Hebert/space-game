@@ -11,4 +11,5 @@ export class Particle {
   }
 
   looping = false;
+  fading = true;
 }

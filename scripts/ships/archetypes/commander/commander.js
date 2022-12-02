@@ -17,9 +17,6 @@ export class Commander extends BaseShip {
   minEscorts = 3;
 
   changeWeapons() {
-    console.log(
-      mapData.ships.filter((ship) => (ship.parentId = this.id)).length
-    );
     if (
       mapData.ships.filter((ship) => (ship.parentId = this.id)).length <=
       this.minEscorts
