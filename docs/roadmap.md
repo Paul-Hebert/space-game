@@ -1,5 +1,7 @@
 # Road map
 
+- bombs should explode when shot
+
 - Enemy AI
 
   - Idle ship behavior

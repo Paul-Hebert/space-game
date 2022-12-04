@@ -34,12 +34,14 @@ import { Ray } from "../weapons/ray.js";
 import { RepeatLaser } from "../weapons/repeat-laser.js";
 import { ArtilleryShip } from "../ships/archetypes/artillery/artillery.js";
 import { SpaceStation } from "../ships/archetypes/space-station/space-station.js";
+import { Bomb } from "../weapons/bomb.js";
 
 export function debugLevel() {
   playerState.shields = 600;
   playerState.maxShields = 600;
   playerState.weapons = [
     new DoubleGun(),
+    new Bomb(),
     new Laser(),
     new Boom(),
     new Pew(),
@@ -53,61 +55,61 @@ export function debugLevel() {
   showShieldBar();
 
   // Anything goes!
-  // for (let i = 0; i < 30; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new ScoutShip(edgeFunction(randomDistance)));
-  // }
-  // for (let i = 0; i < 10; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new PestShip(edgeFunction(randomDistance)));
-  // }
-  // for (let i = 0; i < 3; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new HunterShip(edgeFunction(randomDistance)));
-  // }
-  // for (let i = 0; i < 2; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new GunShip(edgeFunction(1)));
-  // }
-  // for (let i = 0; i < 1; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new Transport(edgeFunction(randomDistance)));
-  // }
-  // for (let i = 0; i < 1; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new MiningOverseer(edgeFunction(randomDistance)));
-  // }
-  // for (let i = 0; i < 1; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new FalconShip(edgeFunction(randomDistance)));
-  // }
-  // for (let i = 0; i < 1; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new ArmedTransport(edgeFunction(randomDistance)));
-  // }
-  // for (let i = 0; i < 1; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new Commander(edgeFunction(randomDistance)));
-  // }
+  for (let i = 0; i < 30; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new ScoutShip(edgeFunction(randomDistance)));
+  }
+  for (let i = 0; i < 10; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new PestShip(edgeFunction(randomDistance)));
+  }
+  for (let i = 0; i < 3; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new HunterShip(edgeFunction(randomDistance)));
+  }
+  for (let i = 0; i < 2; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new GunShip(edgeFunction(1)));
+  }
+  for (let i = 0; i < 1; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new Transport(edgeFunction(randomDistance)));
+  }
+  for (let i = 0; i < 1; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new MiningOverseer(edgeFunction(randomDistance)));
+  }
+  for (let i = 0; i < 1; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new FalconShip(edgeFunction(randomDistance)));
+  }
+  for (let i = 0; i < 1; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new ArmedTransport(edgeFunction(randomDistance)));
+  }
+  for (let i = 0; i < 1; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new Commander(edgeFunction(randomDistance)));
+  }
   for (let i = 0; i < 2; i++) {
     const edgeFunction = randomMapEdgeFunction();
     const randomDistance = random(1, 8);
     mapData.ships.push(new SpaceStation(edgeFunction(1)));
   }
-  // for (let i = 0; i < 1; i++) {
-  //   const edgeFunction = randomMapEdgeFunction();
-  //   const randomDistance = random(1, 8);
-  //   mapData.ships.push(new ArtilleryShip(edgeFunction(1)));
-  // }
+  for (let i = 0; i < 1; i++) {
+    const edgeFunction = randomMapEdgeFunction();
+    const randomDistance = random(1, 8);
+    mapData.ships.push(new ArtilleryShip(edgeFunction(1)));
+  }
 
   addMessageToQueue({
     content: `

@@ -5,6 +5,9 @@ import { mapData } from "../state/map-data.js";
 import { BaseWeapon } from "./base-weapon.js";
 
 export class Bomb extends BaseWeapon {
+  name = "Explosive Space Mines";
+  description = "Drop one of these when you're being chased.";
+
   speed = 0;
   age = 0;
   maxAge = 100;
