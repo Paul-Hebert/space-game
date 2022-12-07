@@ -2,6 +2,8 @@
 
 - bombs should explode when shot
 
+  - Should they be missiles with a speed of 0?
+
 - Enemy AI
 
   - Idle ship behavior
