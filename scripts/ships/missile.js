@@ -43,19 +43,32 @@ export class Missile extends BaseShip {
       return;
     }
 
-    // TODO: Should these collide with other ships/asteroids?
+    // Should missiles hit asteroids?
+    this.checkShipCollision(playerState);
+    mapData.ships.forEach((ship) => {
+      if (this.parentId !== ship.id && this.id !== ship.id) {
+        this.checkShipCollision(ship);
+      }
+    });
+  }
+
+  checkShipCollision(ship) {
     if (
       isColliding(
-        { ...this, radius: this.size / 2 },
         {
-          ...playerState,
-          radius: playerState.size / 2,
+          x: this.x,
+          y: this.y,
+          radius: this.size / 2,
+        },
+        {
+          x: ship.x,
+          y: ship.y,
+          radius: ship.size / 2,
         }
       )
     ) {
-      damageShip(this.damage, playerState);
+      damageShip(this.damage, ship);
       this.die();
-      return;
     }
   }
 
