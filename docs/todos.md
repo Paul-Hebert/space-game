@@ -45,6 +45,7 @@
 
 - Should asteroid collisions be a thing?
 - Single use weapons
+- Shooting and getting hit by bullets impacts speed?
 
 ## Audio
 
