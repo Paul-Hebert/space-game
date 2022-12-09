@@ -1,8 +1,7 @@
 # Road map
 
-- bombs should explode when shot
-
-  - Should they be missiles with a speed of 0?
+- bombs should come from the back of the ship
+- bombs and missiles should explode when shot
 
 - Enemy AI
 
