@@ -1,7 +1,6 @@
 # Road map
 
 - bombs should come from the back of the ship
-- bombs and missiles should explode when shot
 
 - Enemy AI
 

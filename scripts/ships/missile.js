@@ -43,8 +43,9 @@ export class Missile extends BaseShip {
       return;
     }
 
-    // Should missiles hit asteroids?
-    this.checkShipCollision(playerState);
+    if (this.parentId !== playerState.id) {
+      this.checkShipCollision(playerState);
+    }
     mapData.ships.forEach((ship) => {
       if (this.parentId !== ship.id && this.id !== ship.id) {
         this.checkShipCollision(ship);
@@ -72,9 +73,11 @@ export class Missile extends BaseShip {
     }
   }
 
+  explosionModifier = 5;
+
   die() {
     this.health = 0;
-    const { explosions } = this.explode(5);
+    const { explosions } = this.explode();
     mapData.explosions = mapData.explosions.concat(explosions);
   }
 }

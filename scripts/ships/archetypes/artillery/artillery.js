@@ -21,7 +21,7 @@ export class ArtilleryShip extends BaseShip {
   weapons = [new MissileLauncher(), new Bomb()];
 
   targetRange = {
-    min: 800,
-    ideal: 1000,
+    min: 700,
+    ideal: 1200,
   };
 }

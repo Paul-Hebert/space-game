@@ -123,12 +123,14 @@ export class BaseShip {
     });
   }
 
-  explode(sizeModifier = 0) {
+  explosionModifier = 1;
+
+  explode() {
     playSoundFile("explosion-2", volumeRelativeToPlayer(this));
 
     const explosions = createExplosion({
       ...this,
-      radius: this.size * sizeModifier,
+      radius: this.size * this.explosionModifier,
     });
 
     const resources = this.resources.map((resource) => {
