@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/styles/menus.css" />
     <link rel="stylesheet" href="/styles/button.css" />
 
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width" />
   </head>
   <body>
     <div class="game">
@@ -158,91 +158,69 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="settings-menu menu">
-      <div class="menu-inner">
-        <div class="menu-section">
-          <h2>Pick Your Game Settings</h2>
-        </div>
+      <div class="settings-menu menu">
+        <div class="menu-inner">
+          <div class="menu-section">
+            <h2>Pick Your Game Settings</h2>
+          </div>
 
-        <div class="menu-section">
-          <form class="settings menu-section">
-            <fieldset class="controls-fieldset">
-              <legend>Controls:</legend>
+          <div class="menu-section">
+            <form class="settings menu-section">
+              <fieldset class="controls-fieldset">
+                <legend>Controls:</legend>
 
-              <label class="radio-chunk">
-                <input name="controls" value="pointer" type="radio" checked />
-                <span class="radio-details">
-                  <b class="radio-title">Mouse-Based Navigation</b>
-                  <ul>
-                    <li>Move your mouse to rotate your ship.</li>
-                    <li>Press <kbd>a</kbd> to accelerate.</li>
-                    <li>Press <kbd>s</kbd> to shoot.</li>
-                    <li>Press <kbd>d</kbd> to change weapons.</li>
-                  </ul>
-                </span>
-              </label>
+                <label class="radio-chunk">
+                  <input name="controls" value="pointer" type="radio" checked />
+                  <span class="radio-details">
+                    <b class="radio-title">Mouse-Based Navigation</b>
+                    <ul>
+                      <li>Move your mouse to rotate your ship.</li>
+                      <li>Press <kbd>a</kbd> to accelerate.</li>
+                      <li>Press <kbd>s</kbd> to shoot.</li>
+                      <li>Press <kbd>d</kbd> to change weapons.</li>
+                    </ul>
+                  </span>
+                </label>
 
-              <label class="radio-chunk">
-                <input name="controls" value="keyboard" type="radio" />
-                <span class="radio-details">
-                  <b class="radio-title">Arrow Key Navigation</b>
-                  <ul>
-                    <li>Use the arrow keys to fly your ship.</li>
-                    <li>Press <kbd>Spacebar</kbd> to shoot.</li>
-                    <li>Press <kbd>Shift</kbd> to change weapons.</li>
-                  </ul>
-                </span>
-              </label>
+                <label class="radio-chunk">
+                  <input name="controls" value="keyboard" type="radio" />
+                  <span class="radio-details">
+                    <b class="radio-title">Arrow Key Navigation</b>
+                    <ul>
+                      <li>Use the arrow keys to fly your ship.</li>
+                      <li>Press <kbd>Spacebar</kbd> to shoot.</li>
+                      <li>Press <kbd>Shift</kbd> to change weapons.</li>
+                    </ul>
+                  </span>
+                </label>
 
-              <p class="disclaimer">
-                Sorry, touch screen controls are not yet supported.
-              </p>
-            </fieldset>
+                <p class="disclaimer">
+                  Sorry, touch screen controls are not yet supported.
+                </p>
+              </fieldset>
 
-            <fieldset>
-              <legend>Settings:</legend>
-              <label>
-                <input type="checkbox" name="full-screen" checked />
-                Enable Full Screen
-              </label>
-              <label>
-                <input type="checkbox" name="enable-sound" checked />
-                Enable Sound
-              </label>
-              <label>
-                <input type="checkbox" name="enable-music" checked />
-                Enable Music
-              </label>
-            </fieldset>
-          </form>
-        </div>
+              <fieldset>
+                <legend>Settings:</legend>
+                <label>
+                  <input type="checkbox" name="full-screen" checked />
+                  Enable Full Screen
+                </label>
+                <label>
+                  <input type="checkbox" name="enable-sound" checked />
+                  Enable Sound
+                </label>
+                <label>
+                  <input type="checkbox" name="enable-music" checked />
+                  Enable Music
+                </label>
+              </fieldset>
+            </form>
+          </div>
 
-        <div class="menu-section">
-          <button class="start-button">Blast Off!</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="small-screen-warning menu is-shown">
-      <div class="menu-inner">
-        <div class="menu-section">
-          <h2>Your Screen or Window is too small</h2>
-        </div>
-
-        <div class="menu-section">
-          <p>
-            I'm sorry. Your device screen or browser window is too small
-            to play Spaced.
-          </p>
-          <p>
-            Please try playing with a larger device with a keyboard.
-          </p>
-          <p>
-            This game is a work in progress, and I hope to support smaller screens
-            and touch screens soon.
-          </p>
+          <div class="menu-section">
+            <button class="start-button">Blast Off!</button>
+          </div>
         </div>
       </div>
     </div>
@@ -275,5 +253,25 @@
     <img id="gun" src="/graphics/gun.svg" alt="" hidden />
     <img id="laser" src="/graphics/laser.svg" alt="" hidden />
     <img id="pew" src="/graphics/pew.svg" alt="" hidden />
+
+    <div class="small-screen-warning menu is-shown">
+      <div class="menu-inner">
+        <div class="menu-section">
+          <h2>Your Screen or Window is too small</h2>
+        </div>
+
+        <div class="menu-section">
+          <p>
+            I'm sorry. Your device screen or browser window is too small to play
+            Spaced.
+          </p>
+          <p>Please try playing with a larger device with a keyboard.</p>
+          <p>
+            This game is a work in progress, and I hope to support smaller
+            screens and touch screens soon.
+          </p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
