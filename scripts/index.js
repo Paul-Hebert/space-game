@@ -21,7 +21,9 @@ window.addEventListener("keydown", (e) => {
 
 function toggleFullScreen() {
   if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
+    if(document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    }
   } else if (document.exitFullscreen) {
     document.exitFullscreen();
   }
