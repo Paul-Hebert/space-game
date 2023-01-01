@@ -1,3 +1,5 @@
+import { random, randomInt } from "../math/random.js";
+import { Explosion } from "./explosion.js";
 import { Particle } from "./particle.js";
 
 export class Bullet extends Particle {
@@ -24,4 +26,23 @@ export class Bullet extends Particle {
   }
 
   age = 0;
+
+  explode() {
+    const newExplosions = [];
+    for (let i = 0; i < randomInt(5, 10); i++) {
+      newExplosions.push(
+        new Explosion({
+          x: this.x,
+          y: this.y,
+          speed: {
+            x: (this.speed.x * -1) / random(5, 50),
+            y: (this.speed.y * -1) / random(5, 50),
+          },
+        })
+      );
+    }
+    return newExplosions;
+  }
+
+  expire() {}
 }

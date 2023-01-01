@@ -56,7 +56,7 @@ function drawObject(object) {
         ...pos,
       };
 
-      if (object.age && object.maxAge) {
+      if (object.age && object.maxAge && object.fading) {
         settings.opacity = 1 - object.age / object.maxAge;
       }
 

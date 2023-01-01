@@ -7,15 +7,15 @@ import {
   positionToMapLeft,
   positionToMapBottom,
 } from "../math/position-to-map-edge.js";
-import { MotherShip } from "../ships/mother-ship.js";
-import { MiningOverseer } from "../ships/mining-overseer.js";
+import { Transport } from "../ships/archetypes/transport/transport.js";
+import { MiningOverseer } from "../ships/archetypes/transport/mining-overseer.js";
 import { battleObjective } from "./objectives/battle.js";
 
 export function level3() {
   mapData.ships.push(new MiningOverseer(positionToMapRight(0.5)));
-  mapData.ships.push(new MotherShip(positionToMapTop(0.5)));
+  mapData.ships.push(new Transport(positionToMapTop(0.5)));
   mapData.ships.push(new MiningOverseer(positionToMapLeft(0.5)));
-  mapData.ships.push(new MotherShip(positionToMapBottom(0.5)));
+  mapData.ships.push(new Transport(positionToMapBottom(0.5)));
 
   addMessageToQueue({
     content: `

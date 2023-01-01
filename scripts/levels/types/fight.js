@@ -1,38 +1,42 @@
-import { MotherShip } from "../../ships/mother-ship.js";
+import { Transport } from "../../ships/archetypes/transport/transport.js";
 import { HunterShip } from "../../ships/archetypes/hunter/hunter.js";
-import { CrowShip } from "../../ships/crow.js";
-import { FastShip } from "../../ships/fast.js";
-import { BaseShip } from "../../ships/base.js";
-import { BigShip } from "../../ships/big.js";
-import { SparrowShip } from "../../ships/sparrow.js";
+import { ScoutShip } from "../../ships/archetypes/scout/scout.js";
 import { randomItemInArray, shuffle } from "../../math/random.js";
 import { mapData } from "../../state/map-data.js";
 import { positionToRandomMapEdge } from "../../math/position-to-map-edge.js";
 import { addMessageToQueue } from "../../hud/messaging.js";
 import { completeLevel } from "../levels.js";
-import { MiningDrone } from "../../ships/mining-drone.js";
-import { MiningOverseer } from "../../ships/mining-overseer.js";
+import { PestShip } from "../../ships/archetypes/pest/pest.js";
 import { battleObjective } from "../objectives/battle.js";
-import { SprayerShip } from "../../ships/sprayer.js";
-import { FalconShip } from "../../ships/falcon.js";
+import { FalconShip } from "../../ships/archetypes/gunship/falcon.js";
+import { ArmedTransport } from "../../ships/archetypes/armed-transport/armed-transport.js";
+import { ArtilleryShip } from "../../ships/archetypes/artillery/artillery.js";
+import { Commander } from "../../ships/archetypes/commander/commander.js";
+import { GunShip } from "../../ships/archetypes/gunship/gunship.js";
+import { SmallFighterShip } from "../../ships/archetypes/small-fighter/small-fighter.js";
+import { SpaceStation } from "../../ships/archetypes/space-station/space-station.js";
 
 // TODO: Clusters of enemies
 const enemyOptions = [
   {
     difficulty: 20,
-    options: [FalconShip],
+    options: [FalconShip, Commander],
+  },
+  {
+    difficulty: 15,
+    options: [ArmedTransport, ArtilleryShip, GunShip],
   },
   {
     difficulty: 10,
-    options: [MotherShip, HunterShip, BigShip, MiningOverseer],
+    options: [Transport, HunterShip, SpaceStation],
   },
   {
     difficulty: 4,
-    options: [SprayerShip, SparrowShip, CrowShip],
+    options: [SmallFighterShip],
   },
   {
     difficulty: 1,
-    options: [FastShip, MiningDrone],
+    options: [ScoutShip, PestShip],
   },
 ];
 

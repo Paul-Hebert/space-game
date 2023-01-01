@@ -6,7 +6,6 @@ export class HunterShip extends BaseShip {
 
   size = 200;
 
-  resourceCount = 0;
   maxHealth = 600;
   health = 600;
   maxSpeed = 10;

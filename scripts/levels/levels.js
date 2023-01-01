@@ -14,6 +14,7 @@ import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { addMessageToQueue, removeAllMessages } from "../hud/messaging.js";
 import { theOverseer } from "./bosses/the-overseer.js";
 import { theDestroyer } from "./bosses/the-destroyer.js";
+import { debugLevel } from "./debug.js";
 
 const sectorTitle = document.querySelector(".sector-title");
 
@@ -65,7 +66,7 @@ export const levels = [
   },
   {
     title: "Out of the Frying Pan",
-    action: level2,
+    action: level1,
   },
   {
     title: "Into the Fire",
@@ -117,14 +118,18 @@ export const levels = [
     title: "Almost Home",
     action: level5,
   },
-  // {
-  //   title: "The Final Battle",
-  //   action: () => {
-  //     fightLevel({ difficulty: 75 });
-  //   },
-  // },
+  {
+    title: "The Final Battle",
+    action: () => {
+      fightLevel({ difficulty: 75 });
+    },
+  },
   {
     title: "The Overseer",
     action: theOverseer,
   },
+  // {
+  //   title: "Secret Debug Level",
+  //   action: debugLevel,
+  // },
 ];

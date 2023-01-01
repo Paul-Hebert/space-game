@@ -1,7 +1,7 @@
-import { BaseShip } from "./base.js";
-import { StasisLaser } from "../weapons/stasis-laser.js";
+import { BaseShip } from "../../base.js";
+import { StasisLaser } from "../../../weapons/stasis-laser.js";
 
-export class MiningDrone extends BaseShip {
+export class PestShip extends BaseShip {
   rotationSpeed = 10;
   accelerationSpeed = 2;
   maxSpeed = 12;

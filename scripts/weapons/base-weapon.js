@@ -1,6 +1,10 @@
 import { Bullet } from "../objects/bullet.js";
 import { degreesToRadians } from "../math/degrees-to-radians.js";
-import { positionToNose, positionToSide } from "../math/position-to-ship.js";
+import {
+  positionToNose,
+  positionToSide,
+  positionToTail,
+} from "../math/position-to-ship.js";
 import { relativePosition } from "../math/relative-position.js";
 import { mapData } from "../state/map-data.js";
 import { rotatedDraw } from "../graphics/rotated-draw.js";
@@ -8,14 +12,16 @@ import { playSoundFile } from "../sound-effects/play-sound-file.js";
 import { volumeRelativeToPlayer } from "../sound-effects/volume-relative-to-player.js";
 
 export class BaseWeapon {
-  name = "base";
+  name = "Basic Space Ray";
   description = "What can I say? It's a gun...";
+
+  type = "gun";
 
   speed = 25;
   reloadSpeed = 5;
   bulletRadius = 2;
   bulletColor = "yellow";
-  damage = 5;
+  damage = 8;
   maxAge = 30;
   bulletsPerShot = 1;
   sound = "laser";
@@ -38,6 +44,10 @@ export class BaseWeapon {
 
   nosePosition(ship, offset = 0) {
     return positionToNose(ship, offset + this.bulletRadius * 2);
+  }
+
+  tailPosition(ship, offset = 0) {
+    return positionToTail(ship, offset + this.bulletRadius * 2);
   }
 
   sidePosition(ship, offset = 0, side = "right") {

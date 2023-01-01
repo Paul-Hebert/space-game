@@ -1,38 +1,26 @@
 # Road map
 
+- Adjust existing levels with new ships
+- Add planets
+  - Add shop screen
+  - reduce random drops
+- Add save points
+
+- Better levels/plot
+
+  - Same tutorial
+
+- weapon improvements
+
+  - bombs should come from the back of the ship
+  - bombs/missiles should not count as "ships"
+
 - Enemy AI
 
-  - Add option to evade/flee when:
-    - Under a certain distance
-    - Shields are down
-    - Health is low
-  - Allow firing some weapon types while fleeing (For now just spawners. Bombs in the future.)
-  - Add bombs
-  - Ship behavior archetypes
-    - Space station
-      - Spawner or Shooter or Combo
-      - 0 movement
-    - Transport
-      - Spawns ships
-      - Runs away when enemies are near
-    - Armed Transport
-      - Spawns ships when long range
-      - Shoots up close with short range gun
-    - Hunters
-      - Short-range guns
-      - Always wants to be close to enemy
-    - Taunter
-      - Short-range guns
-      - Flees right past gun range, but drop bombs when leaving
-    - Gunships
-      - Multiple weapon types - changes based on range
-      - If shield are 0, run
-      - May have bombs
-    - Bosses
-      - Mixed
-  - Better boss behaviors
-
-- Ships that spawn enemies should not be damageable by their child ships
+  - Idle ship behavior
+    - Min distance to detect player
+    - What to do before player detected
+  - Mess with ship speed more
 
 - Boss music
 
@@ -44,7 +32,7 @@
   - Revamp message queue design
   - Explore more objective types
     - "Boss" levels
-    - Get to objective without dying
+    - Get to objective without dying - e.g. pick up X resources
     - Space station levels
     - "Obstacle course"
     - Destroy X stations without dying
@@ -56,6 +44,7 @@
   - Guided missiles
   - Single use items: bombs, speed boosts, etc.
   - Non-weapon upgrades
+  - Better graphics
 - Show ship damage better
   - Create repeated explosions/fires based on damage?
   - Warning noise + popup when health is low

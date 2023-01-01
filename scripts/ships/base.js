@@ -35,7 +35,13 @@ import { distanceBetweenPoints } from "../math/distance-between-points.js";
 let shipId = 0;
 
 export class BaseShip {
-  constructor({ x = 0, y = 0, speed = { x: 0, y: 0 }, rotation = 0 }) {
+  constructor({
+    x = 0,
+    y = 0,
+    speed = { x: 0, y: 0 },
+    rotation = 0,
+    parentId,
+  }) {
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -45,6 +51,10 @@ export class BaseShip {
 
     this.id = shipId;
     shipId++;
+
+    if (parentId) {
+      this.parentId = parentId;
+    }
 
     this.resources = [];
     for (
@@ -72,7 +82,9 @@ export class BaseShip {
       });
     }
 
-    this.weapons[this.currentGun].draw(context, this);
+    if (this.weapons.length) {
+      this.weapons[this.currentGun].draw(context, this);
+    }
 
     rotatedDraw(context, { x, y, rotation: this.rotation }, () => {
       context.drawImage(
@@ -111,10 +123,15 @@ export class BaseShip {
     });
   }
 
+  explosionModifier = 1;
+
   explode() {
     playSoundFile("explosion-2", volumeRelativeToPlayer(this));
 
-    const explosions = createExplosion({ ...this, radius: this.size });
+    const explosions = createExplosion({
+      ...this,
+      radius: this.size * this.explosionModifier,
+    });
 
     const resources = this.resources.map((resource) => {
       resource.x = this.x;
@@ -144,7 +161,7 @@ export class BaseShip {
             resource.upgradeDetails.gun.name === gun.name
         );
 
-        if (!playerHasGun && !gunOnMap) {
+        if (!this.playerCannotHave && !playerHasGun && !gunOnMap) {
           resources.push(this.dropWeaponUpgrade(gun));
         } else {
           resources.push(this.dropShipUpgrade());
@@ -218,7 +235,7 @@ export class BaseShip {
 
   regenerateShields() {
     if (this.maxShields) {
-      this.shields++;
+      this.shields += this.shieldRegenerationRate;
       if (this.shields > this.maxShields) {
         this.shields = this.maxShields;
       }
@@ -232,10 +249,12 @@ export class BaseShip {
       this.regenerateShields();
     }
 
-    if (this.isFleeing) {
-      this.isFleeing = !this.shouldStopFleeing();
-    } else {
-      this.isFleeing = this.shouldFlee();
+    if (this.maxSpeed) {
+      if (this.isFleeing) {
+        this.isFleeing = !this.shouldStopFleeing();
+      } else {
+        this.isFleeing = this.shouldFlee();
+      }
     }
 
     updateShipAngle(this.getTargetAngle(), this);
@@ -245,23 +264,26 @@ export class BaseShip {
     }
 
     if (
-      this.isFleeing ||
-      this.distanceToPlayer() >
-        (this.targetRange.ideal || this.weapons[this.currentGun].range())
+      this.maxSpeed &&
+      (this.isFleeing ||
+        this.weapons.length === 0 ||
+        this.distanceToPlayer() >
+          (this.targetRange.ideal || this.weapons[this.currentGun].range()))
     ) {
       this.accelerate();
-      this.speed = constrainSpeed(this);
     }
 
-    this.x += this.speed.x;
-    this.y += this.speed.y;
+    if (this.maxSpeed) {
+      this.x += this.speed.x;
+      this.y += this.speed.y;
+    }
 
     const playerIsShootable =
       this.isAimingTowardsPlayer() && this.playerIsInRange();
-    const gunHasInfiniteRange =
-      this.weapons[this.currentGun].range() === Infinity;
+    const weaponIsNotGun =
+      this.weapons.length && this.weapons[this.currentGun].type !== "gun";
 
-    if ((playerIsShootable || gunHasInfiniteRange) && playerState.health > 0) {
+    if ((playerIsShootable || weaponIsNotGun) && playerState.health > 0) {
       this.shoot();
     }
   }
@@ -272,6 +294,8 @@ export class BaseShip {
     const rotationInRadians = degreesToRadians(this.rotation - 90);
     this.speed.x += Math.cos(rotationInRadians) * this.accelerationSpeed;
     this.speed.y += Math.sin(rotationInRadians) * this.accelerationSpeed;
+
+    this.speed = constrainSpeed(this);
 
     this.addExhaust();
     this.engineNoise();
@@ -295,18 +319,27 @@ export class BaseShip {
 
   changeWeapons() {
     if (this.isFleeing) {
-      this.selectInfiniteRangeWeapon();
+      this.selectFleeingWeapon();
     } else {
       this.changeWeaponsByRange({});
     }
   }
 
-  selectInfiniteRangeWeapon() {
-    const infiniteGun = this.weapons.findIndex(
-      (gun) => gun.range() === Infinity
+  selectFleeingWeapon() {
+    const bombIndex = this.weapons.findIndex(
+      (weaponIndex) => weaponIndex.type === "bomb"
     );
 
-    if (infiniteGun !== -1) this.currentGun = infiniteGun;
+    if (bombIndex !== -1) {
+      this.currentGun = bombIndex;
+      return;
+    }
+
+    const spawnerIndex = this.weapons.findIndex(
+      (weaponIndex) => weaponIndex.type !== "spawner"
+    );
+
+    if (spawnerIndex !== -1) this.currentGun = spawnerIndex;
   }
 
   changeWeaponsByRange() {
@@ -349,7 +382,9 @@ export class BaseShip {
     return distanceBetweenPoints(this, playerState);
   }
 
-  playerIsInRange(range = this.weapons[this.currentGun].range()) {
+  playerIsInRange(range) {
+    if (!range && this.weapons.length)
+      range = this.weapons[this.currentGun].range();
     return this.distanceToPlayer() < range;
   }
 
@@ -391,4 +426,6 @@ export class BaseShip {
   maxResourceCount = 2;
 
   upgradeDropChance = 0.25;
+
+  shieldRegenerationRate = 2;
 }

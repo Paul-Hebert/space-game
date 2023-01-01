@@ -70,9 +70,17 @@ function updateParticleGroup(particles, aging) {
   });
 
   if (aging) {
-    particles = particles.filter(
-      (particle) => !particle.maxAge || particle.age < particle.maxAge
-    );
+    particles = particles.filter((particle) => {
+      if (!particle.maxAge) return true;
+
+      if (particle.age >= particle.maxAge) {
+        if (particle.expire) particle.expire();
+
+        return false;
+      }
+
+      return true;
+    });
   }
 
   return particles;
