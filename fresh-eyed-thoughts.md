@@ -1,0 +1,4 @@
+- Everything feels fast. Should everything move slower?
+- Weapon upgrades/messages get missed. Reduce number of messages? Make things more obvious?
+- Should there be some loss of inertia/friction/decelleration?
+- It would be easier to improve levels if their file names matched their names, where possible

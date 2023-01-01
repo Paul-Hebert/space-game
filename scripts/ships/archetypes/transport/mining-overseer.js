@@ -1,5 +1,5 @@
-import { DroneSpawner } from "../weapons/drone-spawner.js";
-import { Transport } from "./archetypes/transport/transport.js";
+import { DroneSpawner } from "../../../weapons/drone-spawner.js";
+import { Transport } from "./transport.js";
 
 export class MiningOverseer extends Transport {
   graphic = document.getElementById("ship-2");

@@ -8,7 +8,7 @@ import {
   positionToMapBottom,
 } from "../math/position-to-map-edge.js";
 import { Transport } from "../ships/archetypes/transport/transport.js";
-import { MiningOverseer } from "../ships/mining-overseer.js";
+import { MiningOverseer } from "../ships/archetypes/transport/mining-overseer.js";
 import { battleObjective } from "./objectives/battle.js";
 
 export function level3() {
